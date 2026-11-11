@@ -21,6 +21,9 @@ permissions:
 jobs:
   validate-and-refresh:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: read
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -35,6 +38,14 @@ jobs:
           PYTHONPATH=products/remote-opportunity-hub/src python products/remote-opportunity-hub/scripts/refresh.py \
             --config products/remote-opportunity-hub/config/sources.json \
             --output products/remote-opportunity-hub/web/jobs.json
+      - name: Configure Pages
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        uses: actions/configure-pages@v5
+      - name: Upload refreshed static site
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: products/remote-opportunity-hub/web
       - name: Commit refreshed feed
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         run: |
@@ -56,16 +67,8 @@ jobs:
       contents: read
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: \${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-      - name: Upload static site
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: products/remote-opportunity-hub/web
-      - name: Deploy to GitHub Pages
+      - name: Deploy the refreshed Pages artifact
         id: deployment
         uses: actions/deploy-pages@v4
