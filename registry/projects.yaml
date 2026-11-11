@@ -1,0 +1,84 @@
+schema_version: 1
+registry_status: provisional
+last_verified: null
+projects:
+  - id: zubair-ai-army
+    name: Zubair AI Army
+    repository: https://github.com/zopair/Zubair_AI_Army
+    domain: ai-agents
+    lifecycle: discovery
+    visibility: public
+    verification: readme-reviewed
+    notes: Portfolio automation and AI investment initiatives; internal scope requires validation.
+
+  - id: zubair-hunter-ai
+    name: Zubair Hunter AI / CLT Sovereign OS
+    repository: https://github.com/zopair/Zubair-Hunter-AI
+    domain: ai-agents
+    lifecycle: discovery
+    visibility: public
+    verification: readme-reviewed
+    notes: README describes an agent ecosystem; implementation and operational claims not yet verified.
+
+  - id: sovereign-ai-arsenal
+    name: Sovereign AI Arsenal
+    repository: https://github.com/zopair/Sovereign-AI-Arsenal
+    domain: ai-agents
+    lifecycle: discovery
+    visibility: public
+    verification: readme-reviewed
+    notes: README describes repository discovery and analysis; setup references external services and credentials that require a free-first review.
+
+  - id: clt-platform
+    name: CLT Platform
+    repository: https://github.com/zopair/CLT-Platform
+    domain: platform
+    lifecycle: discovery
+    visibility: public
+    verification: readme-reviewed
+    notes: Minimal README; purpose and implementation need inspection.
+
+  - id: clt-core-monorepo
+    name: CLT Core Monorepo
+    repository: https://github.com/zopair/CLT-Core-Monorepo
+    domain: platform
+    lifecycle: discovery
+    visibility: public
+    verification: metadata-reviewed
+    notes: Contents not yet inspected.
+
+  - id: sinc-os
+    name: SINC-OS
+    repository: https://github.com/zopair/SINC-OS
+    domain: automation
+    lifecycle: discovery
+    visibility: public
+    verification: readme-reviewed
+    notes: README describes a media pipeline for owned or licensed content with private-by-default publishing.
+
+  - id: universal-compute-fabric
+    name: Universal Compute Fabric
+    repository: null
+    domain: cloud-devops
+    lifecycle: proposed
+    visibility: unknown
+    verification: pending-repository-identification
+    notes: Previously discussed project; exact repository URL must be confirmed.
+
+  - id: amazon-kdp-pipeline
+    name: Amazon KDP Children's Books Pipeline
+    repository: null
+    domain: automation
+    lifecycle: proposed
+    visibility: unknown
+    verification: pending-repository-identification
+    notes: Previously discussed GitHub Actions production pipeline; repository access/name not yet confirmed.
+
+  - id: pink-red-market
+    name: Pink & Red Market
+    repository: null
+    domain: commerce
+    lifecycle: proposed
+    visibility: unknown
+    verification: pending-repository-identification
+    notes: E-commerce initiative; repository not yet identified.
