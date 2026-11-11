@@ -251,8 +251,9 @@ The lab is sufficiently established to stop general preparation. Choose one real
 | DEMAND-001 | P1 | Preserve 20 targeted Upwork postings in a dated structured snapshot | Implemented | JSON snapshot, category counts, source URLs and methodology stored under research/upwork-demand/ |
 | DEMAND-002 | P1 | Document demand patterns, intake pipeline, scope and commercial guardrails | Implemented | docs/UPWORK_DEMAND_INTELLIGENCE.md |
 | DEMAND-003 | P1 | Map six service families to existing portfolio samples, tools, license risks and acceptance checks | Implemented | docs/DELIVERY_READINESS_MATRIX.md; gaps remain explicitly marked |
-| DEMAND-004 | P1 | Add deterministic dataset validator and regression tests | Implemented; CI run pending | Python standard-library validator and five unit tests; inspect GitHub Actions run before marking verified |
-| DEMAND-005 | P2 | Extend the highest-value capability gaps only when a real scoped request requires them | Deferred by design | First candidates: Google Sheets adapter, WordPress staging/form QA, fillable PDF forms, compliant scraper checkpoints and client BI connectors |
+| DEMAND-004 | P1 | Add deterministic dataset validator and regression tests | Verified | GitHub Actions run 43073715347 passed; five tests passed |
+| DEMAND-005 | P1 | Add deterministic request classifier and six family playbooks | Implemented; corrected one ambiguous-fixture test and rerun pending | scripts/classify_request.py + config/delivery_playbooks.json; no dependencies; English/Arabic phrases; red-flag routing; never invents estimates |
+| DEMAND-006 | P2 | Extend the highest-value capability gaps only when a real scoped request requires them | Deferred by design | First candidates: Google Sheets adapter, WordPress staging/form QA, fillable PDF forms, compliant scraper checkpoints and client BI connectors |
 
 ### Delivery rules
 
@@ -266,4 +267,4 @@ The lab is sufficiently established to stop general preparation. Choose one real
 
 ### Immediate next gate
 
-Inspect the first GitHub Actions run for .github/workflows/demand-snapshot.yml. If it fails, fix the cause and rerun only the affected workflow. Do not mark DEMAND-004 complete until the actual run and logs are green.
+The dataset validator and its five tests are verified green. The classifier's first CI run exposed an ambiguous-test fixture that did not produce a score tie; the fixture was corrected and a targeted CI rerun is pending. Do not close DEMAND-005 until the rerun and logs are green.
