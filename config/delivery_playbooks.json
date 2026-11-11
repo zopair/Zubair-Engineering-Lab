@@ -1,0 +1,269 @@
+{
+  "version": 1,
+  "categories": {
+    "excel_data": {
+      "keywords": [
+        "excel",
+        "spreadsheet",
+        "xlsx",
+        "csv",
+        "google sheets",
+        "workbook",
+        "formula",
+        "pivot",
+        "duplicate",
+        "تنظيف بيانات",
+        "اكسل",
+        "جداول بيانات",
+        "معادلات"
+      ],
+      "readiness": "ready_with_existing_sample",
+      "intake": [
+        "Source file types and approximate row/sheet counts",
+        "Rules for duplicates, blanks, dates, currencies and formulas",
+        "Required output format and whether macros/pivots must be preserved",
+        "Expected reconciliation totals and acceptance examples"
+      ],
+      "acceptance": [
+        "Preserve an untouched source copy",
+        "Reconcile input/output row counts and explain rejected rows",
+        "Validate duplicates, blanks, types and date/currency rules",
+        "Spot-check formulas and deterministic reruns"
+      ],
+      "tools": [
+        "Python standard library",
+        "pandas when transformation complexity justifies it",
+        "openpyxl for XLSX structure and formatting"
+      ]
+    },
+    "wordpress_web": {
+      "keywords": [
+        "wordpress",
+        "elementor",
+        "landing page",
+        "website",
+        "mobile responsive",
+        "css",
+        "html",
+        "contact form",
+        "rtl",
+        "wordpress",
+        "ووردبريس",
+        "المنتور",
+        "صفحة هبوط",
+        "موقع",
+        "متجاوب"
+      ],
+      "readiness": "extension_needed",
+      "intake": [
+        "Staging URL or reproducible export and theme/plugin versions",
+        "Affected pages, viewports and expected appearance",
+        "Form destination and safe test method",
+        "Backup/rollback owner and production access boundary"
+      ],
+      "acceptance": [
+        "No horizontal overflow at agreed viewports",
+        "No unrelated page regressions",
+        "Form success/failure path verified in staging",
+        "Accessibility and browser console/network checks recorded"
+      ],
+      "tools": [
+        "HTML/CSS and existing lab samples",
+        "Playwright for browser checks when justified",
+        "Disposable WordPress environment for CMS-specific validation"
+      ]
+    },
+    "python_scraping": {
+      "keywords": [
+        "scrape",
+        "scraping",
+        "web crawler",
+        "crawler",
+        "data collection",
+        "extract website",
+        "public records",
+        "automation script",
+        "جمع بيانات",
+        "استخراج بيانات",
+        "كشط مواقع"
+      ],
+      "readiness": "extension_needed",
+      "intake": [
+        "Exact source domains and proof of authorization where needed",
+        "Target fields, pagination and expected volume",
+        "Terms/robots and request-rate constraints",
+        "Resume/checkpoint and output schema requirements"
+      ],
+      "acceptance": [
+        "Source access and terms reviewed",
+        "Request rate, timeout and stop conditions bounded",
+        "Pagination, partial responses and schema drift handled",
+        "No access-control bypass or prohibited personal-data collection"
+      ],
+      "tools": [
+        "Python standard library HTTP clients for small bounded jobs",
+        "Scrapy only when scale and maintenance justify it",
+        "pytest or unittest for deterministic fixtures"
+      ]
+    },
+    "api_workflow": {
+      "keywords": [
+        "api",
+        "rest",
+        "webhook",
+        "oauth",
+        "integration",
+        "n8n",
+        "zapier",
+        "make.com",
+        "whatsapp",
+        "workflow",
+        "تكامل api",
+        "ويب هوك",
+        "أتمتة سير العمل"
+      ],
+      "readiness": "ready_for_bounded_rest_flows",
+      "intake": [
+        "API documentation and sanitized request/response samples",
+        "Auth type, minimum scopes and credential owner",
+        "Webhook verification, event volume and retry expectations",
+        "Systems of record and idempotency key behavior"
+      ],
+      "acceptance": [
+        "Credentials never enter source control or logs",
+        "Timeouts and bounded retries are explicit",
+        "Idempotency and non-idempotent write behavior are tested",
+        "Webhook signature/replay protection verified where supported"
+      ],
+      "tools": [
+        "Existing Python REST API sample",
+        "Python HTTP client and standard-library tests",
+        "n8n only after license and hosting model review"
+      ]
+    },
+    "pdf_documents": {
+      "keywords": [
+        "pdf",
+        "fillable form",
+        "acroform",
+        "document conversion",
+        "html to word",
+        "docx",
+        "ocr",
+        "نموذج pdf",
+        "ملف pdf",
+        "تحويل مستندات"
+      ],
+      "readiness": "extension_needed",
+      "intake": [
+        "Original files and target editable/output format",
+        "Page count, field types, calculations and signature needs",
+        "RTL/font/print requirements and target viewers",
+        "Whether pages are scanned and OCR is authorized"
+      ],
+      "acceptance": [
+        "Preserve source and reconcile page/field counts",
+        "Validate text, fields, tab order and print output",
+        "Inspect representative pages in target viewers",
+        "Surface OCR uncertainty as exceptions"
+      ],
+      "tools": [
+        "pypdf and pdfplumber for extraction",
+        "python-docx and ReportLab for document generation",
+        "Tesseract only for scanned pages with confidence review"
+      ]
+    },
+    "dashboards_bi": {
+      "keywords": [
+        "dashboard",
+        "power bi",
+        "business intelligence",
+        "kpi",
+        "analytics",
+        "sales report",
+        "visualization",
+        "لوحة مؤشرات",
+        "تحليل بيانات",
+        "تقارير مبيعات",
+        "مؤشرات أداء"
+      ],
+      "readiness": "ready_for_csv_driven_reporting",
+      "intake": [
+        "Approved source extracts and refresh requirements",
+        "Metric formulas, grain, filters and date timezone",
+        "Audience, access roles and delivery platform",
+        "Expected reconciliation totals and empty-data behavior"
+      ],
+      "acceptance": [
+        "Metric dictionary documents formula, grain and source",
+        "Totals reconcile to supplied source",
+        "Date boundaries, missing data and duplicates tested",
+        "Refresh/access/licensing limits disclosed"
+      ],
+      "tools": [
+        "Existing Python/CSV/HTML KPI sample",
+        "Streamlit for local interactive views when appropriate",
+        "Client BI platform only with confirmed entitlement"
+      ]
+    }
+  },
+  "global_red_flags": [
+    {
+      "id": "credential_sharing",
+      "phrases": [
+        "send me your password",
+        "share your api key",
+        "session cookie",
+        "ابعت كلمة المرور",
+        "ارسل مفتاح api"
+      ],
+      "action": "stop_and_use_approved_secret_channel"
+    },
+    {
+      "id": "payment_handling",
+      "phrases": [
+        "deposit",
+        "withdrawal",
+        "cash out",
+        "credit card details",
+        "wallet transfer",
+        "إيداع",
+        "سحب",
+        "تحويل أموال"
+      ],
+      "action": "reject_or_re_scope_no_real_money"
+    },
+    {
+      "id": "access_bypass",
+      "phrases": [
+        "bypass captcha",
+        "bypass mfa",
+        "evade rate limit",
+        "bypass paywall",
+        "تجاوز الكابتشا",
+        "تجاوز الحماية"
+      ],
+      "action": "reject_bypass_request"
+    },
+    {
+      "id": "unauthorized_data",
+      "phrases": [
+        "private database dump",
+        "steal customer data",
+        "scrape private accounts",
+        "سحب بيانات خاصة"
+      ],
+      "action": "require_documented_authorization_or_reject"
+    },
+    {
+      "id": "destructive_production",
+      "phrases": [
+        "delete production database",
+        "wipe server",
+        "drop all tables",
+        "احذف قاعدة بيانات الإنتاج"
+      ],
+      "action": "stop_until_backup_rollback_and_explicit_approval"
+    }
+  ]
+}
