@@ -1,79 +1,84 @@
 schema_version: 1
-registry_status: provisional
-last_verified: null
+registry_status: evidence-reviewed-partial
+last_verified: 2026-11-11
+evidence_levels:
+  E1: static documentation or configuration inspected
+  E2: source, tests, manifests, or workflows inspected
+  E3: relevant CI/build/integration execution observed
+  E4: operational deployment, monitoring, security, and recovery demonstrated
 projects:
-  - id: zubair-ai-army
-    name: Zubair AI Army
-    repository: https://github.com/zopair/Zubair_AI_Army
-    domain: ai-agents
-    lifecycle: discovery
-    visibility: public
-    verification: readme-reviewed
-    notes: Portfolio automation and AI investment initiatives; internal scope requires validation.
-
-  - id: zubair-hunter-ai
-    name: Zubair Hunter AI / CLT Sovereign OS
-    repository: https://github.com/zopair/Zubair-Hunter-AI
-    domain: ai-agents
-    lifecycle: discovery
-    visibility: public
-    verification: readme-reviewed
-    notes: README describes an agent ecosystem; implementation and operational claims not yet verified.
-
-  - id: sovereign-ai-arsenal
-    name: Sovereign AI Arsenal
-    repository: https://github.com/zopair/Sovereign-AI-Arsenal
-    domain: ai-agents
-    lifecycle: discovery
-    visibility: public
-    verification: readme-reviewed
-    notes: README describes repository discovery and analysis; setup references external services and credentials that require a free-first review.
-
-  - id: clt-platform
-    name: CLT Platform
-    repository: https://github.com/zopair/CLT-Platform
-    domain: platform
-    lifecycle: discovery
-    visibility: public
-    verification: readme-reviewed
-    notes: Minimal README; purpose and implementation need inspection.
-
-  - id: clt-core-monorepo
-    name: CLT Core Monorepo
-    repository: https://github.com/zopair/CLT-Core-Monorepo
-    domain: platform
-    lifecycle: discovery
-    visibility: public
-    verification: metadata-reviewed
-    notes: Contents not yet inspected.
-
-  - id: sinc-os
-    name: SINC-OS
-    repository: https://github.com/zopair/SINC-OS
-    domain: automation
-    lifecycle: discovery
-    visibility: public
-    verification: readme-reviewed
-    notes: README describes a media pipeline for owned or licensed content with private-by-default publishing.
-
   - id: universal-compute-fabric
     name: Universal Compute Fabric
     repository: https://github.com/zopair/Universal-Compute-Fabric
     domain: cloud-devops
     lifecycle: active
     visibility: public
-    verification: readme-reviewed
-    notes: README identifies M2 experimental execution foundation; execution is opt-in and security hardening remains incomplete.
-
+    verification: E3-ci-main-green
+    evidence: "Main CI run 42864498823 succeeded on 2026-11-10; M2 task lifecycle, reservations, worker claims, and Docker smoke test are present."
+    next_gate: "Do not expose publicly; multi-tenant isolation, OIDC/RBAC, worker crash recovery, threat model, and hardened executor remain."
+  - id: sovereign-ai-arsenal
+    name: Sovereign AI Arsenal
+    repository: https://github.com/zopair/Sovereign-AI-Arsenal
+    domain: ai-agents
+    lifecycle: validation
+    visibility: public
+    verification: E3-pr-branch-green
+    evidence: "PR #2 branch b25bcf0 has successful Backend security/build run 42959911803 and Sandbox run 42959911801. Backend run includes focused regressions, Docker image build, disposable PostgreSQL startup, health and API-auth checks."
+    next_gate: "PR #2 remains open; changes are not on main. PR #1 is an old draft with 102 commits and remains unreviewed. Daily-update workflow failure is separate from the two green runs. No public production exposure."
   - id: amazon-kdp-pipeline
     name: Amazon KDP Children's Books Pipeline
     repository: https://github.com/zopair/Amazon-work-
     domain: automation
+    lifecycle: validation
+    visibility: public
+    verification: E3-feature-branch-green
+    evidence: "Feature branch feature/multi-book-pipeline-phase-4 run 42718252743 passed content audit, deterministic 24-illustration generation, EPUBCheck 5.4.0, print PDF rendering/preflight, full-wrap cover, and proof packaging."
+    next_gate: "Run was on a feature branch; release job was skipped. Inspect final artifacts and KDP Print Previewer. Arabic paperback eligibility remains an external acceptance risk."
+  - id: zubair-ai-army
+    name: Zubair AI Army
+    repository: https://github.com/zopair/Zubair_AI_Army
+    domain: ai-agents
     lifecycle: active
     visibility: public
-    verification: readme-reviewed
-    notes: README documents a bilingual 24-page build and preflight pipeline; required original artwork is a hard prerequisite and KDP Arabic RTL acceptance is not guaranteed.
-
+    verification: E3-ci-main-green
+    evidence: "Main CI run 42894115088 and Pages deployment run 42894113040 succeeded on 2026-11-10; source tree contains multiple product modules."
+    next_gate: "Establish ownership and runtime boundaries for modules before treating the repository as one deployable product."
+  - id: zubair-hunter-ai
+    name: Zubair Hunter AI / CLT Sovereign OS
+    repository: https://github.com/zopair/Zubair-Hunter-AI
+    domain: ai-agents
+    lifecycle: review-required
+    visibility: public
+    verification: E2-source-tree-reviewed
+    evidence: "Source tree contains application code, SQLite databases, cloud CLI configuration files, and dated logs under .config."
+    next_gate: "Security review of tracked local configuration/database/log artifacts before reuse or deployment; do not assume secrets are present or absent without inspection."
+  - id: clt-platform
+    name: CLT Platform
+    repository: https://github.com/zopair/CLT-Platform
+    domain: platform
+    lifecycle: blocked-external-credentials
+    visibility: public
+    verification: E3-ci-failure-diagnosed
+    evidence: "Main workflow run 42931512191 failed at configuration validation because no YouTube OAuth token or refresh-token/client credential set is configured; publishing stage was skipped."
+    next_gate: "Provide YouTube OAuth credentials only if publishing is intended; otherwise add a safe offline/preview mode in a separately tested change."
+  - id: clt-core-monorepo
+    name: CLT Core Monorepo
+    repository: https://github.com/zopair/CLT-Core-Monorepo
+    domain: platform
+    lifecycle: blocked-empty-main
+    visibility: public
+    verification: E2-git-metadata-and-tree
+    evidence: "Repository exists, but main points to an empty Git tree; README fetch returns 404. Historical OPENCONNECT workflow runs on branch openconnect/bootstrap failed."
+    next_gate: "Recover the intended source from a known branch/commit or formally retire this repository; do not infer functionality from its name."
+  - id: sinc-os
+    name: SINC-OS
+    repository: https://github.com/zopair/SINC-OS
+    domain: automation
+    lifecycle: discovery
+    visibility: public
+    verification: E3-ci-main-green
+    evidence: "Main CI run 40488818115 succeeded; repository currently contains a small gateway/orchestrator and media automation surface."
+    next_gate: "Inspect actual runtime and define whether SINC-OS is a standalone product or a CLT-Platform adapter."
   - id: pink-red-market
     name: Pink & Red Market
     repository: null
@@ -81,4 +86,5 @@ projects:
     lifecycle: proposed
     visibility: unknown
     verification: pending-repository-identification
-    notes: E-commerce initiative; repository not yet identified.
+    notes: "Business decisions exist; no matching repository was found in the account repository search performed on 2026-11-11."
+    next_gate: "Create or identify the owning repository only when product implementation begins."
