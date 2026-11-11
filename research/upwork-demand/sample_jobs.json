@@ -1,0 +1,222 @@
+{
+  "dataset_id": "upwork-demand-snapshot-2026-11-11",
+  "snapshot_date": "2026-11-11",
+  "source": "Connected Upwork job search; representative targeted sample",
+  "methodology": "20 postings selected across six service families for capability fit and recurring delivery patterns. Purposive sample; not random or a market-share estimate.",
+  "caveats": [
+    "Listings, budgets, proposal counts and client state can change or disappear after snapshot.",
+    "Null budget means no reliable fixed budget was captured; it is not zero.",
+    "Sample is not statistically representative of all Upwork demand.",
+    "No proposal was submitted and no Connects were spent in this review."
+  ],
+  "category_counts": {
+    "excel_data": 5,
+    "wordpress_web": 4,
+    "python_scraping": 3,
+    "api_workflow": 3,
+    "pdf_documents": 3,
+    "dashboards_bi": 2
+  },
+  "jobs": [
+    {
+      "id": "J01",
+      "title": "Elementor Design Consultation",
+      "category": "wordpress_web",
+      "url": "https://www.upwork.com/jobs/~022120544678618075629",
+      "budget": null,
+      "summary": "Elementor spacing and margin adjustments",
+      "delivery_notes": "Confirm affected section and viewport.",
+      "snapshot_date": "2026-11-11"
+    },
+    {
+      "id": "J02",
+      "title": "Five-page Elementor Website",
+      "category": "wordpress_web",
+      "url": "https://www.upwork.com/jobs/~022120517970432162455",
+      "budget": "$50",
+      "summary": "Five responsive pages, animations, plugins and contact form",
+      "delivery_notes": "Bound plugin scope, content readiness and form delivery.",
+      "snapshot_date": "2026-11-11"
+    },
+    {
+      "id": "J03",
+      "title": "WordPress Developer with Elementor",
+      "category": "wordpress_web",
+      "url": "https://www.upwork.com/jobs/~022120431944436809333",
+      "budget": "$200",
+      "summary": "Page construction, performance improvements and maintenance",
+      "delivery_notes": "Separate one-time changes from ongoing support.",
+      "snapshot_date": "2026-11-11"
+    },
+    {
+      "id": "J04",
+      "title": "WordPress Contact Page Cleanup",
+      "category": "wordpress_web",
+      "url": "https://www.upwork.com/jobs/~022120369642212237783",
+      "budget": "$10",
+      "summary": "Repair contact page and responsive behavior",
+      "delivery_notes": "Test form path in staging; preserve backup.",
+      "snapshot_date": "2026-11-11"
+    },
+    {
+      "id": "J05",
+      "title": "Microsoft Excel Spreadsheet Developer",
+      "category": "excel_data",
+      "url": "https://www.upwork.com/jobs/~022120514630718301370",
+      "budget": "Hourly",
+      "summary": "Organize a 17-sheet workbook and improve dashboard",
+      "delivery_notes": "Inspect formulas, pivots, macros and named ranges.",
+      "snapshot_date": "2026-11-11"
+    },
+    {
+      "id": "J06",
+      "title": "Google Sheets & Excel Automation",
+      "category": "excel_data",
+      "url": "https://www.upwork.com/jobs/~022120449107006537043",
+      "budget": "Hourly",
+      "summary": "Repair formulas and consolidate data",
+      "delivery_notes": "Confirm formula compatibility and API access.",
+      "snapshot_date": "2026-11-11"
+    },
+    {
+      "id": "J07",
+      "title": "KPI Tracker Owner",
+      "category": "excel_data",
+      "url": "https://www.upwork.com/jobs/~022120399556214259317",
+      "budget": "$10–75/hr",
+      "summary": "Sales and advertising KPIs with source integrations",
+      "delivery_notes": "Require metric definitions and source permissions.",
+      "snapshot_date": "2026-11-11"
+    },
+    {
+      "id": "J08",
+      "title": "Excel Data Cleanup & Validation",
+      "category": "excel_data",
+      "url": "https://www.upwork.com/jobs/~022120221523052771400",
+      "budget": "$20",
+      "summary": "Clean 2,000 records, deduplicate and validate",
+      "delivery_notes": "Preserve raw input and produce exception report.",
+      "snapshot_date": "2026-11-11"
+    },
+    {
+      "id": "J09",
+      "title": "Sales Sheet Cleanup",
+      "category": "excel_data",
+      "url": "https://www.upwork.com/jobs/~022120175853196284397",
+      "budget": "$10",
+      "summary": "Clean 3,000 rows and create monthly summary",
+      "delivery_notes": "Confirm date/currency semantics and aggregation.",
+      "snapshot_date": "2026-11-11"
+    },
+    {
+      "id": "J10",
+      "title": "Football Data Collection Script",
+      "category": "python_scraping",
+      "url": "https://www.upwork.com/jobs/~022120572031788637100",
+      "budget": "$10",
+      "summary": "Collect match and odds data and export results",
+      "delivery_notes": "Review source terms, rate limits and data licensing.",
+      "snapshot_date": "2026-11-11"
+    },
+    {
+      "id": "J11",
+      "title": "County Records Web Scraper",
+      "category": "python_scraping",
+      "url": "https://www.upwork.com/jobs/~022120377047504130541",
+      "budget": "$100",
+      "summary": "Extract public property records",
+      "delivery_notes": "Confirm lawful access, privacy and request limits.",
+      "snapshot_date": "2026-11-11"
+    },
+    {
+      "id": "J12",
+      "title": "Python Secure Workflow Automation",
+      "category": "python_scraping",
+      "url": "https://www.upwork.com/jobs/~022120274543274687127",
+      "budget": "$10",
+      "summary": "Secure automation, logging and tests",
+      "delivery_notes": "Define dry-run, idempotency and audit trail.",
+      "snapshot_date": "2026-11-11"
+    },
+    {
+      "id": "J13",
+      "title": "WhatsApp AI Agent Integration",
+      "category": "api_workflow",
+      "url": "https://www.upwork.com/jobs/~022120561715822451628",
+      "budget": null,
+      "summary": "Connect WhatsApp to an AI agent using workflow tools",
+      "delivery_notes": "Requires provider credentials, webhook verification and model-cost decisions.",
+      "snapshot_date": "2026-11-11"
+    },
+    {
+      "id": "J14",
+      "title": "n8n Business Workflow Integration",
+      "category": "api_workflow",
+      "url": "https://www.upwork.com/jobs/~022120105235745939927",
+      "budget": "$50",
+      "summary": "REST APIs, webhooks and error handling",
+      "delivery_notes": "Test idempotency, bounded retries and secret handling.",
+      "snapshot_date": "2026-11-11"
+    },
+    {
+      "id": "J15",
+      "title": "API Integration Diagnostics",
+      "category": "api_workflow",
+      "url": "https://www.upwork.com/jobs/~022119825961418166095",
+      "budget": null,
+      "summary": "Diagnose API/OAuth/webhook integrations and alerts",
+      "delivery_notes": "Need sanitized logs, scopes and expiry behavior.",
+      "snapshot_date": "2026-11-11"
+    },
+    {
+      "id": "J16",
+      "title": "HVAC Fillable PDF Forms",
+      "category": "pdf_documents",
+      "url": "https://www.upwork.com/jobs/~022120574969719986427",
+      "budget": "$200",
+      "summary": "Create two fillable PDF forms",
+      "delivery_notes": "Define fields, tab order, validation and target viewers.",
+      "snapshot_date": "2026-11-11"
+    },
+    {
+      "id": "J17",
+      "title": "HTML to Word Conversion",
+      "category": "pdf_documents",
+      "url": "https://www.upwork.com/jobs/~022120255200614826454",
+      "budget": "$10–30/hr",
+      "summary": "Convert HTML to Word with numbering and table of contents",
+      "delivery_notes": "Clarify layout fidelity, styles and page breaks.",
+      "snapshot_date": "2026-11-11"
+    },
+    {
+      "id": "J18",
+      "title": "PDF Form Update",
+      "category": "pdf_documents",
+      "url": "https://www.upwork.com/jobs/~022120227144418960570",
+      "budget": "$20",
+      "summary": "Update a dynamic PDF form",
+      "delivery_notes": "Inspect existing fields, calculations and signatures.",
+      "snapshot_date": "2026-11-11"
+    },
+    {
+      "id": "J19",
+      "title": "Freelance Power BI Developer",
+      "category": "dashboards_bi",
+      "url": "https://www.upwork.com/jobs/~022120549126861221535",
+      "budget": null,
+      "summary": "Executive, sales and operations dashboards from business systems",
+      "delivery_notes": "Requires connectors, refresh permissions and license context.",
+      "snapshot_date": "2026-11-11"
+    },
+    {
+      "id": "J20",
+      "title": "Data Analyst for Business Insights",
+      "category": "dashboards_bi",
+      "url": "https://www.upwork.com/jobs/~022120449234176197078",
+      "budget": "$30",
+      "summary": "Analyze business data and deliver insights",
+      "delivery_notes": "Agree questions, data grain and KPI definitions.",
+      "snapshot_date": "2026-11-11"
+    }
+  ]
+}
