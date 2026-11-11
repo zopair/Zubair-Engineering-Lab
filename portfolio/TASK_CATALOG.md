@@ -15,7 +15,7 @@ Scope derived from a review of current and representative Upwork fixed-price pos
 |---:|---|---|---|---|
 | 1 | Responsive landing page repair | Fix mobile font scaling, duplicated HTML, spacing and contrast | HTML5, CSS3, Python unittest; optional Playwright when available | Responsive breakpoints, one copy block, contrast tokens, no overflow, automated checks |
 | 2 | Spreadsheet cleanup | Normalize headers, dates, whitespace, duplicates, missing values; validate CSV/XLSX | Python 3, pandas, openpyxl, unittest | Before/after synthetic dataset, JSON validation report, six deterministic tests, no silent data loss |
-| 3 | WordPress/Elementor section repair | Fix one section's mobile layout without changing desktop appearance | WordPress, Elementor free where possible, CSS, browser/device QA | Reproducible demo, desktop/mobile screenshots, rollback instructions; no production credentials (blocked pending isolated demo environment) |
+| 3 | WordPress/Elementor section repair | Fix one section's mobile layout without changing desktop appearance | WordPress, Elementor free where possible, CSS, browser/device QA | Scoped WordPress plugin, static Elementor markup preview, PHP lint and six static tests; live WordPress/Elementor browser QA remains pending |
 | 4 | Batch file automation | Rename, classify, convert or organize files safely | Python standard library, pathlib, argparse, unittest | CI green (run 43037071060); six tests pass; dry-run mode, collision protection, audit log, idempotency |
 | 5 | REST API integration | Connect endpoints, map payloads, handle failures and retries | Python, httpx, unittest | CI green (43043222968); 9 HTTP-boundary tests; bounded retry and no automatic POST retry |
 | 6 | PDF text extraction | Extract searchable text and export traceable CSV/XLSX rows | Python, pypdf, pandas, openpyxl, reportlab (tests) | CI green (43043587807); 7 synthetic PDF integration tests; OCR and table reconstruction explicitly out of scope |
@@ -24,7 +24,7 @@ Scope derived from a review of current and representative Upwork fixed-price pos
 
 ## Execution order and dependencies
 
-- Samples 01, 02, 04, 05, 06, 07, and 08 are implemented with automated test coverage. Samples 05–07 use deterministic local fixtures and require no live client API, document, or data credentials.
+- Samples 01, 02, 03 (code-level only), 04, 05, 06, 07, and 08 have automated test coverage. Samples 05–07 use deterministic local fixtures and require no live client API, document, or data credentials.
 - Sample 04 was advanced ahead of sample 03 because it can be completed and verified without provisioning a separate CMS environment.
 - Build sample 03 only in a disposable local WordPress environment; never install plugins or modify a live site without explicit client authorization.
 - Samples 04–07 use local synthetic inputs and test fixtures.
@@ -51,6 +51,6 @@ Representative live postings reviewed through the connected Upwork account. Thes
 
 ## Portfolio build status
 
-- Samples 01, 02, 04, 05, 06, 07, and 08 are implemented on the lab's main branch.
-- Samples 01 and 02 have successful dedicated GitHub Actions runs from 2026-11-11. Sample 04 has a dedicated GitHub Actions workflow and a successful run (43037071060). Sample 05 has a successful dedicated GitHub Actions run (43043222968). Sample 06 has a successful dedicated GitHub Actions run (43043587807). Sample 07 has a successful dedicated GitHub Actions run (43044133557). Sample 08 has a successful dedicated GitHub Actions run (43044572639). The seven-card gallery and all internal links pass acceptance in run 43044660878.
+- Samples 01–08 are represented on the lab's main branch; Sample 03 is a code-level plugin demonstration and still needs live CMS validation.
+- Samples 01 and 02 have successful dedicated GitHub Actions runs from 2026-11-11. Sample 04 has a dedicated GitHub Actions workflow and a successful run (43037071060). Sample 05 has a successful dedicated GitHub Actions run (43043222968). Sample 06 has a successful dedicated GitHub Actions run (43043587807). Sample 07 has a successful dedicated GitHub Actions run (43044133557). Sample 08 has a successful dedicated GitHub Actions run (43044572639). The seven-card gallery and all internal links passed in run 43044660878; an eight-card refresh is now being verified.
 - This proves the committed tests passed in GitHub Actions where a successful run is recorded; it does not claim that a client production system was modified.
