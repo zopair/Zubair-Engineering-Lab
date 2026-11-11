@@ -1,0 +1,27 @@
+name: Portfolio Sample 01 — Responsive Landing Page
+
+on:
+  push:
+    paths:
+      - 'portfolio/01-responsive-landing-page/**'
+      - '.github/workflows/portfolio-sample-01.yml'
+  pull_request:
+    paths:
+      - 'portfolio/01-responsive-landing-page/**'
+      - '.github/workflows/portfolio-sample-01.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  acceptance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run responsive landing acceptance checks
+        working-directory: portfolio/01-responsive-landing-page
+        run: python -m unittest discover -s tests -v
