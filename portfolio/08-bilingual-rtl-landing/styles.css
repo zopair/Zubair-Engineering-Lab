@@ -49,6 +49,7 @@ h1 span { color: #a77b43; }
 .contact-panel h2 { margin: 0; font-size: clamp(25px, 3vw, 34px); letter-spacing: -.04em; line-height: 1.2; }
 .contact-panel > div > p:last-child { max-width: 400px; color: #c2cedb; font-size: 13px; }
 .demo-form { display: grid; gap: 8px; }
+.demo-form fieldset { display: grid; min-width: 0; gap: 8px; margin: 0; padding: 0; border: 0; }
 .demo-form label { margin-block-start: 5px; color: #dce5ee; font-size: 11px; font-weight: 700; }
 .demo-form input { width: 100%; min-height: 43px; padding-inline: 12px; border: 1px solid #51647d; border-radius: 6px; outline-offset: 3px; background: #20344f; color: white; font-size: 12px; }
 .demo-form input::placeholder { color: #a4b1c0; }
