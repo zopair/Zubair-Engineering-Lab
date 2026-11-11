@@ -216,3 +216,32 @@ The CI-focused test set now contains eight tests across the API regression and s
 A further source trace found that `update_repository_metrics()` previously opened and closed its own aiohttp session, while the analysis worker then called `get_repository_readme()` on that now-closed session. The analysis worker now owns one `async with discovery_engine` scope spanning both metrics and README retrieval; `update_repository_metrics()` now uses the caller-owned session rather than closing it. Added regression guards for the shared client lifetime and the attribute-based detached repository snapshot.
 
 The focused CI set now contains ten tests. Their execution and the Docker build remain pending inspection of a completed GitHub Actions run.
+
+
+## Consolidated audit correction — 2026-11-11
+
+This section supersedes earlier status statements in this file where they conflict with the verified runs below. Do not restart already-green CI jobs merely to reproduce the same evidence.
+
+### Verified execution evidence
+
+| Project | Evidence | Current decision |
+|---|---|---|
+| Sovereign AI Arsenal | PR #2 backend run 42959911803 passed focused regressions, Docker image build, disposable PostgreSQL startup, health and API-auth checks. Sandbox run 42959911801 passed. | Keep PR #2 open for review; code is not yet on main. PR #1 remains an old draft and is not a prerequisite for starting other work. |
+| Universal Compute Fabric | Main CI run 42864498823 passed on 2026-11-10. M2 roadmap records task lifecycle, reservations, claim fencing and Docker smoke test as complete. | M2 experimental foundation is established. Do not expand into enterprise security work before the first real workload requires it. |
+| Amazon KDP Pipeline | Feature-branch run 42718252743 passed bilingual content audit, generation/audit of 24 original illustrations, EPUBCheck 5.4.0, print PDF render/preflight, full-wrap cover and proof packaging. | Production pipeline exists on a feature branch. Review the artifacts and KDP Print Previewer; release was skipped and Arabic paperback eligibility remains unresolved. |
+| Zubair AI Army | Main CI run 42894115088 and Pages deployment 42894113040 passed. | Treat as an active codebase with multiple modules, not yet as a single verified production system. |
+| SINC-OS | Main CI run 40488818115 passed. | Keep in discovery until its runtime boundary with CLT Platform is clear. |
+| CLT Platform | Main workflow run 42931512191 failed at configuration validation because YouTube OAuth credentials were absent; media generation/publishing was skipped. | This is an external-credential gate, not a code regression. Do not spend time retrying without credentials or an offline-preview requirement. |
+| CLT Core Monorepo | The current main branch points to an empty Git tree; README is absent. Historical OPENCONNECT runs failed on a separate branch. | Quarantine from dependency planning until source recovery or explicit retirement. |
+| Pink & Red Market | No matching repository was found in the account repository search. | Keep repository identification as a product-start task, not a lab-foundation blocker. |
+
+### Close / defer decisions
+
+- **Close as verified:** UCF M2 CI foundation; SAA PR-branch backend and sandbox verification; KDP feature-branch production pipeline checks; Zubair AI Army main CI; SINC-OS main CI.
+- **Keep visible but do not block the portfolio:** SAA PR review, KDP platform acceptance, CLT Platform OAuth configuration, CLT Core source recovery, Hunter AI tracked-artifact security review, Pink & Red Market repository identification.
+- **Do not start in this phase:** portfolio-wide Kubernetes, Backstage portal, shared database, broad observability rollout, bulk upstream cloning, or enterprise identity work for projects that do not yet need it.
+- **No destructive actions:** do not delete databases, volumes, tracked local artifacts, branches, or repositories as part of this closure pass.
+
+### Actual start-work threshold
+
+The lab is sufficiently established to stop general preparation. Choose one real deliverable and implement it in its owning repository. Shared controls are added only when that deliverable requires them. No further portfolio-wide readiness campaign is authorized by this backlog.
