@@ -255,7 +255,7 @@ The lab is sufficiently established to stop general preparation. Choose one real
 | DEMAND-005 | P1 | Add deterministic request classifier and six family playbooks | Verified | GitHub Actions runs 43074061505 and 43074272435 passed; seven classifier tests passed, including CLI execution, Arabic routing, ambiguity, unclassified input and red-flag handling |
 | DEMAND-006 | P2 | Extend the highest-value capability gaps only when a real scoped request requires them | Deferred by design | First candidates: Google Sheets adapter, WordPress staging/form QA, fillable PDF forms, compliant scraper checkpoints and client BI connectors |
 
-| DEMAND-007 | P2 | Add dependency-free searchable snapshot/readiness dashboard | Implemented; CI run pending | dashboard.html reads the checked-in JSON; search/filter and historical-data notice; browser visual verification remains a separate gate |
+| DEMAND-007 | P2 | Add dependency-free searchable snapshot/readiness dashboard | Verified by CI source tests | GitHub Actions run 43074571463 passed three dashboard tests; browser visual/runtime review remains a separate gate |
 
 ### Delivery rules
 
