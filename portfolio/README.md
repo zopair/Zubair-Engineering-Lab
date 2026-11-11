@@ -16,7 +16,7 @@ A curated library of small-to-medium fixed-price deliverables, built as reproduc
 | 01 | Responsive landing page repair | HTML/CSS, mobile fixes, accessibility | HTML5, CSS3, Python unittest | CI green; 7 acceptance checks pass (run 43034499497) |
 | 02 | Excel/CSV cleanup and validation | Spreadsheet/data cleaning | Python, pandas, openpyxl, unittest | CI green; 6 tests pass; CSV/XLSX round-trip verified (run 43034845177) |
 | 03 | WordPress/Elementor responsive section repair | CMS/front-end maintenance | WordPress, Elementor, CSS, browser QA | Queued; requires a safe demo WordPress instance |
-| 04 | Python batch file automation | Scripting/automation | Python standard library, pathlib, argparse, unittest | Implemented; 6 local tests pass; CI verification pending |
+| 04 | Python batch file automation | Scripting/automation | Python standard library, pathlib, argparse, unittest | CI green; 6 tests pass (run 43037071060) |
 | 05 | REST API integration and smoke tests | API development/QA | Python, requests/httpx, pytest | Queued |
 | 06 | PDF extraction and structured export | Document automation | Python, pypdf, pandas | Queued |
 | 07 | Business KPI dashboard | Data analysis/visualization | Python, pandas, Plotly or static HTML | Queued |
@@ -35,4 +35,4 @@ A conservative CSV/XLSX cleaner with schema normalization, explicit duplicate ha
 ## Sample 04
 [Safe batch file automation](./04-batch-file-automation/README.md)
 
-A dry-run-first file renaming utility with extension filters, collision protection, idempotent prefix handling, and optional JSON audit output. Six local tests pass; the dedicated CI run is pending.
+A dry-run-first file renaming utility with extension filters, collision protection, idempotent prefix handling, and optional JSON audit output. Six tests pass locally and in GitHub Actions (run 43037071060).
