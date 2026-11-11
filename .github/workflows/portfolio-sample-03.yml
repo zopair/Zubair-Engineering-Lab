@@ -1,0 +1,36 @@
+name: Portfolio Sample 03 — Elementor Responsive Repair
+
+on:
+  push:
+    paths:
+      - 'portfolio/03-elementor-responsive-repair/**'
+      - '.github/workflows/portfolio-sample-03.yml'
+  pull_request:
+    paths:
+      - 'portfolio/03-elementor-responsive-repair/**'
+      - '.github/workflows/portfolio-sample-03.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  acceptance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          coverage: none
+      - name: Validate plugin PHP syntax
+        working-directory: portfolio/03-elementor-responsive-repair
+        run: php -l elementor-mobile-section-fix.php
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run scoped repair acceptance tests
+        working-directory: portfolio/03-elementor-responsive-repair
+        run: python -m unittest discover -s tests -v
