@@ -36,6 +36,7 @@ See:
 - [Prioritized execution backlog](docs/EXECUTION_BACKLOG.md)
 - [Upwork Publishing Engine plan](docs/UPWORK_PUBLISHING_ENGINE.md)
 - [Upwork Demand Intelligence](docs/UPWORK_DEMAND_INTELLIGENCE.md)
+- [Remote Opportunity Hub — zero-budget remote job market and profile builder](products/remote-opportunity-hub/README.md)
 - [Delivery Readiness Matrix](docs/DELIVERY_READINESS_MATRIX.md)
 - [Dated Upwork demand snapshot](research/upwork-demand/sample_jobs.json)
 - [Demand snapshot dashboard](research/upwork-demand/dashboard.html)
