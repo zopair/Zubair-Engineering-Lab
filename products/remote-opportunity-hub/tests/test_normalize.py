@@ -31,6 +31,11 @@ class NormalizationTests(unittest.TestCase):
         self.assertEqual(job["source_credit"], "Himalayas")
         self.assertEqual(job["location"], "Egypt")
         self.assertEqual(job["remote_status"], "remote")
+
+    def test_himalayas_timestamp_seconds_are_not_misread_as_milliseconds(self):
+        raw = {"guid": "job-2", "title": "Remote Analyst", "applicationLink": "https://himalayas.app/jobs/job-2", "expiryDate": 1794300000}
+        job = normalize_himalayas(raw, {"company": "Example", "board": "test"})
+        self.assertTrue(job["expiry_date"].startswith("2026-"))
         
 if __name__ == "__main__":
     unittest.main()
