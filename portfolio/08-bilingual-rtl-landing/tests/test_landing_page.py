@@ -56,7 +56,7 @@ class BilingualLandingTests(unittest.TestCase):
 
     def test_language_toggle_updates_language_and_direction(self):
         self.assertIn("root.lang", self.js)
-        self.assertIn('document.documentElement.dir', self.js)
+        self.assertIn('root.dir', self.js)
         self.assertIn("aria-pressed", self.html)
 
     def test_forms_are_demo_only_and_never_send_data(self):
