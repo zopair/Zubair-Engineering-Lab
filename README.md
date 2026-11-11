@@ -44,6 +44,8 @@ See:
 - [Request classifier](scripts/classify_request.py)
 - [Architecture](docs/ARCHITECTURE.md)
 - [Engineering standards](standards/ENGINEERING_STANDARDS.md)
+- [Portfolio repository health audit](docs/REPOSITORY_HEALTH_AUDIT.md)
+- [Read-only repository auditor](scripts/repo_health_audit.py)
 - [Project registry](registry/projects.yaml)
 - [Decision records](docs/decisions/)
 
