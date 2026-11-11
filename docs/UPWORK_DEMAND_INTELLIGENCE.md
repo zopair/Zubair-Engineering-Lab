@@ -82,3 +82,18 @@ python scripts/classify_request.py "Clean this Excel workbook and remove duplica
 ```
 
 Rules are editable in config/delivery_playbooks.json. The classifier uses Python standard library only, has no network access, and is a first-pass routing aid; a human must validate scope, context, source permissions and exact license requirements.
+
+
+## Demand snapshot dashboard
+
+A dependency-free browser dashboard is available at research/upwork-demand/dashboard.html. It reads only the versioned local JSON snapshot, provides text search and family filtering, and validates outbound listing links against the Upwork job URL host before rendering them. It is not a live feed and does not automate account actions. Run from the repository root with:
+
+```bash
+python -m http.server 8000
+```
+
+Then open http://localhost:8000/research/upwork-demand/dashboard.html. The page uses browser fetch and therefore should be served over HTTP rather than opened as a file URL.
+
+## Estimate integrity boundary
+
+The classifier intentionally returns estimate_status=not_estimable_until_scope_is_bounded. No defensible delivery-time dataset exists yet for these task families, so the hub does not invent hours, fixed prices or completion promises. The intake checklists and acceptance contracts establish the inputs required for a human-reviewed work breakdown. Calibrate an automated estimator only after collecting actual task-level effort and outcome evidence from completed work, with customer data excluded.
