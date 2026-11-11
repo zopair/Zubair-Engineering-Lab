@@ -102,6 +102,18 @@ def classify_repository(
             "recommendation": "Inspect without printing values; rotate any exposed credentials and remove from current tree/history through an approved incident process.",
         })
 
+    tracked_databases = [
+        path for path in paths
+        if path.lower().endswith((".db", ".sqlite", ".sqlite3"))
+    ]
+    if tracked_databases:
+        findings.append({
+            "id": "tracked_database_file",
+            "severity": "high",
+            "evidence": f"{len(tracked_databases)} tracked database file path(s)",
+            "recommendation": "Inspect schema and row counts offline without exposing records; if these are runtime/client data, move them to ignored persistent storage and use sanitized fixtures in source control.",
+        })
+
     workflows = [path for path in paths if path.startswith(".github/workflows/") and path.endswith((".yml", ".yaml"))]
     source_extensions = (".py", ".js", ".jsx", ".ts", ".tsx", ".go", ".rs", ".java", ".kt", ".swift", ".php", ".rb", ".cs")
     has_source = any(path.endswith(source_extensions) for path in paths)
