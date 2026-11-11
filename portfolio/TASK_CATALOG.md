@@ -14,7 +14,7 @@ Scope derived from a review of current and representative Upwork fixed-price pos
 | Priority | Sample | Typical client request | Required tools | Evidence / acceptance |
 |---:|---|---|---|---|
 | 1 | Responsive landing page repair | Fix mobile font scaling, duplicated HTML, spacing and contrast | HTML5, CSS3, Python unittest; optional Playwright when available | Responsive breakpoints, one copy block, contrast tokens, no overflow, automated checks |
-| 2 | Spreadsheet cleanup | Normalize headers, dates, whitespace, duplicates, missing values; validate CSV/XLSX | Python 3, pandas, openpyxl, pytest/unittest | Before/after synthetic dataset, validation report, deterministic tests, no silent data loss |
+| 2 | Spreadsheet cleanup | Normalize headers, dates, whitespace, duplicates, missing values; validate CSV/XLSX | Python 3, pandas, openpyxl, unittest | Before/after synthetic dataset, JSON validation report, six deterministic tests, no silent data loss |
 | 3 | WordPress/Elementor section repair | Fix one section's mobile layout without changing desktop appearance | WordPress, Elementor free where possible, CSS, browser/device QA | Reproducible demo, desktop/mobile screenshots, rollback instructions; no production credentials |
 | 4 | Batch file automation | Rename, classify, convert or organize files safely | Python, pathlib, argparse, logging, unittest | Dry-run mode, collision handling, audit log, tests on temporary files |
 | 5 | REST API integration | Connect two endpoints, map fields, handle errors and retries | Python, httpx/requests, pytest, JSON Schema | Mock/local API tests, timeout/retry policy, sanitized logs, README |
@@ -24,7 +24,7 @@ Scope derived from a review of current and representative Upwork fixed-price pos
 
 ## Execution order and dependencies
 
-- Complete samples 01 and 02 first; they need no accounts or paid infrastructure.
+- Samples 01 and 02 are implemented and tested locally; they need no accounts or paid infrastructure.
 - Build sample 03 only in a disposable local WordPress environment; never install plugins or modify a live site without explicit client authorization.
 - Samples 04–07 use local synthetic inputs and test fixtures.
 - Sample 08 reuses the responsive foundation from sample 01 and adds RTL-specific acceptance tests.
