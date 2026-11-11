@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Historical Upwork demand snapshot and delivery readiness overview.">
+  <title>Upwork Demand Intelligence — Zubair Engineering Lab</title>
+  <style>
+    :root { color-scheme: light; --ink:#18212b; --muted:#5b6875; --line:#dce3e9; --surface:#fff; --wash:#f4f7f9; --accent:#185b8f; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--wash); color:var(--ink); font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif; }
+    main { width:min(1120px,calc(100% - 32px)); margin:36px auto 64px; }
+    header { display:flex; flex-wrap:wrap; align-items:flex-start; justify-content:space-between; gap:18px; margin-bottom:24px; }
+    h1 { margin:0 0 8px; font-size:clamp(1.65rem,4vw,2.3rem); line-height:1.15; }
+    h2 { margin:0; font-size:1.05rem; }
+    p { margin:6px 0; }
+    .muted { color:var(--muted); }
+    .notice { padding:12px 14px; border:1px solid var(--line); border-radius:10px; background:#fff; }
+    .metrics { display:grid; grid-template-columns:repeat(auto-fit,minmax(135px,1fr)); gap:10px; margin:20px 0; }
+    .metric { padding:14px; border:1px solid var(--line); border-radius:10px; background:var(--surface); }
+    .metric strong { display:block; font-size:1.5rem; font-variant-numeric:tabular-nums; }
+    .metric span { color:var(--muted); font-size:.9rem; }
+    .controls { display:grid; grid-template-columns:minmax(200px,1fr) minmax(180px,260px); gap:12px; margin:20px 0; }
+    input,select { width:100%; min-height:44px; padding:9px 12px; border:1px solid #aebbc6; border-radius:8px; background:#fff; color:var(--ink); font:inherit; }
+    input:focus,select:focus,a:focus-visible { outline:3px solid #8bbce0; outline-offset:2px; }
+    .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr)); gap:14px; }
+    article { padding:16px; border:1px solid var(--line); border-radius:12px; background:#fff; min-width:0; }
+    article h2 { margin:5px 0 8px; line-height:1.35; }
+    .meta { display:flex; flex-wrap:wrap; gap:7px; align-items:center; color:var(--muted); font-size:.85rem; }
+    .tag { display:inline-block; padding:2px 8px; border:1px solid var(--line); border-radius:99px; background:#f8fafb; font-size:.8rem; }
+    .budget { margin-top:12px; font-weight:650; }
+    .actions { display:flex; flex-wrap:wrap; gap:14px; margin:24px 0; }
+    a { color:var(--accent); text-underline-offset:3px; }
+    .empty { padding:28px; text-align:center; border:1px dashed #aebbc6; border-radius:10px; background:#fff; }
+    footer { margin-top:30px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:.9rem; }
+    @media(max-width:560px) { main { width:min(100% - 22px,1120px); margin-top:22px; } .controls { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <h1>Upwork Demand Intelligence</h1>
+      <p class="muted">Demand snapshot, service-family distribution and delivery references.</p>
+    </div>
+    <div class="notice"><strong>Historical snapshot</strong><br><span class="muted">11 November 2026 · 20 selected postings</span></div>
+  </header>
+
+  <section class="notice" aria-label="Methodology note">
+    This is a targeted, capability-fit sample, not a random market survey or a live job feed. Listings and budgets may have changed; recheck every posting before taking action.
+  </section>
+
+  <section class="metrics" id="metrics" aria-label="Sample summary">
+    <div class="metric"><strong id="total-count">—</strong><span>Postings in snapshot</span></div>
+    <div class="metric"><strong id="family-count">—</strong><span>Service families</span></div>
+    <div class="metric"><strong id="budget-count">—</strong><span>Captured budgets</span></div>
+  </section>
+
+  <section class="controls" aria-label="Filter postings">
+    <label>
+      <span class="muted">Search titles and requirements</span>
+      <input id="search" type="search" placeholder="e.g. Excel, WordPress, API" autocomplete="off">
+    </label>
+    <label>
+      <span class="muted">Service family</span>
+      <select id="category-filter">
+        <option value="">All families</option>
+      </select>
+    </label>
+  </section>
+
+  <p id="result-count" class="muted" aria-live="polite">Loading snapshot…</p>
+  <section id="cards" class="cards" aria-label="Upwork postings"></section>
+  <div id="empty" class="empty" hidden>No postings match the current filters.</div>
+
+  <nav class="actions" aria-label="Project documentation">
+    <a href="../../docs/UPWORK_DEMAND_INTELLIGENCE.md">Demand study and workflow</a>
+    <a href="../../docs/DELIVERY_READINESS_MATRIX.md">Delivery readiness matrix</a>
+    <a href="../../config/delivery_playbooks.json">Service playbooks</a>
+    <a href="../../scripts/classify_request.py">Request classifier source</a>
+  </nav>
+
+  <footer>
+    The dashboard reads the checked-in JSON snapshot only. It does not scrape Upwork, submit proposals, spend Connects, or access account credentials.
+    <br>To run locally from the repository root: <code>python -m http.server 8000</code>, then open <code>http://localhost:8000/research/upwork-demand/dashboard.html</code>.
+  </footer>
+</main>
+<script>
+(() => {
+  "use strict";
+  const labels = {
+    excel_data: "Excel & Data",
+    wordpress_web: "WordPress & Web",
+    python_scraping: "Python & Scraping",
+    api_workflow: "API & Workflow",
+    pdf_documents: "PDF & Documents",
+    dashboards_bi: "Dashboards & BI"
+  };
+  const cards = document.getElementById("cards");
+  const search = document.getElementById("search");
+  const filter = document.getElementById("category-filter");
+  const empty = document.getElementById("empty");
+  const resultCount = document.getElementById("result-count");
+  let jobs = [];
+
+  function safeJobUrl(value) {
+    try {
+      const url = new URL(value);
+      return url.protocol === "https:" && url.hostname === "www.upwork.com" && url.pathname.startsWith("/jobs/~") ? url.href : null;
+    } catch (_) { return null; }
+  }
+
+  function render() {
+    const query = search.value.trim().toLocaleLowerCase();
+    const family = filter.value;
+    const visible = jobs.filter(job => {
+      const haystack = [job.title, job.summary, job.delivery_notes, job.category].join(" ").toLocaleLowerCase();
+      return (!family || job.category === family) && (!query || haystack.includes(query));
+    });
+    cards.replaceChildren();
+    for (const job of visible) {
+      const article = document.createElement("article");
+      const meta = document.createElement("div");
+      meta.className = "meta";
+      const id = document.createElement("span");
+      id.className = "tag";
+      id.textContent = job.id;
+      const category = document.createElement("span");
+      category.className = "tag";
+      category.textContent = labels[job.category] || "Other";
+      meta.append(id, category);
+
+      const heading = document.createElement("h2");
+      heading.textContent = job.title;
+      const summary = document.createElement("p");
+      summary.textContent = job.summary;
+      const note = document.createElement("p");
+      note.className = "muted";
+      note.textContent = job.delivery_notes;
+      const budget = document.createElement("p");
+      budget.className = "budget";
+      budget.textContent = "Captured budget: " + (job.budget || "Not captured");
+      const url = safeJobUrl(job.url);
+      if (url) {
+        const link = document.createElement("a");
+        link.href = url;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = "Open historical listing";
+        article.append(meta, heading, summary, note, budget, link);
+      } else {
+        article.append(meta, heading, summary, note, budget);
+      }
+      cards.append(article);
+    }
+    resultCount.textContent = "Showing " + visible.length + " of " + jobs.length + " postings";
+    empty.hidden = visible.length !== 0;
+  }
+
+  async function init() {
+    try {
+      const response = await fetch("./sample_jobs.json", { credentials: "omit", cache: "no-cache" });
+      if (!response.ok) throw new Error("Dataset request failed: " + response.status);
+      const payload = await response.json();
+      if (!Array.isArray(payload.jobs) || payload.jobs.length !== 20) throw new Error("Snapshot structure is invalid");
+      jobs = payload.jobs;
+      document.getElementById("total-count").textContent = String(jobs.length);
+      document.getElementById("family-count").textContent = String(new Set(jobs.map(job => job.category)).size);
+      document.getElementById("budget-count").textContent = String(jobs.filter(job => job.budget).length);
+      for (const [value, label] of Object.entries(labels)) {
+        const option = document.createElement("option");
+        option.value = value;
+        option.textContent = label;
+        filter.append(option);
+      }
+      render();
+    } catch (error) {
+      resultCount.textContent = "Snapshot could not be loaded. Serve this repository over HTTP and retry.";
+      const message = document.createElement("p");
+      message.className = "muted";
+      message.textContent = String(error.message || error);
+      cards.replaceChildren(message);
+    }
+  }
+
+  search.addEventListener("input", render);
+  filter.addEventListener("change", render);
+  init();
+})();
+</script>
+</body>
+</html>
