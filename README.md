@@ -39,6 +39,10 @@ See:
 - [Project registry](registry/projects.yaml)
 - [Decision records](docs/decisions/)
 
+## Portfolio work samples
+
+A client-ready sample library is maintained under [portfolio/](portfolio/README.md), with a prioritized [task catalog](portfolio/TASK_CATALOG.md). Samples are clearly labeled as demonstrations, include reproducible source and acceptance tests, and never claim unperformed client work.
+
 ## Quality principles
 
 1. Tests before implementation for behavior changes (RED → GREEN → REFACTOR).
