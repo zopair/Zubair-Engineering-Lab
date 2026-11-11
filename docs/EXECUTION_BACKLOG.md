@@ -252,7 +252,7 @@ The lab is sufficiently established to stop general preparation. Choose one real
 | DEMAND-002 | P1 | Document demand patterns, intake pipeline, scope and commercial guardrails | Implemented | docs/UPWORK_DEMAND_INTELLIGENCE.md |
 | DEMAND-003 | P1 | Map six service families to existing portfolio samples, tools, license risks and acceptance checks | Implemented | docs/DELIVERY_READINESS_MATRIX.md; gaps remain explicitly marked |
 | DEMAND-004 | P1 | Add deterministic dataset validator and regression tests | Verified | GitHub Actions run 43073715347 passed; five tests passed |
-| DEMAND-005 | P1 | Add deterministic request classifier and six family playbooks | Implemented; corrected one ambiguous-fixture test and rerun pending | scripts/classify_request.py + config/delivery_playbooks.json; no dependencies; English/Arabic phrases; red-flag routing; never invents estimates |
+| DEMAND-005 | P1 | Add deterministic request classifier and six family playbooks | Verified | GitHub Actions run 43074061505 passed; six classifier tests passed, including Arabic routing, ambiguity, unclassified input and red-flag handling |
 | DEMAND-006 | P2 | Extend the highest-value capability gaps only when a real scoped request requires them | Deferred by design | First candidates: Google Sheets adapter, WordPress staging/form QA, fillable PDF forms, compliant scraper checkpoints and client BI connectors |
 
 ### Delivery rules
@@ -267,4 +267,4 @@ The lab is sufficiently established to stop general preparation. Choose one real
 
 ### Immediate next gate
 
-The dataset validator and its five tests are verified green. The classifier's first CI run exposed an ambiguous-test fixture that did not produce a score tie; the fixture was corrected and a targeted CI rerun is pending. Do not close DEMAND-005 until the rerun and logs are green.
+The dataset validator (five tests) and request classifier (six tests) are verified green in GitHub Actions runs 43073715347 and 43074061505. The first classifier run exposed a non-ambiguous fixture; the fixture was corrected and the rerun passed. No external dependencies were added.
