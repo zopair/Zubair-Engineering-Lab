@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Selected engineering work samples from Zubair Engineering Lab: responsive web repair, spreadsheet cleanup, and safe file automation.">
+  <meta name="theme-color" content="#101d31">
+  <title>Selected Work | Zubair Engineering Lab</title>
+  <link rel="stylesheet" href="./assets/portfolio.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="./index.html" aria-label="Zubair Engineering Lab home">
+        <span class="brand-mark" aria-hidden="true">ZE</span>
+        <span><strong>Zubair Engineering Lab</strong><small>Engineering · Automation · Delivery</small></span>
+      </a>
+      <span class="header-note">Independent work samples</span>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero shell" aria-labelledby="page-title">
+      <p class="eyebrow">A focused delivery portfolio</p>
+      <h1 id="page-title">Selected Work<span>.</span></h1>
+      <p class="hero-copy">Practical solutions for defined business and technical tasks. Each case study documents the problem, delivery scope, implementation, and evidence available for review.</p>
+      <div class="hero-stats" aria-label="Portfolio summary">
+        <div><strong>03</strong><span>Completed samples</span></div>
+        <div><strong>19</strong><span>Automated checks across samples</span></div>
+        <div><strong>100%</strong><span>Reproducible source included</span></div>
+      </div>
+    </section>
+
+    <section class="work-section shell" aria-labelledby="work-heading">
+      <div class="section-heading">
+        <div><p class="eyebrow">Demonstrated capabilities</p><h2 id="work-heading">Selected Work</h2></div>
+        <p>Small, clearly scoped deliverables built with maintainability and safe handover in mind.</p>
+      </div>
+
+      <div class="work-grid">
+        <article class="work-card">
+          <div class="card-topline"><span class="project-number">01 / WEB</span><span class="status"><i></i> CI verified</span></div>
+          <div class="visual visual-web" aria-hidden="true"><div class="browser-bar"><b></b><b></b><b></b></div><div class="web-layout"><div class="web-copy"><i></i><i></i><i></i><b></b></div><div class="web-panel"></div></div><div class="web-foot"></div></div>
+          <div class="card-content">
+            <p class="category">Frontend repair · Responsive design</p>
+            <h3>Responsive Landing Page Repair</h3>
+            <p class="card-summary">Restored mobile readability, corrected layout behavior, removed duplicated content, and strengthened baseline accessibility.</p>
+            <ul class="deliverables"><li>Responsive layout and typography fixes</li><li>Semantic structure, focus states, reduced motion</li><li>Seven automated acceptance checks</li></ul>
+            <div class="tags"><span>HTML5</span><span>CSS3</span><span>Python</span></div>
+            <div class="card-links"><a href="./01-responsive-landing-page/README.md">Case study</a><a href="./01-responsive-landing-page/index.html">Source preview</a><a class="evidence-link" href="https://github.com/zopair/Zubair-Engineering-Lab/actions/runs/43034499497" target="_blank" rel="noopener noreferrer">CI evidence ↗</a></div>
+          </div>
+        </article>
+
+        <article class="work-card">
+          <div class="card-topline"><span class="project-number">02 / DATA</span><span class="status"><i></i> CI verified</span></div>
+          <div class="visual visual-data" aria-hidden="true"><div class="sheet-head"><span>CONTACTS.CSV</span><span>↗</span></div><div class="sheet-grid"><b>NAME</b><b>EMAIL</b><b>STATUS</b><span>Amira Hassan</span><span>amira@example.test</span><em>Valid</em><span>Omar Nabil</span><span>omar@example.test</span><em>Valid</em><span>Salma Adel</span><span>salma@example.test</span><em>Review</em></div><div class="sheet-foot"><span>Validation report</span><strong>✓ Complete</strong></div></div>
+          <div class="card-content">
+            <p class="category">Data preparation · Spreadsheet QA</p>
+            <h3>Spreadsheet Cleanup &amp; Validation</h3>
+            <p class="card-summary">A conservative CSV/XLSX pipeline that standardizes records while preserving source data and making duplicate decisions explicit.</p>
+            <ul class="deliverables"><li>Header, whitespace, email, and date normalization</li><li>Duplicate and missing-value reporting</li><li>JSON audit output and six tests</li></ul>
+            <div class="tags"><span>Python</span><span>pandas</span><span>openpyxl</span></div>
+            <div class="card-links"><a href="./02-spreadsheet-cleanup/README.md">Case study</a><a href="./02-spreadsheet-cleanup/cleaner.py">Source code</a><a class="evidence-link" href="https://github.com/zopair/Zubair-Engineering-Lab/actions/runs/43034845177" target="_blank" rel="noopener noreferrer">CI evidence ↗</a></div>
+          </div>
+        </article>
+
+        <article class="work-card">
+          <div class="card-topline"><span class="project-number">04 / AUTOMATION</span><span class="status"><i></i> CI verified</span></div>
+          <div class="visual visual-automation" aria-hidden="true"><div class="terminal-head"><span>batch_organizer.py</span><span>● ● ●</span></div><div class="terminal-body"><p><b>$</b> python batch_organizer.py ./incoming --prefix reviewed_</p><p class="terminal-muted">Mode: DRY RUN</p><p><span>✓</span> invoice.pdf → reviewed_invoice.pdf</p><p><span>✓</span> report.docx → reviewed_report.docx</p><p class="terminal-result">2 planned · 0 changed</p></div></div>
+          <div class="card-content">
+            <p class="category">Process automation · File operations</p>
+            <h3>Safe Batch File Automation</h3>
+            <p class="card-summary">A dry-run-first renaming utility designed to prevent accidental overwrites and produce a clear audit trail.</p>
+            <ul class="deliverables"><li>Prefix, suffix, and extension filters</li><li>Collision protection and idempotent runs</li><li>JSON audit log and six automated tests</li></ul>
+            <div class="tags"><span>Python</span><span>pathlib</span><span>argparse</span></div>
+            <div class="card-links"><a href="./04-batch-file-automation/README.md">Case study</a><a href="./04-batch-file-automation/batch_organizer.py">Source code</a><a class="evidence-link" href="https://github.com/zopair/Zubair-Engineering-Lab/actions/runs/43037071060" target="_blank" rel="noopener noreferrer">CI evidence ↗</a></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="delivery shell" aria-labelledby="delivery-heading">
+      <div><p class="eyebrow">How work is delivered</p><h2 id="delivery-heading">Clear scope. Verifiable results.</h2></div>
+      <div class="delivery-points"><p><strong>01</strong><span>Defined acceptance criteria before implementation.</span></p><p><strong>02</strong><span>Readable source, documented boundaries, and repeatable tests.</span></p><p><strong>03</strong><span>Evidence links only where a workflow or artifact has been verified.</span></p></div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="shell footer-inner"><span>Zubair Engineering Lab</span><span>Selected work samples · Source and evidence available for review</span></div></footer>
+</body>
+</html>
