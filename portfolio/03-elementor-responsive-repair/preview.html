@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Static preview fixture for a scoped Elementor responsive section repair.">
+  <title>Elementor Responsive Section Repair — Preview</title>
+  <link rel="stylesheet" href="./assets/elementor-mobile-fix.css">
+  <style>
+    :root { font-family: Inter, system-ui, sans-serif; color: #17243a; background: #f3f5f8; }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    main { width: min(1120px, calc(100% - 32px)); margin: 40px auto; }
+    .preview-note { margin: 0 0 18px; color: #65748a; font-size: 12px; }
+    .elementor-element-7f3a9c2 { padding: clamp(20px, 5vw, 58px); border-radius: 18px; background: #fff; }
+    .elementor-container, .e-con-inner { display: flex; }
+    .elementor-column { flex: 1 1 50%; }
+    .elementor-widget-wrap { padding: 12px; }
+    .elementor-heading-title { margin: 0 0 18px; color: #14243a; }
+    .elementor-widget-text-editor { color: #66758a; line-height: 1.8; }
+    .elementor-button { display: inline-flex; padding: 13px 20px; border-radius: 7px; background: #14243a; color: white; text-decoration: none; }
+    .elementor-widget-image img { display: block; width: 100%; min-height: 220px; object-fit: cover; background: linear-gradient(135deg, #d6e0e9, #9fb2c5); }
+    .section-label { margin: 0 0 12px; color: #a77b43; font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="preview-note">Static markup fixture that mirrors common Elementor section classes. This is not a live WordPress or Elementor installation.</p>
+    <section class="elementor-element elementor-element-7f3a9c2 elementor-section" aria-labelledby="preview-title">
+      <div class="elementor-container">
+        <div class="elementor-column">
+          <div class="elementor-widget-wrap">
+            <p class="section-label">A clearer customer experience</p>
+            <div class="elementor-widget elementor-widget-heading">
+              <h1 id="preview-title" class="elementor-heading-title">A better way to move your business forward.</h1>
+            </div>
+            <div class="elementor-widget elementor-widget-text-editor">
+              <p>Focused support for growing teams. Clear priorities, practical delivery, and a digital experience that works across screen sizes.</p>
+            </div>
+            <div class="elementor-widget elementor-widget-button">
+              <a class="elementor-button" href="#details">Explore the approach</a>
+            </div>
+          </div>
+        </div>
+        <div class="elementor-column">
+          <div class="elementor-widget-wrap">
+            <div class="elementor-widget elementor-widget-image">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='520' viewBox='0 0 800 520'%3E%3Crect width='800' height='520' fill='%23cbd7e2'/%3E%3Ccircle cx='570' cy='160' r='110' fill='%23a0b4c8'/%3E%3Cpath d='M0 420L260 210L440 370L610 240L800 420V520H0Z' fill='%237f98b1'/%3E%3C/svg%3E" alt="Abstract landscape illustration">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="details" aria-label="Preview details"><p>Unrelated page content remains outside the scoped repair selector.</p></section>
+  </main>
+</body>
+</html>
