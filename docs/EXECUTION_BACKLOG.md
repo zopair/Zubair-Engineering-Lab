@@ -161,3 +161,34 @@ A second source inspection was performed after the initial hardening commit. The
 6. Review dependency imports and image size; split optional dependencies only with tests and a successful image build.
 
 The source inspection also confirmed that PostgreSQL initialization scripts run only for an empty data directory; existing volumes must not be deleted to force bootstrap. Docker's current guidance likewise describes this first-initialization behavior and recommends dedicated application roles and limited network exposure. See [Docker PostgreSQL guide](https://docs.docker.com/guides/postgresql/) and [Compose secrets guidance](https://docs.docker.com/compose/how-tos/use-secrets/).
+
+## SAA implementation update — API boundary and background sessions (2026-11-11)
+
+Code changes committed to `zopair/Sovereign-AI-Arsenal`:
+
+- Added fail-closed shared API-key validation in `backend/security.py`, using constant-time comparison.
+- Added HTTP middleware requiring `X-API-Key` for `/api/*` and `/metrics`; missing server configuration returns 503 and invalid/missing client keys return 401. `/health` remains available for container probes.
+- Added required `API_AUTH_TOKEN` Compose interpolation and blank `.env.example` entry. The deployment will not start through Compose until a unique value is configured.
+- Updated README security and authenticated request instructions. This is a shared-token gate only; it is **not** user identity, RBAC, tenant isolation or OAuth.
+- Refactored discovery and analysis background workers to accept identifiers/data only, open short-lived database sessions for database operations, and perform network/model work outside those sessions.
+- Added focused regression tests for API key behavior, request/background session separation and the statistics import.
+- Added `.github/workflows/backend-verify.yml` to run focused tests and build the backend image on relevant pushes and pull requests.
+
+### Verification boundary
+
+- Four focused tests passed in a local isolated harness using a reduced structural fixture. This confirms the test assertions and helper behavior, **not** the full repository test suite or the actual container runtime.
+- The GitHub Actions workflow has been committed; a completed run has not yet been inspected. Do not report CI green until its run result and logs are checked.
+- Docker image build, Compose startup, database integration, and authenticated HTTP request tests remain pending.
+- API key protection is a necessary first boundary, not sufficient for public production exposure. Keep all published ports loopback-bound; complete identity/RBAC, TLS deployment validation, and security review before public exposure.
+
+### Updated task states
+
+| Task | State |
+|---|---|
+| SAA-007 — API authentication gate | Shared API-key middleware committed; runtime test and RBAC remain |
+| SAA-008 — background DB session ownership | Workers refactored to own short-lived sessions; DB integration/fault tests pending |
+| SAA-009 — statistics timedelta regression | Fix and regression test committed; endpoint integration pending |
+| SAA-010 — dependency minimization | Deferred pending import map and successful image build |
+| SAA-011 — Nginx/public ingress boundary | Loopback defaults retained; auth does not authorize public exposure |
+| SAA-012 — Compose secrets migration | Deferred; current fail-fast environment secret model retained pending end-to-end secrets-file support |
+| SAA-013 — CI verification gate | Workflow committed; first GitHub Actions result not yet verified |
