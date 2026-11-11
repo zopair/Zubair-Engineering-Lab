@@ -81,6 +81,14 @@ def classify_repository(
         }
 
     findings: list[dict[str, str]] = []
+    if metadata.get("size") == 0:
+        findings.append({
+            "id": "empty_repository",
+            "severity": "medium",
+            "evidence": "Repository has no committed source tree on its default branch",
+            "recommendation": "Initialize the repository or document it as an intentionally empty placeholder before claiming operational readiness.",
+        })
+
     tracked_env = [
         path for path in paths
         if Path(path).name.startswith(".env")
@@ -95,27 +103,38 @@ def classify_repository(
         })
 
     workflows = [path for path in paths if path.startswith(".github/workflows/") and path.endswith((".yml", ".yaml"))]
-    if not workflows:
+    source_extensions = (".py", ".js", ".jsx", ".ts", ".tsx", ".go", ".rs", ".java", ".kt", ".swift", ".php", ".rb", ".cs")
+    has_source = any(path.endswith(source_extensions) for path in paths)
+    if not workflows and has_source:
         findings.append({
             "id": "missing_ci",
             "severity": "medium",
-            "evidence": "No GitHub Actions workflow files found",
+            "evidence": "Source files exist but no GitHub Actions workflow files were found",
             "recommendation": "Add stack-specific tests and least-privilege CI before treating the repository as deployable.",
         })
 
     for path, content in workflow_texts.items():
-        if re.search(r"(?m)^\s*permissions\s*:\s*write-all\b", content):
+        # Only workflow-wide permissions are flagged. A write permission scoped
+        # to one release/remediation job is not equivalent to write-all.
+        top_permissions = re.search(
+            r"(?ms)^permissions\\s*:\\s*([^\\n]*)\\n((?:[ \\t]+[^\\n]*\\n?)*)",
+            content,
+        )
+        permission_block = ""
+        if top_permissions:
+            permission_block = (top_permissions.group(1) or "") + "\\n" + top_permissions.group(2)
+        if re.search(r"\\bwrite-all\\b", permission_block):
             findings.append({
                 "id": "write_all_permissions",
                 "severity": "high",
-                "evidence": f"Broad permissions in {path}",
-                "recommendation": "Replace write-all with the smallest per-job permissions required.",
+                "evidence": f"Workflow-wide write-all permissions in {path}",
+                "recommendation": "Replace write-all with read-only workflow permissions and narrowly scoped job permissions.",
             })
-        elif re.search(r"(?m)^\s*(?:contents|actions|pull-requests|packages):\s*write\b", content):
+        elif re.search(r"(?m)^\\s*(?:contents|actions|pull-requests|packages):\\s*write\\b", permission_block):
             findings.append({
                 "id": "broad_write_permissions",
                 "severity": "medium",
-                "evidence": f"Write permission declared in {path}",
+                "evidence": f"Workflow-wide write permission in {path}",
                 "recommendation": "Move write access to the single job that needs it; keep validation jobs read-only.",
             })
         if re.search(r"actions/upload-artifact@v[123]\b", content):
@@ -195,6 +214,8 @@ def audit_one(client: GitHubClient, name: str) -> dict[str, Any]:
         metadata = client.get_json(f"/repos/{OWNER}/{name}")
         owner = (metadata.get("owner") or {}).get("login")
         if owner != OWNER or metadata.get("fork") is not False:
+            return classify_repository(name, metadata, [], {}, None)
+        if metadata.get("size") == 0:
             return classify_repository(name, metadata, [], {}, None)
 
         branch = metadata.get("default_branch") or "main"
