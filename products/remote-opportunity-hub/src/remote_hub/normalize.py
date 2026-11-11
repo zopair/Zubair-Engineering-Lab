@@ -22,9 +22,9 @@ def plain_text(value: object) -> str:
     parser = _TextExtractor()
     try:
         parser.feed(str(value))
-        return re.sub(r"\\s+", " ", html.unescape(" ".join(parser.parts))).strip()
+        return re.sub(r"\s+", " ", html.unescape(" ".join(parser.parts))).strip()
     except Exception:
-        return re.sub(r"\\s+", " ", html.unescape(str(value))).strip()
+        return re.sub(r"\s+", " ", html.unescape(str(value))).strip()
 
 
 def _safe_url(value: object) -> str:
@@ -35,10 +35,10 @@ def _safe_url(value: object) -> str:
 
 def is_explicitly_remote(location: str, title: str = "", description: str = "") -> bool:
     text = " ".join((location or "", title or "", description or "")).lower()
-    if re.search(r"\\b(hybrid|on[- ]?site|office[- ]based)\\b", text):
+    if re.search(r"\b(hybrid|on[- ]?site|office[- ]based)\b", text):
         return False
     return bool(re.search(
-        r"\\b(remote|work from home|work-from-home|distributed|anywhere|worldwide|fully remote|100% remote)\\b",
+        r"\b(remote|work from home|work-from-home|distributed|anywhere|worldwide|fully remote|100% remote)\b",
         text,
     ))
 
