@@ -17,10 +17,10 @@ Scope derived from a review of current and representative Upwork fixed-price pos
 | 2 | Spreadsheet cleanup | Normalize headers, dates, whitespace, duplicates, missing values; validate CSV/XLSX | Python 3, pandas, openpyxl, unittest | Before/after synthetic dataset, JSON validation report, six deterministic tests, no silent data loss |
 | 3 | WordPress/Elementor section repair | Fix one section's mobile layout without changing desktop appearance | WordPress, Elementor free where possible, CSS, browser/device QA | Scoped WordPress plugin, static Elementor markup preview, PHP lint and six static tests; live WordPress/Elementor browser QA remains pending |
 | 4 | Batch file automation | Rename, classify, convert or organize files safely | Python standard library, pathlib, argparse, unittest | CI green (run 43037071060); six tests pass; dry-run mode, collision protection, audit log, idempotency |
-| 5 | REST API integration | Connect endpoints, map payloads, handle failures and retries | Python, httpx, unittest | CI green (43045557199); 10 HTTP-boundary tests; bounded retry, no automatic POST retry, and absolute URL rejection |
+| 5 | REST API integration | Connect endpoints, map payloads, handle failures and retries | Python, httpx, unittest | CI green (43045576143); 10 HTTP-boundary tests; bounded retry, no automatic POST retry, and absolute URL rejection |
 | 6 | PDF text extraction | Extract searchable text and export traceable CSV/XLSX rows | Python, pypdf, pandas, openpyxl, reportlab (tests) | CI green (43043587807); 7 synthetic PDF integration tests; OCR and table reconstruction explicitly out of scope |
 | 7 | Business KPI dashboard | Turn sales CSV exports into a compact decision-support report | Python standard library, CSV, HTML/CSS | CI green (43044133557); 8 tests; metric definitions, monthly trend, and data-quality review |
-| 8 | Bilingual RTL landing page | Build Arabic/English opt-in or service landing page | HTML, CSS logical properties, JavaScript | CI green (43045440880); 8 tests; responsive LTR/RTL, language switching, local-only form validation with no-script controls disabled |
+| 8 | Bilingual RTL landing page | Build Arabic/English opt-in or service landing page | HTML, CSS logical properties, JavaScript | CI green (43045595744); 8 tests; responsive LTR/RTL, language switching, local-only form validation with no-script controls disabled |
 
 ## Execution order and dependencies
 
