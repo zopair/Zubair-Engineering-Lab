@@ -32,6 +32,8 @@ The lab is the **governance and integration layer**, not a monolithic codebase. 
 Every project must have an owner, purpose, repository, lifecycle status, architecture note, test strategy, deployment method, security classification, and next milestone. Unknown fields must remain explicitly marked **unknown** until verified.
 
 See:
+- [Portfolio capability map](docs/PORTFOLIO_CAPABILITY_MAP.md)
+- [Prioritized execution backlog](docs/EXECUTION_BACKLOG.md)
 - [Architecture](docs/ARCHITECTURE.md)
 - [Engineering standards](standards/ENGINEERING_STANDARDS.md)
 - [Project registry](registry/projects.yaml)
