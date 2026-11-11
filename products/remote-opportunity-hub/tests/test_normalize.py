@@ -1,5 +1,5 @@
 import unittest
-from remote_hub.normalize import normalize_greenhouse, normalize_lever, normalize_ashby, is_explicitly_remote
+from remote_hub.normalize import normalize_greenhouse, normalize_lever, normalize_ashby, normalize_himalayas, is_explicitly_remote
 
 class NormalizationTests(unittest.TestCase):
     def test_greenhouse_maps_platform_and_application_url(self):
@@ -22,6 +22,15 @@ class NormalizationTests(unittest.TestCase):
 
     def test_unknown_location_is_not_promoted_to_remote(self):
         self.assertFalse(is_explicitly_remote("Cairo, Egypt", "Software Engineer", ""))
+
+    def test_himalayas_uses_application_link_and_country_restrictions(self):
+        raw = {"guid": "job-1", "title": "Python Developer", "applicationLink": "https://himalayas.app/companies/example/jobs/python", "locationRestrictions": [{"name": "Egypt", "alpha2": "EG"}], "pubDate": 1794300000000}
+        job = normalize_himalayas(raw, {"company": "Example", "board": "egypt-worldwide"})
+        self.assertEqual(job["platform"], "Himalayas")
+        self.assertEqual(job["application_url"], raw["applicationLink"])
+        self.assertEqual(job["source_credit"], "Himalayas")
+        self.assertEqual(job["location"], "Egypt")
+        self.assertEqual(job["remote_status"], "remote")
         
 if __name__ == "__main__":
     unittest.main()
