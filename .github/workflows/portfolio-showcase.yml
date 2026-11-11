@@ -1,0 +1,36 @@
+name: Portfolio Showcase — Static Acceptance
+
+on:
+  push:
+    paths:
+      - 'portfolio/index.html'
+      - 'portfolio/assets/**'
+      - 'portfolio/tests/**'
+      - 'portfolio/01-responsive-landing-page/**'
+      - 'portfolio/02-spreadsheet-cleanup/**'
+      - 'portfolio/04-batch-file-automation/**'
+      - '.github/workflows/portfolio-showcase.yml'
+  pull_request:
+    paths:
+      - 'portfolio/index.html'
+      - 'portfolio/assets/**'
+      - 'portfolio/tests/**'
+      - 'portfolio/01-responsive-landing-page/**'
+      - 'portfolio/02-spreadsheet-cleanup/**'
+      - 'portfolio/04-batch-file-automation/**'
+      - '.github/workflows/portfolio-showcase.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  static-acceptance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate portfolio showcase and internal links
+        run: python -m unittest discover -s portfolio/tests -v
