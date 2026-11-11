@@ -68,8 +68,8 @@ projects:
     lifecycle: blocked-empty-main
     visibility: public
     verification: E2-git-metadata-and-tree
-    evidence: "Repository exists, but main points to an empty Git tree; README fetch returns 404. Historical OPENCONNECT workflow runs on branch openconnect/bootstrap failed."
-    next_gate: "Recover the intended source from a known branch/commit or formally retire this repository; do not infer functionality from its name."
+    evidence: "main points to an empty Git tree, but branch openconnect/bootstrap contains a 38-file OPENCONNECT research prototype. Workflow run 42126162218 installed dependencies, passed local transport/CLI smoke steps, deployed GitHub Pages, then failed its final aggregate acceptance gate because one or more metrics checks were not green."
+    next_gate: "Recover/promote the intended branch only after inspecting the failed metrics artifact and deciding whether OPENCONNECT belongs in the active portfolio; main remains empty."
   - id: sinc-os
     name: SINC-OS
     repository: https://github.com/zopair/SINC-OS
