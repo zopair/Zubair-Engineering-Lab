@@ -137,3 +137,27 @@ No existing database volume was deleted, no external API key was added, and no p
 - No paid API, paid cloud, or card-required service as a mandatory baseline.
 - No production-readiness claims based only on README or a green CI badge.
 - No deletion of repositories or experimental code during inventory.
+
+## Follow-up audit — Sovereign AI Arsenal runtime blockers (2026-11-11)
+
+A second source inspection was performed after the initial hardening commit. The following are **newly observed code-level findings**, not runtime-confirmed failures:
+
+| ID | Priority | Finding | Required evidence / action |
+|---|---|---|---|
+| SAA-007 | P0 | API routes have no authentication/authorization dependency. Compose defaults to loopback, but configurable bind addresses and the Nginx proxy could expose unauthenticated discovery, analysis and data endpoints if deployed publicly. | Keep all ingress loopback-only until an authentication design and route-level authorization tests exist. Add auth/RBAC before any public binding. |
+| SAA-008 | P1 | Both discovery and analysis endpoints pass a request-scoped SQLAlchemy Session into BackgroundTasks. The worker then retains and reuses that session across asynchronous network work. | Refactor workers to create/close their own session inside the worker; add tests proving no request Session is captured or reused. |
+| SAA-009 | P1 | `get_statistics()` references `timedelta`, but the module-level imports shown do not define it. The local import inside `get_trending_repositories()` does not populate module globals. | Add a regression test that exercises the statistics endpoint and fix the missing import. |
+| SAA-010 | P1 | The backend image installs the entire broad requirements file, including notebook/Colab, browser automation, NLP and other potentially optional packages. | Build an import map first; split runtime, optional feature and dev/test dependencies only after proving each import path and image build. Do not remove packages by name alone. |
+| SAA-011 | P0 | Nginx proxies API, docs and ReDoc without authentication. This is acceptable only while every published ingress remains loopback-bound. | Keep Nginx loopback-bound; disable public deployment until auth, TLS certificate provisioning and route policy are verified. |
+| SAA-012 | P1 | Docker Compose passes database and Grafana credentials through environment variables. Docker recommends Compose secrets for sensitive values where supported. | Evaluate file-backed Compose secrets and application `*_FILE` support; retain current required-secret fail-fast behavior until the replacement is tested end-to-end. |
+
+### Updated execution gate
+
+1. Preserve loopback-only exposure; do not set API/Nginx bind variables to public interfaces.
+2. Fix and test the statistics endpoint regression.
+3. Refactor background tasks to own their database sessions.
+4. Design and test API authentication/authorization before public exposure.
+5. Build and run the container stack in a real Docker-capable runner, with a disposable test database volume only.
+6. Review dependency imports and image size; split optional dependencies only with tests and a successful image build.
+
+The source inspection also confirmed that PostgreSQL initialization scripts run only for an empty data directory; existing volumes must not be deleted to force bootstrap. Docker's current guidance likewise describes this first-initialization behavior and recommends dedicated application roles and limited network exposure. See [Docker PostgreSQL guide](https://docs.docker.com/guides/postgresql/) and [Compose secrets guidance](https://docs.docker.com/compose/how-tos/use-secrets/).
