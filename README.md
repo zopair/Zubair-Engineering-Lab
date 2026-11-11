@@ -45,6 +45,7 @@ See:
 - [Architecture](docs/ARCHITECTURE.md)
 - [Engineering standards](standards/ENGINEERING_STANDARDS.md)
 - [Portfolio repository health audit](docs/REPOSITORY_HEALTH_AUDIT.md)
+- [Zero-cost local-first runtime blueprint](docs/ZERO_COST_RUNTIME_BLUEPRINT.md)
 - [Read-only repository auditor](scripts/repo_health_audit.py)
 - [Project registry](registry/projects.yaml)
 - [Decision records](docs/decisions/)
