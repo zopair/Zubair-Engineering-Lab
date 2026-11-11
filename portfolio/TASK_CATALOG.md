@@ -31,3 +31,25 @@ Scope derived from a review of current and representative Upwork fixed-price pos
 
 ## Out of scope for this starter library
 Full e-commerce builds, malware cleanup on live production systems, enterprise CRM/ERP implementations, paid API integrations, large migrations, and tasks requiring client-owned proprietary data or credentials.
+
+
+## Market review evidence — 2026-11-11
+
+Representative live postings reviewed through the connected Upwork account. These validate demand patterns; none has been applied to.
+
+| Posting | Budget / competition | Client evidence | Decision |
+|---|---|---|---|
+| [HTML/CSS mobile landing-page repair](https://www.upwork.com/jobs/~022120287337497903574) (2120287337497903574) | $30 fixed; 50+ proposals; 14 Connects | Verified; 4.81/5 from 30 reviews; $16,973 spent; 64% hire rate | Strong scope match for sample 01, but high competition. |
+| [Website redesign and booking](https://www.upwork.com/jobs/~022120463290398324808) (2120463290398324808) | $300 fixed; 50+ proposals; 16 Connects | Verified; one prior hire, no reviews, $153 spent; 50% hire rate | Medium scope but client history is too thin for priority. |
+| [UiPath-to-Python converter testing](https://www.upwork.com/jobs/~022120480982769400471) (2120480982769400471) | $45 fixed; fewer than 5 proposals; 11 Connects | Verified; 5/5 from 5 reviews; $1,303 spent; 86% hire rate | Do not pursue without three real, shareable production UiPath robots and 1+ year hands-on UiPath experience. |
+| [WordPress/Elementor troubleshooting](https://www.upwork.com/jobs/~022112551688104778953) (2112551688104778953) | $5 fixed; 10–15 proposals; 11 Connects | Verified; 4.99/5 from 1,150 reviews; $13,080 spent; 97% hire rate | Client is established, but the $5 budget is uneconomic. |
+| [Egypt-based Vodafone Cash testing](https://www.upwork.com/jobs/~022119777220363909076) (2119777220363909076) | $15 fixed; 20–50 proposals | Verified; 4.96/5 from 430 reviews; $2.0M spent; 719 hires | Do not prioritize: testing deposits/withdrawals can involve real-money exposure and payment-account access. |
+| [Webflow website management](https://www.upwork.com/jobs/~022120099831429664591) (2120099831429664591) | $300 fixed; 20–50 proposals; 11 Connects | Verified, but no hire/review/spend history returned | Do not prioritize until scope and client track record are clearer. |
+
+**Account observation:** the job-detail responses showed 92 Connects at the time of review. No Connects were spent and no proposals were submitted. Recheck the balance before any future application.
+
+## Portfolio build status
+
+- Sample 01 and Sample 02 are implemented on the lab's main branch.
+- Both dedicated GitHub Actions acceptance workflows completed successfully on 2026-11-11.
+- This proves the committed tests passed in GitHub Actions; it does not claim that a client production website or spreadsheet was modified.
