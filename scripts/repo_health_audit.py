@@ -104,28 +104,28 @@ def classify_repository(
         })
 
     for path, content in workflow_texts.items():
-        if re.search(r"(?m)^\\s*permissions\\s*:\\s*write-all\\b", content):
+        if re.search(r"(?m)^\s*permissions\s*:\s*write-all\b", content):
             findings.append({
                 "id": "write_all_permissions",
                 "severity": "high",
                 "evidence": f"Broad permissions in {path}",
                 "recommendation": "Replace write-all with the smallest per-job permissions required.",
             })
-        elif re.search(r"(?m)^\\s*(?:contents|actions|pull-requests|packages):\\s*write\\b", content):
+        elif re.search(r"(?m)^\s*(?:contents|actions|pull-requests|packages):\s*write\b", content):
             findings.append({
                 "id": "broad_write_permissions",
                 "severity": "medium",
                 "evidence": f"Write permission declared in {path}",
                 "recommendation": "Move write access to the single job that needs it; keep validation jobs read-only.",
             })
-        if re.search(r"actions/upload-artifact@v[123]\\b", content):
+        if re.search(r"actions/upload-artifact@v[123]\b", content):
             findings.append({
                 "id": "deprecated_artifact_action",
                 "severity": "medium",
                 "evidence": f"Legacy upload-artifact major version in {path}",
                 "recommendation": "Upgrade to the supported upload-artifact v4+ action and verify runner compatibility.",
             })
-        if re.search(r"(?m)^\\s*run:\\s*echo\\s+['\"]?(?:ok|success|passed|tests passed)", content, re.IGNORECASE):
+        if re.search(r"(?m)^\s*run:\s*echo\s+['\"]?(?:ok|success|passed|tests passed)", content, re.IGNORECASE):
             findings.append({
                 "id": "possible_placeholder_ci",
                 "severity": "medium",
@@ -271,7 +271,7 @@ def main() -> int:
     report = build_report(client)
     output = Path(args.output)
     output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+    output.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(report["summary"], ensure_ascii=False, indent=2))
     print(f"Report written to {output}")
     return 0
