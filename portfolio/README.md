@@ -13,7 +13,7 @@ A curated library of small-to-medium fixed-price deliverables, built as reproduc
 
 [Open the selected-work gallery](./index.html) · [Showcase documentation](./SHOWCASE_README.md)
 
-The gallery presents completed work samples and links to their case studies, source files, and CI evidence. The Elementor sample is explicitly labelled as static CI verified with live CMS QA pending. Static acceptance and internal-link checks pass in GitHub Actions (latest run pending after Elementor card addition). The page is committed but not yet publicly hosted; browser visual QA remains outstanding.
+The gallery presents completed work samples and links to their case studies, source files, and CI evidence. The Elementor sample is explicitly labelled as static CI verified with live CMS QA pending. Static acceptance and internal-link checks pass in GitHub Actions (latest eight-card run pending verification). The page is committed but not yet publicly hosted; browser visual QA remains outstanding.
 
 ## Catalogue
 
@@ -21,10 +21,10 @@ The gallery presents completed work samples and links to their case studies, sou
 |---|---|---|---|---|
 | 01 | Responsive landing page repair | HTML/CSS, mobile fixes, accessibility | HTML5, CSS3, Python unittest | CI green; 7 acceptance checks pass (run 43034499497) |
 | 02 | Excel/CSV cleanup and validation | Spreadsheet/data cleaning | Python, pandas, openpyxl, unittest | CI green; 6 tests pass; CSV/XLSX round-trip verified (run 43034845177) |
-| 03 | WordPress/Elementor responsive section repair | CMS/front-end maintenance | WordPress, Elementor, CSS, browser QA | Queued; requires a safe demo WordPress instance |
+| 03 | WordPress/Elementor responsive section repair | CMS/front-end maintenance | WordPress plugin API, PHP, CSS | Static CI green (run 43045096680); 6 tests and PHP lint pass; live CMS/browser QA pending |
 | 04 | Python batch file automation | Scripting/automation | Python standard library, pathlib, argparse, unittest | CI green; 6 tests pass (run 43037071060) |
 | 05 | REST API integration and smoke tests | API development/QA | Python, httpx, unittest | CI green; 9 acceptance tests pass (run 43043222968) |
-| 06 | PDF extraction and structured export | Document automation | Python, pypdf, pandas | Queued |
+| 06 | PDF extraction and structured export | Document automation | Python, pypdf, pandas, openpyxl | CI green; 7 PDF integration tests pass (run 43043587807) |
 | 07 | Business KPI dashboard | Data analysis/visualization | Python standard library, CSV, HTML/CSS | CI green; 8 tests pass (run 43044133557) |
 | 08 | Bilingual RTL landing page | Web design/development | HTML, CSS logical properties, JavaScript | CI green; 7 acceptance tests pass (run 43044572639) |
 
@@ -37,6 +37,11 @@ This is a standalone demonstration of removing duplicated content, restoring rea
 [Spreadsheet cleanup and validation](./02-spreadsheet-cleanup/README.md)
 
 A conservative CSV/XLSX cleaner with schema normalization, explicit duplicate handling, missing-value reporting, and a JSON audit artifact. Synthetic input and output examples are included.
+
+## Sample 03
+[Elementor mobile section repair](./03-elementor-responsive-repair/README.md)
+
+A WordPress plugin with a section-scoped Elementor CSS fix and a static markup preview. PHP syntax and six static tests pass in GitHub Actions (run 43045096680); live WordPress/Elementor browser QA is not yet claimed.
 
 ## Sample 04
 [Safe batch file automation](./04-batch-file-automation/README.md)
