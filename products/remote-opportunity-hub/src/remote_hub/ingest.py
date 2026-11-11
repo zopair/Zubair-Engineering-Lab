@@ -55,6 +55,19 @@ def source_url(source: dict) -> str:
     raise ValueError(f"Unsupported provider: {provider}")
 
 
+def _himalayas_job_is_egypt_eligible(raw: dict) -> bool:
+    restrictions = raw.get("locationRestrictions") or []
+    if not restrictions:
+        return True
+    for item in restrictions:
+        if isinstance(item, dict):
+            code = str(item.get("alpha2") or "").upper()
+            name = str(item.get("name") or "").strip().casefold()
+            if code == "EG" or name in {"egypt", "مصر"}:
+                return True
+    return False
+
+
 def fetch_himalayas(source: dict):
     all_jobs = {}
     queries = source.get("queries") or [{"country": "EG"}, {"worldwide": "true"}]
@@ -69,13 +82,32 @@ def fetch_himalayas(source: dict):
             if not records:
                 break
             for raw in records:
-                if not isinstance(raw, dict):
+                if not isinstance(raw, dict) or not _himalayas_job_is_egypt_eligible(raw):
                     continue
                 job = normalize_himalayas(raw, source)
                 if job["title"] and job["application_url"]:
                     job["last_verified_at"] = utc_now()
                     all_jobs[job["id"]] = job
-            if len(records) < 1:
+
+    # Some search-index combinations can return an empty page. Fall back to the
+    # public browse feed, then retain only worldwide or Egypt-eligible postings.
+    if not all_jobs:
+        browse_pages = max(1, min(int(source.get("fallback_browse_pages", 5)), 5))
+        for page in range(browse_pages):
+            params = {"limit": 20, "offset": page * 20}
+            url = "https://himalayas.app/jobs/api?" + urllib.parse.urlencode(params)
+            payload = fetch_json(url)
+            records = payload.get("jobs", [])
+            if not records:
+                break
+            for raw in records:
+                if not isinstance(raw, dict) or not _himalayas_job_is_egypt_eligible(raw):
+                    continue
+                job = normalize_himalayas(raw, source)
+                if job["title"] and job["application_url"]:
+                    job["last_verified_at"] = utc_now()
+                    all_jobs[job["id"]] = job
+            if len(records) < 20:
                 break
     return list(all_jobs.values())
 
