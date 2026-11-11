@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Bilingual English and Arabic landing page demonstration with responsive RTL and LTR layouts.">
+  <meta name="theme-color" content="#14243a">
+  <title>Northstar Advisory | Business Growth</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Northstar Advisory home"><span class="brand-symbol" aria-hidden="true">N</span><span>Northstar <b>Advisory</b></span></a>
+    <nav class="language-switch" aria-label="Choose language">
+      <button type="button" data-set-language="en" aria-pressed="true">English</button>
+      <button type="button" data-set-language="ar" aria-pressed="false">العربية</button>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="language-view" data-language="en" aria-labelledby="en-title">
+      <div class="hero-grid" id="top">
+        <div class="hero-copy">
+          <p class="eyebrow">Clarity for your next stage</p>
+          <h1 id="en-title">Make your next move <span>your best one.</span></h1>
+          <p class="intro">Practical business advisory for ambitious teams ready to turn complex decisions into focused, measurable progress.</p>
+          <a class="primary-link" href="#en-contact">Request a consultation <span aria-hidden="true">↗</span></a>
+          <p class="trust-note">Focused advice · Clear priorities · Measurable outcomes</p>
+        </div>
+        <div class="hero-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="core-mark">N</div><div class="art-caption">A clearer direction</div></div>
+      </div>
+      <section class="benefits" aria-label="Advisory approach">
+        <article><span>01</span><h2>Find the signal</h2><p>Understand the decisions that matter most to your business.</p></article>
+        <article><span>02</span><h2>Build the plan</h2><p>Turn priorities into a practical sequence of actions.</p></article>
+        <article><span>03</span><h2>Move with intent</h2><p>Track progress with outcomes your team can measure.</p></article>
+      </section>
+      <section class="contact-panel" id="en-contact">
+        <div><p class="eyebrow">Start a conversation</p><h2>What would progress look like?</h2><p>Share a few details and we will show how a consultation request could work.</p></div>
+        <form class="demo-form" autocomplete="off">
+          <label for="en-name">Your name</label><input id="en-name" name="name" type="text" required minlength="2" placeholder="Alex Morgan">
+          <label for="en-email">Work email</label><input id="en-email" name="email" type="email" required placeholder="alex@company.com">
+          <button type="submit">Preview request</button>
+          <p class="form-message" data-form-message role="status" aria-live="polite"></p>
+          <small>Demonstration only. No information is transmitted or stored.</small>
+        </form>
+      </section>
+    </section>
+
+    <section class="language-view" data-language="ar" lang="ar" dir="rtl" aria-labelledby="ar-title" hidden>
+      <div class="hero-grid" id="top-ar">
+        <div class="hero-copy">
+          <p class="eyebrow">وضوح يقود خطوتك القادمة</p>
+          <h1 id="ar-title">اجعل خطوتك القادمة <span>أفضل قراراتك.</span></h1>
+          <p class="intro">استشارات عملية للأعمال الطموحة، تساعد فرق العمل على تحويل القرارات المعقدة إلى خطوات واضحة ونتائج قابلة للقياس.</p>
+          <a class="primary-link" href="#ar-contact">اطلب استشارة <span aria-hidden="true">↗</span></a>
+          <p class="trust-note">رؤية واضحة · أولويات محددة · نتائج قابلة للقياس</p>
+        </div>
+        <div class="hero-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="core-mark">N</div><div class="art-caption">اتجاه أكثر وضوحاً</div></div>
+      </div>
+      <section class="benefits" aria-label="منهج الاستشارات">
+        <article><span>٠١</span><h2>حدد الأهم</h2><p>افهم القرارات الأكثر تأثيراً على أعمالك.</p></article>
+        <article><span>٠٢</span><h2>ارسم الخطة</h2><p>حوّل الأولويات إلى خطوات عملية مرتبة.</p></article>
+        <article><span>٠٣</span><h2>تحرك بثقة</h2><p>تابع التقدم من خلال نتائج واضحة وقابلة للقياس.</p></article>
+      </section>
+      <section class="contact-panel" id="ar-contact">
+        <div><p class="eyebrow">لنبدأ الحوار</p><h2>كيف يبدو التقدم بالنسبة إلى أعمالك؟</h2><p>أدخل بيانات تجريبية لمعاينة نموذج طلب الاستشارة.</p></div>
+        <form class="demo-form" autocomplete="off">
+          <label for="ar-name">الاسم</label><input id="ar-name" name="name" type="text" required minlength="2" placeholder="الاسم الكامل">
+          <label for="ar-email">البريد الإلكتروني للعمل</label><input id="ar-email" name="email" type="email" required placeholder="name@company.com">
+          <button type="submit">معاينة الطلب</button>
+          <p class="form-message" data-form-message role="status" aria-live="polite"></p>
+          <small>نموذج تجريبي فقط. لا يتم إرسال البيانات أو تخزينها.</small>
+        </form>
+      </section>
+    </section>
+  </main>
+
+  <footer><span>Northstar Advisory</span><span>Business growth, with direction.</span></footer>
+</body>
+</html>
