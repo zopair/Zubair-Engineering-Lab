@@ -8,7 +8,7 @@ DASHBOARD = ROOT / "research" / "upwork-demand" / "dashboard.html"
 class DemandDashboardTests(unittest.TestCase):
     def test_dashboard_loads_the_versioned_dataset(self):
         page = DASHBOARD.read_text(encoding="utf-8")
-        self.assertIn("fetch('./sample_jobs.json')", page)
+        self.assertIn('fetch("./sample_jobs.json"', page)
 
     def test_dashboard_has_search_and_category_filters(self):
         page = DASHBOARD.read_text(encoding="utf-8")
