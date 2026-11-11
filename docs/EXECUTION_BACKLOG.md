@@ -4,6 +4,46 @@
 **Status:** Initial prioritized backlog derived from the partial audit.  
 **Rule:** No task is marked complete without an inspectable artifact or execution result.
 
+## Execution update — 2026-11-11
+
+### SAA security stabilization — code changes committed, runtime verification pending
+
+The following changes have been committed to Sovereign-AI-Arsenal:
+
+- Removed PostgreSQL trust authentication and hard-coded database credentials from Compose/config defaults.
+- Split the PostgreSQL bootstrap administrator from a least-privilege application role.
+- Added URL-safe SQLAlchemy credential construction and fail-fast behavior when DB_PASSWORD is absent.
+- Restricted PostgreSQL, Grafana, Prometheus and API host bindings to loopback by default; Redis is not host-published.
+- Replaced wildcard CORS defaults with an empty allowlist and explicit CORS_ORIGINS configuration.
+- Fixed log-directory initialization order, SQLAlchemy health-check execution, database session lifecycle, and package-relative config loading.
+- Corrected container startup to import the backend as a package and run as a non-root user.
+- Added a safe blank-secret environment template and regression tests.
+- Removed inaccurate claims that API authentication and production readiness are already implemented.
+
+### Verification performed
+
+- Six focused regression tests passed in an isolated verification workspace populated from the committed file contents.
+- Docker Compose YAML parsed successfully in that workspace.
+- PostgreSQL bootstrap shell script passed shell syntax validation.
+- The GitHub connector does not provide a shell/container runtime in this workflow. Docker is unavailable in the verification runtime, so no image build, Compose config interpolation, database initialization, API startup or integration suite is claimed as passed.
+
+### Migration safety gate
+
+The new PostgreSQL role bootstrap runs only when the data volume is initialized for the first time. Do not delete or recreate any existing volume to apply it. Existing installations require a backup and a separately reviewed role/password migration before deployment.
+
+### Current task states
+
+| Task | State |
+|---|---|
+| SAA-001 — Compose validation and safe defaults | Code updated; Docker validation pending |
+| SAA-002 — remove insecure DB defaults | Code updated; existing-volume migration pending |
+| SAA-003 — logging/startup ordering | Code updated; container startup test pending |
+| SAA-004 — SQLAlchemy health/session behavior | Code updated; database integration test pending |
+| SAA-005 — explicit CORS allowlist | Code updated; API runtime test pending |
+| SAA-006 — full regression/build verification | Focused tests passed in isolated copy; full suite and image build pending |
+
+No existing database volume was deleted, no external API key was added, and no paid service was introduced.
+
 ## Priority model
 
 - **P0 — Blocker / risk:** prevents safe use, trustworthy status, or further integration.
