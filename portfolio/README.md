@@ -16,7 +16,7 @@ A curated library of small-to-medium fixed-price deliverables, built as reproduc
 | 01 | Responsive landing page repair | HTML/CSS, mobile fixes, accessibility | HTML5, CSS3, Python unittest | CI green; 7 acceptance checks pass (run 43034499497) |
 | 02 | Excel/CSV cleanup and validation | Spreadsheet/data cleaning | Python, pandas, openpyxl, unittest | CI green; 6 tests pass; CSV/XLSX round-trip verified (run 43034845177) |
 | 03 | WordPress/Elementor responsive section repair | CMS/front-end maintenance | WordPress, Elementor, CSS, browser QA | Queued; requires a safe demo WordPress instance |
-| 04 | Python batch file automation | Scripting/automation | Python, pathlib, argparse, logging, unittest | Queued |
+| 04 | Python batch file automation | Scripting/automation | Python standard library, pathlib, argparse, unittest | Implemented; 6 local tests pass; CI verification pending |
 | 05 | REST API integration and smoke tests | API development/QA | Python, requests/httpx, pytest | Queued |
 | 06 | PDF extraction and structured export | Document automation | Python, pypdf, pandas | Queued |
 | 07 | Business KPI dashboard | Data analysis/visualization | Python, pandas, Plotly or static HTML | Queued |
@@ -31,3 +31,8 @@ This is a standalone demonstration of removing duplicated content, restoring rea
 [Spreadsheet cleanup and validation](./02-spreadsheet-cleanup/README.md)
 
 A conservative CSV/XLSX cleaner with schema normalization, explicit duplicate handling, missing-value reporting, and a JSON audit artifact. Synthetic input and output examples are included.
+
+## Sample 04
+[Safe batch file automation](./04-batch-file-automation/README.md)
+
+A dry-run-first file renaming utility with extension filters, collision protection, idempotent prefix handling, and optional JSON audit output. Six local tests pass; the dedicated CI run is pending.
