@@ -210,3 +210,9 @@ Code changes committed to `zopair/Sovereign-AI-Arsenal`:
 A follow-up inspection of `backend/core/discovery.py` showed that `update_repository_metrics()` accesses `repository.full_name` as an attribute. The session-isolation refactor initially passed a plain dictionary, which would have broken that call. Corrected the worker to pass a detached `SimpleNamespace` snapshot instead, preserving the attribute contract without retaining an ORM object/session across network calls. Added a structural regression test for this adapter contract.
 
 The CI-focused test set now contains eight tests across the API regression and security/background-task files. These tests are committed but have **not yet been observed passing in GitHub Actions**. Docker build and full runtime integration remain unverified.
+
+### Discovery HTTP client lifetime correction (2026-11-11)
+
+A further source trace found that `update_repository_metrics()` previously opened and closed its own aiohttp session, while the analysis worker then called `get_repository_readme()` on that now-closed session. The analysis worker now owns one `async with discovery_engine` scope spanning both metrics and README retrieval; `update_repository_metrics()` now uses the caller-owned session rather than closing it. Added regression guards for the shared client lifetime and the attribute-based detached repository snapshot.
+
+The focused CI set now contains ten tests. Their execution and the Docker build remain pending inspection of a completed GitHub Actions run.
