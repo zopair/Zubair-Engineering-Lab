@@ -1,0 +1,5 @@
+{
+  "schema_version": 1,
+  "sources": [],
+  "_instructions": "Add only verified public job-board sources. Supported providers: greenhouse, lever, ashby. Each source requires company, board, provider, careers_url, enabled=true. Confirm the provider's display and reuse terms before activation."
+}
