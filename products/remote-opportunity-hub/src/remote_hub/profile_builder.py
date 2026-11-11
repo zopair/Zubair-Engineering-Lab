@@ -6,7 +6,7 @@ import re
 def _clean(value):
     if value is None:
         return ""
-    return re.sub(r"\\s+", " ", str(value)).strip()
+    return re.sub(r"\s+", " ", str(value)).strip()
 
 
 def _items(value):
