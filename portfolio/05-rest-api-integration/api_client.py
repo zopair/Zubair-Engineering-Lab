@@ -109,6 +109,10 @@ class ApiClient:
         headers: Mapping[str, str] | None = None,
         params: Mapping[str, Any] | None = None,
     ) -> Any:
+        parsed_path = urlsplit(path)
+        if parsed_path.scheme or parsed_path.netloc:
+            raise ValueError("API request path must be relative to the configured base URL")
+
         method = method.upper()
         retryable = method in RETRYABLE_METHODS
         attempts = self.max_retries + 1 if retryable else 1
