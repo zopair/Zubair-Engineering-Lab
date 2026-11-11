@@ -26,7 +26,7 @@ The gallery presents only completed samples and links to their case studies, sou
 | 05 | REST API integration and smoke tests | API development/QA | Python, httpx, unittest | CI green; 9 acceptance tests pass (run 43043222968) |
 | 06 | PDF extraction and structured export | Document automation | Python, pypdf, pandas | Queued |
 | 07 | Business KPI dashboard | Data analysis/visualization | Python standard library, CSV, HTML/CSS | CI green; 8 tests pass (run 43044133557) |
-| 08 | Bilingual RTL landing page | Web design/development | HTML, CSS logical properties, RTL QA | Queued |
+| 08 | Bilingual RTL landing page | Web design/development | HTML, CSS logical properties, JavaScript | CI green; 7 acceptance tests pass (run 43044572639) |
 
 ## Sample 01
 [Responsive landing page repair](./01-responsive-landing-page/README.md)
@@ -57,3 +57,8 @@ Extracts searchable PDF text into traceable page/line records and exports CSV/XL
 [Business KPI dashboard](./07-kpi-dashboard/README.md)
 
 A static, dependency-free HTML dashboard for sales CSVs, including revenue, order count, average order value, customer count, monthly breakdown, and visible data-quality issues. Eight tests pass in GitHub Actions (run 43044133557).
+
+## Sample 08
+[Bilingual RTL/LTR landing page](./08-bilingual-rtl-landing/README.md)
+
+Responsive English/Arabic landing page with language-direction switching, CSS logical properties, accessible controls, and local-only form validation. Seven tests pass in GitHub Actions (run 43044572639).
