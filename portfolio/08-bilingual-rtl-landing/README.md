@@ -40,7 +40,7 @@ Run:
 python -m unittest discover -s tests -v
 ```
 
-Seven static acceptance tests verify both language variants, RTL markup, semantic structure, labels, language-direction switching, local-only form behavior, CSS logical properties, mobile/reduced-motion rules, and local asset references.
+Eight static acceptance tests verify both language variants, RTL markup, semantic structure, labels, language-direction switching, local-only form behavior, CSS logical properties, mobile/reduced-motion rules, and local asset references.
 
 The dedicated GitHub Actions workflow runs the suite on Python 3.12.
 
