@@ -219,7 +219,22 @@ def audit_one(client: GitHubClient, name: str) -> dict[str, Any]:
             return classify_repository(name, metadata, [], {}, None)
 
         branch = metadata.get("default_branch") or "main"
-        tree = client.get_json(f"/repos/{OWNER}/{name}/git/trees/{branch}?recursive=1")
+        try:
+            tree = client.get_json(f"/repos/{OWNER}/{name}/git/trees/{branch}?recursive=1")
+        except urllib.error.HTTPError as exc:
+            if exc.code != 404:
+                raise
+            # GitHub returns 404 for a repository with no commit/tree on its
+            # configured default branch. Treat it as uninitialized, not outage.
+            result = classify_repository(name, metadata, [], {}, None)
+            if not any(item["id"] == "empty_repository" for item in result["findings"]):
+                result["findings"].append({
+                    "id": "empty_repository",
+                    "severity": "medium",
+                    "evidence": "Default branch has no readable Git tree",
+                    "recommendation": "Initialize the repository or document it as an intentionally empty placeholder.",
+                })
+            return result
         paths = [entry.get("path", "") for entry in tree.get("tree", []) if entry.get("type") == "blob"]
         workflows = [
             path for path in paths
