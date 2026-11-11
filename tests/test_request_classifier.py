@@ -24,7 +24,7 @@ class RequestClassifierTests(unittest.TestCase):
         self.assertEqual(result["category"], "wordpress_web")
 
     def test_ambiguous_multi_family_request_is_not_guessed(self):
-        result = classifier.classify("Build a dashboard from Excel and repair WordPress landing page", CONFIG)
+        result = classifier.classify("Clean an Excel workbook and build a Power BI dashboard", CONFIG)
         self.assertEqual(result["status"], "ambiguous")
         self.assertIsNone(result["category"])
 
