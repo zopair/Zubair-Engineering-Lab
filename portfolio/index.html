@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Selected engineering work samples from Zubair Engineering Lab: responsive web repair, spreadsheet cleanup, safe file automation, and REST API integration.">
+  <meta name="description" content="Selected engineering work samples from Zubair Engineering Lab: responsive web repair, spreadsheet cleanup, safe file automation, REST API integration, and PDF extraction.">
   <meta name="theme-color" content="#101d31">
   <title>Selected Work | Zubair Engineering Lab</title>
   <link rel="stylesheet" href="./assets/portfolio.css">
@@ -26,8 +26,8 @@
       <h1 id="page-title">Selected Work<span>.</span></h1>
       <p class="hero-copy">Practical solutions for defined business and technical tasks. Each case study documents the problem, delivery scope, implementation, and evidence available for review.</p>
       <div class="hero-stats" aria-label="Portfolio summary">
-        <div><strong>04</strong><span>Completed samples</span></div>
-        <div><strong>28</strong><span>Automated checks across samples</span></div>
+        <div><strong>05</strong><span>Completed samples</span></div>
+        <div><strong>35</strong><span>Automated checks across samples</span></div>
         <div><strong>100%</strong><span>Reproducible source included</span></div>
       </div>
     </section>
@@ -88,6 +88,19 @@
             <ul class="deliverables"><li>Bearer authentication and JSON GET/POST</li><li>Retry-After and transient failure handling</li><li>Nine deterministic HTTP-boundary tests</li></ul>
             <div class="tags"><span>Python</span><span>httpx</span><span>unittest</span></div>
             <div class="card-links"><a href="./05-rest-api-integration/README.md">Case study</a><a href="./05-rest-api-integration/api_client.py">Source code</a><a class="evidence-link" href="https://github.com/zopair/Zubair-Engineering-Lab/actions/runs/43043222968" target="_blank" rel="noopener noreferrer">CI evidence ↗</a></div>
+          </div>
+        </article>
+
+        <article class="work-card">
+          <div class="card-topline"><span class="project-number">06 / DOCUMENTS</span><span class="status"><i></i> CI verified</span></div>
+          <div class="visual visual-data" aria-hidden="true"><div class="sheet-head"><span>EXTRACTED_LINES.XLSX</span><span>PDF → DATA</span></div><div class="sheet-grid"><b>PAGE</b><b>LINE</b><b>TEXT</b><span>01</span><span>01</span><span>Invoice ID</span><span>01</span><span>02</span><span>Customer</span><span>02</span><span>01</span><span>Total</span></div><div class="sheet-foot"><span>Structured export</span><strong>✓ 3 rows</strong></div></div>
+          <div class="card-content">
+            <p class="category">Document automation · Data extraction</p>
+            <h3>PDF Text Extraction &amp; Export</h3>
+            <p class="card-summary">Extracts searchable PDF text into traceable line records and exports structured CSV or Excel files without overwriting existing outputs.</p>
+            <ul class="deliverables"><li>Page and line-level traceability</li><li>CSV and XLSX export with stable schema</li><li>Seven synthetic PDF integration tests</li></ul>
+            <div class="tags"><span>Python</span><span>pypdf</span><span>pandas</span></div>
+            <div class="card-links"><a href="./06-pdf-extraction/README.md">Case study</a><a href="./06-pdf-extraction/pdf_extract.py">Source code</a><a class="evidence-link" href="https://github.com/zopair/Zubair-Engineering-Lab/actions/runs/43043587807" target="_blank" rel="noopener noreferrer">CI evidence ↗</a></div>
           </div>
         </article>
       </div>
