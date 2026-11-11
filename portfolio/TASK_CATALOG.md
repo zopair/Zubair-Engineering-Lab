@@ -24,7 +24,7 @@ Scope derived from a review of current and representative Upwork fixed-price pos
 
 ## Execution order and dependencies
 
-- Samples 01, 02, 04, and 05 are implemented with local test coverage; they need no client accounts or live third-party API credentials.
+- Samples 01, 02, 04, and 05 are implemented with test coverage; Sample 05 uses a deterministic in-memory HTTP transport and requires no live API credentials.
 - Sample 04 was advanced ahead of sample 03 because it can be completed and verified without provisioning a separate CMS environment.
 - Build sample 03 only in a disposable local WordPress environment; never install plugins or modify a live site without explicit client authorization.
 - Samples 04–07 use local synthetic inputs and test fixtures.
@@ -52,5 +52,5 @@ Representative live postings reviewed through the connected Upwork account. Thes
 ## Portfolio build status
 
 - Samples 01, 02, 04, and 05 are implemented on the lab's main branch.
-- Samples 01 and 02 have successful dedicated GitHub Actions runs from 2026-11-11. Sample 04 has a dedicated GitHub Actions workflow and a successful run (43037071060). Sample 05 has a dedicated workflow; its result is pending verification.
+- Samples 01 and 02 have successful dedicated GitHub Actions runs from 2026-11-11. Sample 04 has a dedicated GitHub Actions workflow and a successful run (43037071060). Sample 05 has a successful dedicated GitHub Actions run (43043222968).
 - This proves the committed tests passed in GitHub Actions where a successful run is recorded; it does not claim that a client production system was modified.
