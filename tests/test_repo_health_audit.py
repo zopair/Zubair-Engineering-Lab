@@ -1,5 +1,6 @@
 import importlib.util
 import unittest
+import urllib.error
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -89,6 +90,27 @@ jobs:
         )
         self.assertIn("missing_ci", {item["id"] for item in result["findings"]})
         self.assertEqual(result["status"], "needs_review")
+
+
+    def test_empty_default_branch_tree_is_classified_as_uninitialized(self):
+        class EmptyRepositoryClient:
+            def get_json(self, path):
+                if path == "/repos/zopair/CLT-Core-Monorepo":
+                    return {
+                        "name": "CLT-Core-Monorepo",
+                        "fork": False,
+                        "owner": {"login": "zopair"},
+                        "default_branch": "main",
+                        "size": 200,
+                    }
+                raise urllib.error.HTTPError(path, 404, "Not Found", {}, None)
+
+            def get_text(self, url):
+                raise AssertionError("No raw workflow files should be fetched for an empty repository")
+
+        result = audit.audit_one(EmptyRepositoryClient(), "CLT-Core-Monorepo")
+        self.assertEqual(result["status"], "needs_review")
+        self.assertIn("empty_repository", {item["id"] for item in result["findings"]})
 
     def test_empty_repository_is_reported_as_uninitialized_not_api_error(self):
         result = audit.classify_repository(
