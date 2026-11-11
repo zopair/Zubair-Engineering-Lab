@@ -25,7 +25,7 @@ The gallery presents only completed samples and links to their case studies, sou
 | 04 | Python batch file automation | Scripting/automation | Python standard library, pathlib, argparse, unittest | CI green; 6 tests pass (run 43037071060) |
 | 05 | REST API integration and smoke tests | API development/QA | Python, httpx, unittest | CI green; 9 acceptance tests pass (run 43043222968) |
 | 06 | PDF extraction and structured export | Document automation | Python, pypdf, pandas | Queued |
-| 07 | Business KPI dashboard | Data analysis/visualization | Python, pandas, Plotly or static HTML | Queued |
+| 07 | Business KPI dashboard | Data analysis/visualization | Python standard library, CSV, HTML/CSS | CI green; 8 tests pass (run 43044133557) |
 | 08 | Bilingual RTL landing page | Web design/development | HTML, CSS logical properties, RTL QA | Queued |
 
 ## Sample 01
@@ -52,3 +52,8 @@ A bounded-retry JSON API client with Bearer authentication, timeout controls, ra
 [PDF text extraction and structured export](./06-pdf-extraction/README.md)
 
 Extracts searchable PDF text into traceable page/line records and exports CSV/XLSX without overwriting existing outputs. Seven synthetic PDF integration tests pass in GitHub Actions (run 43043587807).
+
+## Sample 07
+[Business KPI dashboard](./07-kpi-dashboard/README.md)
+
+A static, dependency-free HTML dashboard for sales CSVs, including revenue, order count, average order value, customer count, monthly breakdown, and visible data-quality issues. Eight tests pass in GitHub Actions (run 43044133557).
