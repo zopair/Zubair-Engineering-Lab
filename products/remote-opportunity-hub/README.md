@@ -15,18 +15,21 @@ A zero-budget, open-source remote-work opportunity directory and profile-writing
 Python standard-library ingestion and profile generation; static HTML/JS frontend; JSON storage; GitHub Actions scheduled refresh. No database or paid model required.
 
 ## Local run
-```bash
-python -m unittest discover -s products/remote-opportunity-hub/tests -v
-python products/remote-opportunity-hub/scripts/refresh.py --config products/remote-opportunity-hub/config/sources.json --output products/remote-opportunity-hub/web/jobs.json
+\`\`\`bash
+PYTHONPATH=products/remote-opportunity-hub/src python -m unittest discover -s products/remote-opportunity-hub/tests -v
+PYTHONPATH=products/remote-opportunity-hub/src python products/remote-opportunity-hub/scripts/refresh.py --config products/remote-opportunity-hub/config/sources.json --output products/remote-opportunity-hub/web/jobs.json
 python -m http.server 8000
-```
-Open `http://localhost:8000/products/remote-opportunity-hub/web/`.
+\`\`\`
+Open \`http://localhost:8000/products/remote-opportunity-hub/web/\`.
 
 ## Source setup
-Add a company only after verifying its public careers board and ATS board identifier. See `config/sources.json`. Sources are disabled by default; no placeholder or unverified employer is presented as a real opportunity.
+Add a company only after verifying its public careers board, ATS board identifier, eligible geographies, and terms for public display. See \`config/sources.json\`. Sources are disabled by default; no placeholder or unverified employer is presented as a real opportunity.
 
 ## Data freshness
-The frontend shows the exact `last_verified_at` timestamp. Scheduled refresh runs every six hours. The refresh job does not delete or expire records when a source fails; it marks records absent only after a successful full board response. A stale-feed warning is shown after 24 hours.
+The frontend shows the exact \`last_verified_at\` timestamp. Scheduled refresh runs every six hours after deployment on the default branch. The refresh job does not delete or expire records when a source fails; it marks records absent only after a successful complete board response. A stale-feed warning is shown after 24 hours.
+
+## Zero-budget hosting
+The static frontend can be published through GitHub Pages for a public repository. The deployment workflow is configured separately; the repository owner may need to enable Pages with GitHub Actions as the publishing source in repository settings.
 
 ## Status
-Incubation inside Zubair Engineering Lab. A dedicated product repository can be split out after the initial vertical slice is validated.
+Incubation inside Zubair Engineering Lab. This is an MVP implementation branch, not yet a production job marketplace. A dedicated product repository can be split out after the initial vertical slice is validated.
