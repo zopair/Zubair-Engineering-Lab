@@ -23,7 +23,7 @@ The gallery presents only completed samples and links to their case studies, sou
 | 02 | Excel/CSV cleanup and validation | Spreadsheet/data cleaning | Python, pandas, openpyxl, unittest | CI green; 6 tests pass; CSV/XLSX round-trip verified (run 43034845177) |
 | 03 | WordPress/Elementor responsive section repair | CMS/front-end maintenance | WordPress, Elementor, CSS, browser QA | Queued; requires a safe demo WordPress instance |
 | 04 | Python batch file automation | Scripting/automation | Python standard library, pathlib, argparse, unittest | CI green; 6 tests pass (run 43037071060) |
-| 05 | REST API integration and smoke tests | API development/QA | Python, requests/httpx, pytest | Queued |
+| 05 | REST API integration and smoke tests | API development/QA | Python, httpx, unittest | Implemented; 9 acceptance tests; CI verification pending |
 | 06 | PDF extraction and structured export | Document automation | Python, pypdf, pandas | Queued |
 | 07 | Business KPI dashboard | Data analysis/visualization | Python, pandas, Plotly or static HTML | Queued |
 | 08 | Bilingual RTL landing page | Web design/development | HTML, CSS logical properties, RTL QA | Queued |
@@ -42,3 +42,8 @@ A conservative CSV/XLSX cleaner with schema normalization, explicit duplicate ha
 [Safe batch file automation](./04-batch-file-automation/README.md)
 
 A dry-run-first file renaming utility with extension filters, collision protection, idempotent prefix handling, and optional JSON audit output. Six tests pass locally and in GitHub Actions (run 43037071060).
+
+## Sample 05
+[REST API integration and smoke tests](./05-rest-api-integration/README.md)
+
+A bounded-retry JSON API client with Bearer authentication, timeout controls, rate-limit handling, and a deliberate no-retry policy for POST. Nine deterministic HTTP-boundary tests are included; CI verification is pending.
