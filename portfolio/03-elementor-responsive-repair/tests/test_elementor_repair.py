@@ -33,7 +33,8 @@ class ElementorRepairTests(unittest.TestCase):
 
     def test_plugin_has_metadata_and_wordpress_direct_access_guard(self):
         self.assertIn("Plugin Name:", self.plugin)
-        self.assertIn("defined('ABSPATH') || exit", self.plugin)
+        self.assertIn("defined('ABSPATH')", self.plugin)
+        self.assertIn("exit;", self.plugin)
 
     def test_stylesheet_is_enqueued_only_when_elementor_is_loaded(self):
         self.assertIn("did_action('elementor/loaded')", self.plugin)
