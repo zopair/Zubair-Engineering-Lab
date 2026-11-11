@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Upwork demand snapshot",
+  "type": "object",
+  "required": [
+    "dataset_id",
+    "snapshot_date",
+    "source",
+    "methodology",
+    "caveats",
+    "category_counts",
+    "jobs"
+  ],
+  "properties": {
+    "dataset_id": {
+      "type": "string"
+    },
+    "snapshot_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "source": {
+      "type": "string"
+    },
+    "methodology": {
+      "type": "string"
+    },
+    "caveats": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "category_counts": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 0
+      }
+    },
+    "jobs": {
+      "type": "array",
+      "minItems": 20,
+      "maxItems": 20,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "category",
+          "url",
+          "budget",
+          "summary",
+          "delivery_notes",
+          "snapshot_date"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^J[0-9]{2}$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "category": {
+            "enum": [
+              "excel_data",
+              "wordpress_web",
+              "python_scraping",
+              "api_workflow",
+              "pdf_documents",
+              "dashboards_bi"
+            ]
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "budget": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "summary": {
+            "type": "string",
+            "minLength": 1
+          },
+          "delivery_notes": {
+            "type": "string",
+            "minLength": 1
+          },
+          "snapshot_date": {
+            "type": "string",
+            "format": "date"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
