@@ -232,7 +232,7 @@ This section supersedes earlier status statements in this file where they confli
 | Zubair AI Army | Main CI run 42894115088 and Pages deployment 42894113040 passed. | Treat as an active codebase with multiple modules, not yet as a single verified production system. |
 | SINC-OS | Main CI run 40488818115 passed. | Keep in discovery until its runtime boundary with CLT Platform is clear. |
 | CLT Platform | Main workflow run 42931512191 failed at configuration validation because YouTube OAuth credentials were absent; media generation/publishing was skipped. | This is an external-credential gate, not a code regression. Do not spend time retrying without credentials or an offline-preview requirement. |
-| CLT Core Monorepo | The current main branch points to an empty Git tree; README is absent. Historical OPENCONNECT runs failed on a separate branch. | Quarantine from dependency planning until source recovery or explicit retirement. |
+| CLT Core Monorepo | The current main branch points to an empty Git tree; README is absent. Historical OPENCONNECT runs failed on a separate branch. | Keep the prototype isolated on its branch; inspect the failed metrics artifact and decide whether to promote it. Do not treat the empty main branch as the working source. |
 | Pink & Red Market | No matching repository was found in the account repository search. | Keep repository identification as a product-start task, not a lab-foundation blocker. |
 
 ### Close / defer decisions
