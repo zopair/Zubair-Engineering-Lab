@@ -82,7 +82,7 @@ def fetch_himalayas(source: dict):
             if not records:
                 break
             for raw in records:
-                if not isinstance(raw, dict) or not _himalayas_job_is_egypt_eligible(raw):
+                if not isinstance(raw, dict):
                     continue
                 job = normalize_himalayas(raw, source)
                 if job["title"] and job["application_url"]:
