@@ -79,7 +79,6 @@ def fetch_himalayas(source: dict):
             url = "https://himalayas.app/jobs/api/search?" + urllib.parse.urlencode(params, doseq=True)
             payload = fetch_json(url)
             records = payload.get("jobs", [])
-            print(f"[Himalayas] search query={query} page={page} keys={sorted(payload.keys())} total={payload.get('totalCount')} jobs={len(records)}")
             if not records:
                 break
             for raw in records:
@@ -99,7 +98,6 @@ def fetch_himalayas(source: dict):
             url = "https://himalayas.app/jobs/api?" + urllib.parse.urlencode(params)
             payload = fetch_json(url)
             records = payload.get("jobs", [])
-            print(f"[Himalayas] browse offset={page * 20} keys={sorted(payload.keys())} total={payload.get('totalCount')} jobs={len(records)}")
             if not records:
                 break
             for raw in records:
