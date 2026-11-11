@@ -1,0 +1,27 @@
+name: Portfolio Sample 07 — KPI Dashboard
+
+on:
+  push:
+    paths:
+      - 'portfolio/07-kpi-dashboard/**'
+      - '.github/workflows/portfolio-sample-07.yml'
+  pull_request:
+    paths:
+      - 'portfolio/07-kpi-dashboard/**'
+      - '.github/workflows/portfolio-sample-07.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  acceptance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run KPI dashboard acceptance tests
+        working-directory: portfolio/07-kpi-dashboard
+        run: python -m unittest discover -s tests -v
