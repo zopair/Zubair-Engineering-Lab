@@ -24,7 +24,7 @@ The lab is the **governance and integration layer**, not a monolithic codebase. 
 | Data Engineering | Ingestion, transformation, storage, analytics, data quality |
 | Cloud & DevOps | CI/CD, infrastructure as code, deployment, observability |
 | Application Engineering | Web, mobile, APIs, SaaS and commerce |
-| Automation | Workflows, content pipelines and integrations |
+| Automation | Workflows, content pipelines, integrations and browser-based publishing |
 | Research & QA | Technical evaluation, testing, security and performance |
 
 ## Project onboarding
@@ -34,6 +34,7 @@ Every project must have an owner, purpose, repository, lifecycle status, archite
 See:
 - [Portfolio capability map](docs/PORTFOLIO_CAPABILITY_MAP.md)
 - [Prioritized execution backlog](docs/EXECUTION_BACKLOG.md)
+- [Upwork Publishing Engine plan](docs/UPWORK_PUBLISHING_ENGINE.md)
 - [Architecture](docs/ARCHITECTURE.md)
 - [Engineering standards](standards/ENGINEERING_STANDARDS.md)
 - [Project registry](registry/projects.yaml)
