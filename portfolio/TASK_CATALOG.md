@@ -20,7 +20,7 @@ Scope derived from a review of current and representative Upwork fixed-price pos
 | 5 | REST API integration | Connect endpoints, map payloads, handle failures and retries | Python, httpx, unittest | CI green (43043222968); 9 HTTP-boundary tests; bounded retry and no automatic POST retry |
 | 6 | PDF text extraction | Extract searchable text and export traceable CSV/XLSX rows | Python, pypdf, pandas, openpyxl, reportlab (tests) | CI green (43043587807); 7 synthetic PDF integration tests; OCR and table reconstruction explicitly out of scope |
 | 7 | Business KPI dashboard | Turn sales CSV exports into a compact decision-support report | Python standard library, CSV, HTML/CSS | CI green (43044133557); 8 tests; metric definitions, monthly trend, and data-quality review |
-| 8 | Bilingual RTL landing page | Build Arabic/English opt-in or service landing page | HTML, CSS logical properties, accessibility checks | RTL/LTR layout checks, responsive states, form validation demo without real PII |
+| 8 | Bilingual RTL landing page | Build Arabic/English opt-in or service landing page | HTML, CSS logical properties, JavaScript | CI green (43044572639); 7 tests; responsive LTR/RTL, language switching, local-only form validation |
 
 ## Execution order and dependencies
 
