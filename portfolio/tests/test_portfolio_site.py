@@ -1,5 +1,6 @@
 from html.parser import HTMLParser
 from pathlib import Path
+from urllib.parse import urlsplit
 import unittest
 
 
@@ -50,6 +51,15 @@ class PortfolioSiteTests(unittest.TestCase):
 
     def test_stylesheet_is_linked(self):
         self.assertIn('href="./assets/portfolio.css"', self.html)
+        self.assertTrue((ROOT / "assets" / "portfolio.css").is_file())
+
+    def test_all_internal_links_resolve(self):
+        for href in self.parser.links:
+            parsed = urlsplit(href)
+            if parsed.scheme or parsed.netloc or href.startswith("#"):
+                continue
+            target = (ROOT / parsed.path).resolve()
+            self.assertTrue(target.is_file(), f"Broken portfolio link: {href}")
 
 
 if __name__ == "__main__":
