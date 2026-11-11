@@ -62,16 +62,43 @@ class RepositoryHealthAuditTests(unittest.TestCase):
         self.assertIn("deprecated_artifact_action", ids)
         self.assertEqual(result["latest_ci"]["conclusion"], "failure")
 
-    def test_no_workflow_is_reported_without_claiming_runtime_failure(self):
+    def test_job_scoped_write_permission_is_not_a_workflow_wide_red_flag(self):
+        workflow = """permissions:
+  contents: read
+jobs:
+  release:
+    permissions:
+      contents: write
+"""
         result = audit.classify_repository(
             "SINC-OS",
             {"name": "SINC-OS", "fork": False, "owner": {"login": "zopair"}},
-            ["README.md"],
+            [".github/workflows/release.yml", "pyproject.toml"],
+            {".github/workflows/release.yml": workflow},
+            None,
+        )
+        self.assertNotIn("broad_write_permissions", {item["id"] for item in result["findings"]})
+
+    def test_missing_ci_is_reported_for_code_repositories(self):
+        result = audit.classify_repository(
+            "SINC-OS",
+            {"name": "SINC-OS", "fork": False, "owner": {"login": "zopair"}},
+            ["requirements.txt", "src/main.py"],
             {},
             None,
         )
         self.assertIn("missing_ci", {item["id"] for item in result["findings"]})
         self.assertEqual(result["status"], "needs_review")
+
+    def test_empty_repository_is_reported_as_uninitialized_not_api_error(self):
+        result = audit.classify_repository(
+            "CLT-Core-Monorepo",
+            {"name": "CLT-Core-Monorepo", "fork": False, "owner": {"login": "zopair"}, "size": 0},
+            [],
+            {},
+            None,
+        )
+        self.assertIn("empty_repository", {item["id"] for item in result["findings"]})
 
 
 if __name__ == "__main__":
