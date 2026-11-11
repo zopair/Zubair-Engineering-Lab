@@ -38,7 +38,7 @@ class PortfolioSiteTests(unittest.TestCase):
         self.assertIn('lang="en"', self.html)
 
     def test_three_completed_work_cards_are_present(self):
-        self.assertEqual(self.parser.cards, 5)
+        self.assertEqual(self.parser.cards, 6)
 
     def test_each_card_has_a_local_case_study_and_source_link(self):
         self.assertGreaterEqual(self.parser.links.count("./01-responsive-landing-page/README.md"), 1)
@@ -49,6 +49,8 @@ class PortfolioSiteTests(unittest.TestCase):
         self.assertIn("./05-rest-api-integration/api_client.py", self.parser.links)
         self.assertIn("./06-pdf-extraction/README.md", self.parser.links)
         self.assertIn("./06-pdf-extraction/pdf_extract.py", self.parser.links)
+        self.assertIn("./07-kpi-dashboard/README.md", self.parser.links)
+        self.assertIn("./07-kpi-dashboard/kpi_dashboard.py", self.parser.links)
 
     def test_external_evidence_links_are_safe(self):
         self.assertIn('rel="noopener noreferrer"', self.html)
