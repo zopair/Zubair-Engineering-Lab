@@ -14,7 +14,7 @@ A curated library of small-to-medium fixed-price deliverables, built as reproduc
 | ID | Sample | Category | Tools | Status |
 |---|---|---|---|---|
 | 01 | Responsive landing page repair | HTML/CSS, mobile fixes, accessibility | HTML5, CSS3, Python unittest | Implemented; 7 local checks pass |
-| 02 | Excel/CSV cleanup and validation | Spreadsheet/data cleaning | Python, pandas, openpyxl | Queued |
+| 02 | Excel/CSV cleanup and validation | Spreadsheet/data cleaning | Python, pandas, openpyxl, unittest | Implemented; 6 local checks pass; CSV/XLSX round-trip verified |
 | 03 | WordPress/Elementor responsive section repair | CMS/front-end maintenance | WordPress, Elementor, CSS, browser QA | Queued; requires a safe demo WordPress instance |
 | 04 | Python batch file automation | Scripting/automation | Python, pathlib, argparse, logging, unittest | Queued |
 | 05 | REST API integration and smoke tests | API development/QA | Python, requests/httpx, pytest | Queued |
@@ -26,3 +26,8 @@ A curated library of small-to-medium fixed-price deliverables, built as reproduc
 [Responsive landing page repair](./01-responsive-landing-page/README.md)
 
 This is a standalone demonstration of removing duplicated content, restoring readable mobile typography, improving notice contrast, and adding basic accessibility safeguards.
+
+## Sample 02
+[Spreadsheet cleanup and validation](./02-spreadsheet-cleanup/README.md)
+
+A conservative CSV/XLSX cleaner with schema normalization, explicit duplicate handling, missing-value reporting, and a JSON audit artifact. Synthetic input and output examples are included.
