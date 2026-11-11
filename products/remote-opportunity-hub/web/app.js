@@ -32,7 +32,7 @@ function renderJobs() {
     '<article class="job-card"><div class="job-top"><span class="platform">' + escapeHtml(job.platform) +
     '</span><span class="remote-label">عن بُعد</span></div><h3>' + escapeHtml(job.title) +
     '</h3><p class="company">' + escapeHtml(job.company) + '</p><p class="location">' +
-    escapeHtml(job.location || "الموقع غير محدد") + '</p>' +
+    escapeHtml(job.location || "الموقع غير محدد") + '</p>' + (job.eligibility_label ? '<p class="eligibility">أهلية الموقع: ' + escapeHtml(job.eligibility_label) + '</p>' : '') +
     (job.source_credit ? '<p class="source-credit">مصدر البيانات: <a href="' + safeHref(job.source_credit_url) + '" target="_blank" rel="noopener noreferrer">Himalayas ↗</a></p>' : '') +
     (job.salary_min != null || job.salary_max != null ? '<p class="salary">' + escapeHtml(job.salary_currency || "") + ' ' + escapeHtml(job.salary_min ?? "—") + ' – ' + escapeHtml(job.salary_max ?? "—") + ' / ' + escapeHtml(job.salary_period || "period not stated") + '</p>' : '') +
     (job.employment_type ? '<p class="job-type">' + escapeHtml(job.employment_type) + '</p>' : '') +
