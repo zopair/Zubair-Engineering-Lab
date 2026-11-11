@@ -117,20 +117,20 @@ def classify_repository(
         # Only workflow-wide permissions are flagged. A write permission scoped
         # to one release/remediation job is not equivalent to write-all.
         top_permissions = re.search(
-            r"(?ms)^permissions\\s*:\\s*([^\\n]*)\\n((?:[ \\t]+[^\\n]*\\n?)*)",
+            r"(?ms)^permissions\s*:\s*([^\n]*)\n((?:[ \t]+[^\n]*\n?)*)",
             content,
         )
         permission_block = ""
         if top_permissions:
-            permission_block = (top_permissions.group(1) or "") + "\\n" + top_permissions.group(2)
-        if re.search(r"\\bwrite-all\\b", permission_block):
+            permission_block = (top_permissions.group(1) or "") + "\n" + top_permissions.group(2)
+        if re.search(r"\bwrite-all\b", permission_block):
             findings.append({
                 "id": "write_all_permissions",
                 "severity": "high",
                 "evidence": f"Workflow-wide write-all permissions in {path}",
                 "recommendation": "Replace write-all with read-only workflow permissions and narrowly scoped job permissions.",
             })
-        elif re.search(r"(?m)^\\s*(?:contents|actions|pull-requests|packages):\\s*write\\b", permission_block):
+        elif re.search(r"(?m)^\s*(?:contents|actions|pull-requests|packages):\s*write\b", permission_block):
             findings.append({
                 "id": "broad_write_permissions",
                 "severity": "medium",
