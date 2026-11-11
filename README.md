@@ -38,6 +38,8 @@ See:
 - [Upwork Demand Intelligence](docs/UPWORK_DEMAND_INTELLIGENCE.md)
 - [Delivery Readiness Matrix](docs/DELIVERY_READINESS_MATRIX.md)
 - [Dated Upwork demand snapshot](research/upwork-demand/sample_jobs.json)
+- [Delivery playbooks](config/delivery_playbooks.json)
+- [Request classifier](scripts/classify_request.py)
 - [Architecture](docs/ARCHITECTURE.md)
 - [Engineering standards](standards/ENGINEERING_STANDARDS.md)
 - [Project registry](registry/projects.yaml)
