@@ -1,0 +1,13 @@
+{
+  "input_file": "messy_contacts.csv",
+  "output_file": "cleaned_contacts.csv",
+  "input_rows": 3,
+  "rows_written": 3,
+  "duplicate_rows": 1,
+  "rows_removed": 0,
+  "deduplication_enabled": false,
+  "normalized_columns": ["full_name", "email_address", "signup_date", "notes"],
+  "missing_values_by_column": {"full_name": 0, "email_address": 0, "signup_date": 0, "notes": 1},
+  "date_policy": "Known date columns normalized to ISO YYYY-MM-DD when one of the documented formats is recognized; otherwise preserved.",
+  "data_loss_policy": "Duplicates are reported but retained unless --dedupe is explicitly supplied."
+}
