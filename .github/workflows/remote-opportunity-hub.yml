@@ -1,0 +1,74 @@
+name: Remote Opportunity Hub
+
+on:
+  push:
+    branches: [main, feat/remote-opportunity-hub-mvp]
+    paths:
+      - "products/remote-opportunity-hub/**"
+      - ".github/workflows/remote-opportunity-hub.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "products/remote-opportunity-hub/**"
+      - ".github/workflows/remote-opportunity-hub.yml"
+  workflow_dispatch:
+  schedule:
+    - cron: "17 */6 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  validate-and-refresh:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run tests
+        run: PYTHONPATH=products/remote-opportunity-hub/src python -m unittest discover -s products/remote-opportunity-hub/tests -v
+      - name: Refresh public ATS feeds
+        run: |
+          PYTHONPATH=products/remote-opportunity-hub/src python products/remote-opportunity-hub/scripts/refresh.py \
+            --config products/remote-opportunity-hub/config/sources.json \
+            --output products/remote-opportunity-hub/web/jobs.json
+      - name: Configure Pages
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        uses: actions/configure-pages@v5
+      - name: Upload refreshed static site
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: products/remote-opportunity-hub/web
+      - name: Commit refreshed feed
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        run: |
+          if ! git diff --quiet -- products/remote-opportunity-hub/web/jobs.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add products/remote-opportunity-hub/web/jobs.json
+            git commit -m "chore(remote-hub): refresh verified job feed"
+            git push
+          fi
+
+  deploy-pages:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: validate-and-refresh
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+      contents: read
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy the refreshed Pages artifact
+        id: deployment
+        uses: actions/deploy-pages@v4

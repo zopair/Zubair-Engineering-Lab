@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "provider": "himalayas",
+      "board": "egypt-worldwide",
+      "company": "Himalayas listings",
+      "careers_url": "https://himalayas.app",
+      "enabled": true,
+      "max_pages": 3,
+      "queries": [
+        {"country": "EG"},
+        {"worldwide": "true"}
+      ],
+      "data_terms": "Free commercial use with visible Himalayas source credit; apply links must remain applicationLink; do not syndicate to third-party job boards."
+    }
+  ],
+  "_instructions": "Company ATS boards may be added only after verifying their board identifier, public-feed status, eligible geographies, and reuse terms. Himalayas is enabled under its published API attribution terms."
+}
