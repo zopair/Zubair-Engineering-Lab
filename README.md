@@ -50,4 +50,4 @@ See:
 
 ## Current phase
 
-**M0 — Inventory and foundation.** The initial registry contains known repositories and projects; it is intentionally marked provisional until each repository's contents, workflows, ownership, and health are inspected.
+**Foundation established; product execution is the active phase.** The portfolio registry and capability map now record observed CI/build evidence and unresolved exceptions. The inventory remains explicitly partial where source is empty, credentials are absent, or a project repository is unidentified. Do not extend the foundation phase to make every project production-ready before starting a real deliverable.
