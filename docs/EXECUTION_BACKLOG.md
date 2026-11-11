@@ -192,3 +192,15 @@ Code changes committed to `zopair/Sovereign-AI-Arsenal`:
 | SAA-011 — Nginx/public ingress boundary | Loopback defaults retained; auth does not authorize public exposure |
 | SAA-012 — Compose secrets migration | Deferred; current fail-fast environment secret model retained pending end-to-end secrets-file support |
 | SAA-013 — CI verification gate | Workflow committed; first GitHub Actions result not yet verified |
+
+### Follow-up refinement — API key/CORS boundary and CI gate (2026-11-11)
+
+- CORS now explicitly permits the `X-API-Key` header and is registered outside the authentication middleware so preflight handling and CORS response headers wrap authorization responses.
+- The auth middleware bypasses only CORS `OPTIONS` preflight; protected `/api/*` and `/metrics` requests still require the configured key.
+- README now documents the required token and a curl example.
+- Added structural regression checks for the protected paths, CORS preflight, required Compose secret, and worker-owned sessions.
+- Added a backend CI workflow with Python compile checks, focused tests, and a Docker image build.
+
+**Current verification status:** the workflow and tests are committed, but the GitHub connector did not return a completed push-run result (its available commit-run view is PR-filtered). The local network runtime cannot reach GitHub raw content, and no Docker daemon is available here. Therefore no claim is made that the full source test job or image build has passed.
+
+**Operational caution:** a shared API key is an initial access gate, not production identity/RBAC. Public ingress remains disabled. Nginx TLS certificate provisioning and protected documentation policy still need runtime review.
