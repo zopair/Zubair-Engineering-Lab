@@ -47,3 +47,8 @@ A dry-run-first file renaming utility with extension filters, collision protecti
 [REST API integration and smoke tests](./05-rest-api-integration/README.md)
 
 A bounded-retry JSON API client with Bearer authentication, timeout controls, rate-limit handling, and a deliberate no-retry policy for POST. Nine deterministic HTTP-boundary tests pass in GitHub Actions (run 43043222968).
+
+## Sample 06
+[PDF text extraction and structured export](./06-pdf-extraction/README.md)
+
+Extracts searchable PDF text into traceable page/line records and exports CSV/XLSX without overwriting existing outputs. Seven synthetic PDF integration tests pass in GitHub Actions (run 43043587807).
