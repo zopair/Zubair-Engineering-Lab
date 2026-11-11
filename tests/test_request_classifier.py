@@ -1,5 +1,7 @@
 import importlib.util
 import json
+import subprocess
+import sys
 import unittest
 
 from pathlib import Path
@@ -37,6 +39,11 @@ class RequestClassifierTests(unittest.TestCase):
         result = classifier.classify("Build a Python automation script to bypass captcha", CONFIG)
         self.assertEqual(result["status"], "red_flag")
         self.assertEqual(result["red_flags"][0]["id"], "access_bypass")
+
+    def test_cli_emits_machine_readable_json(self):
+        result = subprocess.run([sys.executable, str(SCRIPT), "Clean an Excel workbook"], cwd=ROOT, capture_output=True, text=True, check=True)
+        payload = json.loads(result.stdout)
+        self.assertEqual(payload["category"], "excel_data")
 
     def test_classifier_never_invents_a_fixed_estimate(self):
         result = classifier.classify("Create a fillable PDF form", CONFIG)
