@@ -31,7 +31,7 @@ Open the local path: http://localhost:8000/products/remote-opportunity-hub/web/.
 See config/sources.json for active source configuration.
 
 ## Data freshness
-The frontend checks source-level verification timestamps, not merely the JSON file generation time. A warning appears if a source is older than 24 hours or a source refresh fails. A failed source fetch never closes existing records. Records absent from a successful complete feed are marked inactive; expired listings are also deactivated.
+The frontend checks source-level verification timestamps, not merely the JSON file generation time. A warning appears if a source is older than 24 hours or a source refresh fails. A failed source fetch never closes existing records. Records absent from a successful source snapshot are removed from the active feed window; this does not prove that the employer closed the role. Expired listings are also deactivated using the source expiry timestamp.
 
 ## Zero-budget hosting
 The static frontend can be published through GitHub Pages for a public repository. The workflow is configured to deploy the web/ directory after validation on main. The repository owner may need to enable Pages with GitHub Actions as the publishing source in repository settings.
