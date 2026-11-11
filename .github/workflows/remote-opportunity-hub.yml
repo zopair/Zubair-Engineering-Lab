@@ -67,7 +67,7 @@ jobs:
       contents: read
     environment:
       name: github-pages
-      url: \${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy the refreshed Pages artifact
         id: deployment
