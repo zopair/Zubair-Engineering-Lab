@@ -86,7 +86,7 @@ The following replaces stale verification claims in the initial baseline:
 | Zubair AI Army | Main CI and Pages deployment succeeded (42894115088, 42894113040). | Code and deployment pipeline evidence exists; module-level runtime ownership still needs validation. |
 | Zubair Hunter AI | Tree contains .config files, SQLite databases and dated logs. | Treat as a security-review item before reuse; path names alone do not prove secret exposure. |
 | CLT Platform | Main workflow 42931512191 stops at config validation because YouTube OAuth credentials are missing; publish step is skipped. | Blocked by external credentials for live publishing; no reason to rerun unchanged. |
-| CLT Core Monorepo | main resolves to the empty Git tree; README fetch returns 404. | No usable main-branch source currently evidenced. Historical workflow failures are on openconnect/bootstrap. |
+| CLT Core Monorepo | main resolves to the empty Git tree; README fetch returns 404. | main is empty, but openconnect/bootstrap contains a 38-file OPENCONNECT prototype. Run 42126162218 passed several local transport/CLI steps and GitHub Pages deployment, then failed the final aggregate acceptance gate; inspect its metrics artifact before promotion. |
 | SINC-OS | Main CI run 40488818115 succeeded. | Keep in discovery pending a clean boundary with CLT Platform. |
 | Pink & Red Market | No matching repository was found in the account repository search. | Repository ownership is unresolved; this must not hold up the engineering lab. |
 
