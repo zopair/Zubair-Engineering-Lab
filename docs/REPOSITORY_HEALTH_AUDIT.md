@@ -27,6 +27,7 @@ The token is optional for public repositories, but an authenticated read-only to
 | Finding | Meaning | Remediation |
 |---|---|---|
 | `tracked_env_file` | A non-template .env path is tracked | Check whether values are credentials; rotate exposed credentials and remove the file from the current tree |
+| `tracked_database_file` | SQLite/database files are tracked in source control | Inspect schema and row counts offline; move runtime/client data to ignored storage and keep only sanitized fixtures |
 | `write_all_permissions` | Workflow-wide write-all permissions | Use read-only defaults and narrow job-level write permissions |
 | `broad_write_permissions` | Workflow-wide write permissions | Move write scope to the single job that needs it |
 | `deprecated_artifact_action` | Legacy upload-artifact action | Upgrade to a supported version |
