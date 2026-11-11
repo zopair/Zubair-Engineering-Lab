@@ -62,6 +62,8 @@ class BilingualLandingTests(unittest.TestCase):
     def test_forms_are_demo_only_and_never_send_data(self):
         self.assertIn("preventDefault()", self.js)
         self.assertIn("Demo only", self.js)
+        self.assertIn("<fieldset disabled>", self.html)
+        self.assertIn("fieldset.disabled = false", self.js)
         self.assertNotRegex(self.js, r"\b(fetch|XMLHttpRequest|sendBeacon)\s*\(")
 
     def test_css_uses_logical_properties_not_left_right_layout_rules(self):
