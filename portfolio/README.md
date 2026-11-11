@@ -23,10 +23,10 @@ The gallery presents completed work samples and links to their case studies, sou
 | 02 | Excel/CSV cleanup and validation | Spreadsheet/data cleaning | Python, pandas, openpyxl, unittest | CI green; 6 tests pass; CSV/XLSX round-trip verified (run 43034845177) |
 | 03 | WordPress/Elementor responsive section repair | CMS/front-end maintenance | WordPress plugin API, PHP, CSS | Static CI green (run 43045096680); 6 tests and PHP lint pass; live CMS/browser QA pending |
 | 04 | Python batch file automation | Scripting/automation | Python standard library, pathlib, argparse, unittest | CI green; 6 tests pass (run 43037071060) |
-| 05 | REST API integration and smoke tests | API development/QA | Python, httpx, unittest | CI green; 10 acceptance tests pass (run 43045557199) |
+| 05 | REST API integration and smoke tests | API development/QA | Python, httpx, unittest | CI green; 10 acceptance tests pass (run 43045576143) |
 | 06 | PDF extraction and structured export | Document automation | Python, pypdf, pandas, openpyxl | CI green; 7 PDF integration tests pass (run 43043587807) |
 | 07 | Business KPI dashboard | Data analysis/visualization | Python standard library, CSV, HTML/CSS | CI green; 8 tests pass (run 43044133557) |
-| 08 | Bilingual RTL landing page | Web design/development | HTML, CSS logical properties, JavaScript | CI green; 7 acceptance tests pass (run 43044572639) |
+| 08 | Bilingual RTL landing page | Web design/development | HTML, CSS logical properties, JavaScript | CI green; 8 acceptance tests pass (run 43045595744) |
 
 ## Sample 01
 [Responsive landing page repair](./01-responsive-landing-page/README.md)
@@ -66,4 +66,4 @@ A static, dependency-free HTML dashboard for sales CSVs, including revenue, orde
 ## Sample 08
 [Bilingual RTL/LTR landing page](./08-bilingual-rtl-landing/README.md)
 
-Responsive English/Arabic landing page with language-direction switching, CSS logical properties, accessible controls, and local-only form validation. Eight tests pass in GitHub Actions (run 43045440880).
+Responsive English/Arabic landing page with language-direction switching, CSS logical properties, accessible controls, and local-only form validation. Eight tests pass in GitHub Actions (run 43045595744).
