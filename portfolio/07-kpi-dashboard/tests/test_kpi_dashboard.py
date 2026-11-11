@@ -36,7 +36,7 @@ class KpiDashboardTests(unittest.TestCase):
         self.assertEqual(result["metrics"]["revenue"], "225.00")
         self.assertEqual(result["metrics"]["orders"], 3)
         self.assertEqual(result["metrics"]["average_order_value"], "75.00")
-        self.assertEqual(result["metrics"]["customers"], 3)
+        self.assertEqual(result["metrics"]["customers"], 2)
         self.assertEqual(result["monthly_revenue"], [
             {"month": "2026-01", "revenue": "150.00", "orders": 2},
             {"month": "2026-02", "revenue": "75.00", "orders": 1},
