@@ -60,7 +60,7 @@ Use an idempotency key only when the upstream API documents and supports it. The
 - Retry attempts are bounded and configurable.
 - Automatic retries are restricted to safe HTTP methods.
 - A failed POST is reported rather than repeated. The caller must reconcile ambiguous outcomes with the upstream API before retrying manually.
-- Authentication is passed as an Authorization header and is not included in exception text.
+- Authentication is passed as an Authorization header and is not included in exception text. Request paths must be relative to the configured base URL, preventing accidental forwarding of the bearer token to an arbitrary absolute URL.
 - Redirects are not followed automatically, reducing the risk of forwarding credentials to an unintended host.
 - This sample does not implement OAuth refresh, pagination, webhook verification, or API-specific schemas; those require the target provider's contract.
 - Tests use a deterministic in-memory transport. They prove client behavior, not the uptime or correctness of any third-party API.
@@ -74,7 +74,7 @@ pip install -r requirements.txt
 python -m unittest discover -s tests -v
 ```
 
-Nine tests cover Bearer authentication, JSON decoding, transient 5xx retry, rate-limit Retry-After, bounded retry exhaustion, no automatic POST retry, malformed JSON, safe HTTP error metadata, redirect handling, timeout configuration, and invalid base URLs.
+Ten tests cover Bearer authentication, JSON decoding, transient 5xx retry, rate-limit Retry-After, bounded retry exhaustion, no automatic POST retry, malformed JSON, safe HTTP error metadata, redirect handling, absolute-URL rejection, timeout configuration, and invalid base URLs.
 
 The dedicated GitHub Actions workflow installs the pinned dependency range and runs the suite on Python 3.12.
 
