@@ -13,8 +13,8 @@ A curated library of small-to-medium fixed-price deliverables, built as reproduc
 
 | ID | Sample | Category | Tools | Status |
 |---|---|---|---|---|
-| 01 | Responsive landing page repair | HTML/CSS, mobile fixes, accessibility | HTML5, CSS3, Python unittest | Implemented; 7 local checks pass |
-| 02 | Excel/CSV cleanup and validation | Spreadsheet/data cleaning | Python, pandas, openpyxl, unittest | Implemented; 6 local checks pass; CSV/XLSX round-trip verified |
+| 01 | Responsive landing page repair | HTML/CSS, mobile fixes, accessibility | HTML5, CSS3, Python unittest | CI green; 7 acceptance checks pass (run 43034499497) |
+| 02 | Excel/CSV cleanup and validation | Spreadsheet/data cleaning | Python, pandas, openpyxl, unittest | CI green; 6 tests pass; CSV/XLSX round-trip verified (run 43034845177) |
 | 03 | WordPress/Elementor responsive section repair | CMS/front-end maintenance | WordPress, Elementor, CSS, browser QA | Queued; requires a safe demo WordPress instance |
 | 04 | Python batch file automation | Scripting/automation | Python, pathlib, argparse, logging, unittest | Queued |
 | 05 | REST API integration and smoke tests | API development/QA | Python, requests/httpx, pytest | Queued |
