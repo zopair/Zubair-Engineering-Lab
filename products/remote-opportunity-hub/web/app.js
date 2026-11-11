@@ -51,12 +51,15 @@ async function loadJobs() {
     const feed = await response.json();
     state.jobs = Array.isArray(feed.jobs) ? feed.jobs : [];
     const active = state.jobs.filter((job) => job.status === "active" && job.remote_status === "remote");
-    const generated = feed.generated_at ? new Date(feed.generated_at) : null;
-    const stale = !generated || Number.isNaN(generated.getTime()) || Date.now() - generated.getTime() > 24 * 60 * 60 * 1000;
-    $("feed-status").textContent = stale ? "تحديث البيانات غير متاح أو أقدم من 24 ساعة" : "آخر تحديث: " + dateLabel(feed.generated_at);
+    const sources = Array.isArray(feed.sources) ? feed.sources : [];
+    const checked = sources.map((source) => source.verified_at ? new Date(source.verified_at) : null);
+    const stale = !sources.length || checked.some((date) => !date || Number.isNaN(date.getTime()) || Date.now() - date.getTime() > 24 * 60 * 60 * 1000) || sources.some((source) => source.status === "error");
+    const failed = sources.some((source) => source.status === "error");
+    const latest = checked.filter(Boolean).sort((a, b) => b - a)[0];
+    $("feed-status").textContent = !sources.length ? "لم تُفعّل مصادر وظائف بعد" : failed ? "تعذر تحديث مصدر واحد أو أكثر" : stale ? "بيانات بعض المصادر أقدم من 24 ساعة" : "آخر تحقق من المصادر: " + dateLabel(latest);
     $("freshness").hidden = !stale;
-    $("freshness").textContent = "تنبيه: لم يتم تحديث موجز الوظائف خلال آخر 24 ساعة. تحقق من المصدر الأصلي قبل الاعتماد على أي إعلان.";
-    if (!active.length && feed.notice) $("feed-status").textContent = "لم تُفعّل مصادر وظائف موثقة بعد.";
+    $("freshness").textContent = "تنبيه: بعض المصادر لم يتم التحقق منها خلال آخر 24 ساعة أو تعذر الوصول إليها. راجع تاريخ التحقق في كل إعلان والمصدر الأصلي قبل الاعتماد عليه.";
+    if (sources.length && !active.length && !failed) $("feed-status").textContent = "لا توجد فرص نشطة في المصادر الحالية.";
     renderJobs();
   } catch {
     $("feed-status").textContent = "تعذر تحميل الوظائف";
@@ -80,15 +83,23 @@ function generateProfile(form) {
   if (languages.length) paragraphs.push("Languages: " + languages.join(", ") + ".");
   if (!paragraphs.length) paragraphs.push("Add your real role, skills, projects, education, or experience. No qualifications have been assumed.");
   const about = paragraphs.join(" ") + " Please verify every detail before publishing.";
+  const arabicParts = [];
+  if (role) arabicParts.push("أستهدف فرصاً مهنية في مجال " + role + ".");
+  if (experience) arabicParts.push(experience);
+  if (projects.length) arabicParts.push("من المشروعات المذكورة: " + projects.slice(0, 5).join("؛ ") + ".");
+  if (education) arabicParts.push("التعليم: " + education + ".");
+  if (languages.length) arabicParts.push("اللغات: " + languages.join("، ") + ".");
+  const arabicAbout = arabicParts.join(" ") || "أضف معلوماتك المهنية الحقيقية لإنشاء ملخص دقيق.";
   state.profileText = "PROFESSIONAL HEADLINE\n" + (headline || "Add a target role or real skills") +
-    "\n\nPROFILE OVERVIEW\n" + about + "\n\nSKILLS\n" + (skills.join(", ") || "Add your actual skills") +
+    "\n\nPROFILE OVERVIEW\n" + about + "\n\nARABIC SUMMARY\n" + arabicAbout +
+    "\n\nSKILLS\n" + (skills.join(", ") || "Add your actual skills") +
     "\n\nPROJECTS\n" + (projects.join("\n") || "Add projects you personally completed") +
-    "\n\nNOTE\nGenerated only from the information you entered. Review every statement and the platform's field limits before publishing.";
+    "\n\nUPWORK / LINKEDIN / FIVERR\nUse the headline in the title/headline field and the overview in the profile/about field. Adapt to each platform's current field limits.\n\nNOTE\nGenerated only from the information you entered. Review every statement and the platform's field limits before publishing.";
   $("profile-result").innerHTML = '<h4>العنوان المهني</h4><p>' + escapeHtml(headline || "أضف المجال أو المهارات الفعلية") +
-    '</p><h4>النبذة</h4><p>' + escapeHtml(about) + '</p><h4>المهارات</h4><p>' +
-    escapeHtml(skills.join("، ") || "لم تتم إضافة مهارات") + '</p><h4>المشروعات</h4><p>' +
+    '</p><h4>Professional Overview</h4><p>' + escapeHtml(about) + '</p><h4>ملخص عربي</h4><p>' + escapeHtml(arabicAbout) +
+    '</p><h4>المهارات</h4><p>' + escapeHtml(skills.join("، ") || "لم تتم إضافة مهارات") + '</p><h4>المشروعات</h4><p>' +
     escapeHtml(projects.join("؛ ") || "لم تتم إضافة مشروعات") +
-    '</p><p class="muted">تم إنشاء النص محلياً في المتصفح. لا تتم إضافة خبرات أو مؤهلات غير مدخلة.</p>';
+    '</p><p class="muted">تم إنشاء النص محلياً في المتصفح. لا تتم إضافة خبرات أو مؤهلات غير مدخلة. راجع حدود الحقول الحالية بكل منصة.</p>';
   $("copy-profile").disabled = false;
 }
 $("profile-form").addEventListener("submit", (event) => {
