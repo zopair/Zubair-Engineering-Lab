@@ -23,7 +23,7 @@ Open `index.html` directly in a modern browser. No build step, package installat
 
 ## Form behavior and privacy
 
-The two forms are demonstrations only. Browser validation is performed locally; on a valid submission the page displays a confirmation message and resets the form. The implementation does not call fetch, XMLHttpRequest, sendBeacon, or any external service. Do not enter real personal information.
+The two forms are demonstrations only. Form controls remain disabled until the local script initializes. Browser validation is then performed locally; on a valid submission the page displays a confirmation message and resets the form. If JavaScript is unavailable, the controls stay disabled and cannot submit. The implementation does not call fetch, XMLHttpRequest, sendBeacon, or any external service. Do not enter real personal information.
 
 ## Localization and implementation boundaries
 
