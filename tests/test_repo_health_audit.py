@@ -37,6 +37,20 @@ class RepositoryHealthAuditTests(unittest.TestCase):
         )
         self.assertEqual(result["status"], "excluded")
 
+
+    def test_tracked_database_files_are_flagged_without_reading_contents(self):
+        result = audit.classify_repository(
+            "Zubair-Hunter-AI",
+            {"name": "Zubair-Hunter-AI", "fork": False, "owner": {"login": "zopair"}},
+            ["Client_001_sovereign.db", "agents_status.db", ".config/cache.db"],
+            {},
+            None,
+        )
+        finding = next(item for item in result["findings"] if item["id"] == "tracked_database_file")
+        self.assertEqual(finding["severity"], "high")
+        self.assertIn("3 tracked database", finding["evidence"])
+        self.assertNotIn("content", finding)
+
     def test_tracked_environment_files_are_high_severity(self):
         result = audit.classify_repository(
             "SINC-OS",
