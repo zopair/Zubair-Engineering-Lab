@@ -1,0 +1,51 @@
+name: Zero-cost repository health audit
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 3 * * 1"
+  push:
+    branches: [main, feat/zero-cost-repository-control-plane]
+    paths:
+      - "scripts/repo_health_audit.py"
+      - "tests/test_repo_health_audit.py"
+      - "scripts/generate_service_token.py"
+      - "tests/test_service_token.py"
+      - ".github/workflows/repository-health-audit.yml"
+  pull_request:
+    paths:
+      - "scripts/repo_health_audit.py"
+      - "tests/test_repo_health_audit.py"
+      - ".github/workflows/repository-health-audit.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: repository-health-audit-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test-and-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run audit unit tests
+        run: python -m unittest discover -s tests -p "test_repo_health_audit.py" -v
+      - name: Run internal service-token tests
+        run: python -m unittest discover -s tests -p "test_service_token.py" -v
+      - name: Run read-only repository audit
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/repo_health_audit.py --output artifacts/repository-health-report.json
+      - name: Upload audit report
+        uses: actions/upload-artifact@v4
+        with:
+          name: repository-health-report
+          path: artifacts/repository-health-report.json
+          if-no-files-found: error
+          retention-days: 14
