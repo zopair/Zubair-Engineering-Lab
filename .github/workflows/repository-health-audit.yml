@@ -9,6 +9,8 @@ on:
     paths:
       - "scripts/repo_health_audit.py"
       - "tests/test_repo_health_audit.py"
+      - "scripts/generate_service_token.py"
+      - "tests/test_service_token.py"
       - ".github/workflows/repository-health-audit.yml"
   pull_request:
     paths:
@@ -34,6 +36,8 @@ jobs:
           python-version: "3.12"
       - name: Run audit unit tests
         run: python -m unittest discover -s tests -p "test_repo_health_audit.py" -v
+      - name: Run internal service-token tests
+        run: python -m unittest discover -s tests -p "test_service_token.py" -v
       - name: Run read-only repository audit
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
