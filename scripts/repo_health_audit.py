@@ -234,6 +234,7 @@ def audit_one(client: GitHubClient, name: str) -> dict[str, Any]:
                     "evidence": "Default branch has no readable Git tree",
                     "recommendation": "Initialize the repository or document it as an intentionally empty placeholder.",
                 })
+            result["status"] = "needs_review"
             return result
         paths = [entry.get("path", "") for entry in tree.get("tree", []) if entry.get("type") == "blob"]
         workflows = [
