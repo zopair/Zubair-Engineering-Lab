@@ -37,8 +37,10 @@ class RefreshSafetyTests(unittest.TestCase):
         us_only = {"guid": "us-1", "title": "Remote US Developer", "applicationLink": "https://himalayas.app/jobs/us-1", "locationRestrictions": [{"name": "United States", "alpha2": "US"}]}
         with patch("remote_hub.ingest.fetch_json", side_effect=[{"jobs": []}, {"jobs": [worldwide, us_only]}]):
             jobs = fetch_himalayas(source)
-        self.assertEqual(len(jobs), 1)
-        self.assertEqual(jobs[0]["external_id"], "global-1")
+        self.assertEqual(len(jobs), 2)
+        by_id = {job["external_id"]: job for job in jobs}
+        self.assertEqual(by_id["global-1"]["eligibility_label"], "Worldwide")
+        self.assertIn("United States", by_id["us-1"]["eligibility_label"])
 
     def test_himalayas_daily_cache_prevents_repeated_api_calls(self):
         with tempfile.TemporaryDirectory() as tmp:
