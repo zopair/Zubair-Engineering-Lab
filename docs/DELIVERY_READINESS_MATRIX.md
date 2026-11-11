@@ -16,15 +16,15 @@
 
 | Need | Preferred starting point | License/risk | Fallback |
 |---|---|---|---|
-| Tabular transforms | pandas, openpyxl | BSD-3-Clause / MIT; verify pinned release and transitive licenses | Python csv for small CSV-only jobs |
-| Browser QA | Playwright Python | Apache-2.0; browser binaries add storage/install cost | Static checks and manual browser QA |
-| Scraping | Scrapy | BSD-3-Clause; license does not authorize target data collection | Small bounded Python HTTP client |
-| PDF extraction | pypdf, pdfplumber | BSD-3-Clause / MIT; test fonts/forms/document-specific behavior | Existing text-only pipeline when extraction quality is insufficient |
-| PDF editing/rendering | PyMuPDF | AGPL-3.0 or commercial dual license; legal review before commercial distribution | pypdf/pdfplumber/ReportLab when sufficient |
-| OCR | Tesseract | Apache-2.0; language data and error rate need acceptance criteria | Manual exception queue |
-| Workflow | Python + existing REST sample; optional n8n | n8n Sustainable Use License is not OSI-approved open source; hosting/embedding requires review | Python worker/webhook adapter |
-| Dashboard | Existing Python/HTML KPI sample; optional Streamlit | Streamlit Apache-2.0 | Static HTML/CSV report |
-| BI platform | Metabase | AGPL-3.0/commercial editions; review hosting, embedding and distribution | Client's existing BI environment |
+| Tabular transforms | [pandas](https://github.com/pandas-dev/pandas) ([license](https://github.com/pandas-dev/pandas/blob/main/LICENSE)); [openpyxl](https://github.com/ericgazoni/openpyxl) ([license](https://github.com/ericgazoni/openpyxl/blob/master/LICENCE.rst)) | BSD-3-Clause / MIT; upstream license files inspected 2026-11-11; verify pinned release and transitive licenses | Python csv for small CSV-only jobs |
+| Browser QA | [Playwright Python](https://github.com/microsoft/playwright-python) ([license](https://github.com/microsoft/playwright-python/blob/main/LICENSE)) | Apache-2.0; upstream license inspected 2026-11-11; browser binaries add storage/install cost | Static checks and manual browser QA |
+| Scraping | [Scrapy](https://github.com/scrapy/scrapy) ([license](https://github.com/scrapy/scrapy/blob/master/LICENSE)) | BSD-3-Clause; upstream license inspected 2026-11-11; license does not authorize target data collection | Small bounded Python HTTP client |
+| PDF extraction | [pypdf](https://github.com/py-pdf/pypdf) ([license](https://github.com/py-pdf/pypdf/blob/main/LICENSE)); [pdfplumber](https://github.com/jsvine/pdfplumber) ([license](https://github.com/jsvine/pdfplumber/blob/stable/LICENSE.txt)) | BSD-3-Clause / MIT; upstream license files inspected 2026-11-11; test fonts/forms/document-specific behavior | Existing text-only pipeline when extraction quality is insufficient |
+| PDF editing/rendering | [PyMuPDF](https://github.com/pymupdf/PyMuPDF) ([COPYING](https://github.com/pymupdf/PyMuPDF/blob/main/COPYING)) | AGPL-3.0 source license with commercial licensing path; upstream license inspected 2026-11-11; legal review before commercial distribution | pypdf/pdfplumber/ReportLab when sufficient |
+| OCR | [Tesseract](https://github.com/tesseract-ocr/tesseract) | Apache-2.0; confirm exact release/license and language-data terms; OCR error rate needs acceptance criteria | Manual exception queue |
+| Workflow | Python + existing REST sample; optional [n8n](https://github.com/n8n-io/n8n) ([license](https://github.com/n8n-io/n8n/blob/master/LICENSE.md)) | Sustainable Use License for covered source; not OSI-approved open source; hosting/embedding requires review | Python worker/webhook adapter |
+| Dashboard | Existing Python/HTML KPI sample; optional [Streamlit](https://github.com/streamlit/streamlit) ([license](https://github.com/streamlit/streamlit/blob/develop/LICENSE)) | Apache-2.0; upstream license inspected 2026-11-11 | Static HTML/CSV report |
+| BI platform | [Metabase](https://github.com/metabase/metabase) ([license](https://github.com/metabase/metabase/blob/master/LICENSE.txt)) | AGPL-3.0/commercial editions; upstream license inspected 2026-11-11; review hosting, embedding and distribution | Client's existing BI environment |
 | WordPress QA | WordPress + client-approved Elementor tier; optional axe-core | Theme/plugin licenses and access vary; no paid plugin assumed | Static reproduction + disposable staging |
 
 ## Universal playbook
