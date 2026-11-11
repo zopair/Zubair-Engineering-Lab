@@ -79,7 +79,10 @@ class KpiDashboardTests(unittest.TestCase):
         self.assertEqual(self.output.read_text(encoding="utf-8"), "keep")
 
     def test_dashboard_escapes_untrusted_customer_and_source_values(self):
-        self.write_rows([["<script>", "2026-01-05", "<img src=x>", "20", "paid"]])
+        self.write_rows([
+            ["<script>", "2026-01-05", "<img src=x>", "20", "paid"],
+            ["<script>", "2026-01-06", "C-2", "99", "paid"],
+        ])
         build_dashboard(self.source, self.output)
         html = self.output.read_text(encoding="utf-8")
         self.assertNotIn("<script>", html)
