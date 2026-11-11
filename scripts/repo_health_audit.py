@@ -251,7 +251,7 @@ def audit_one(client: GitHubClient, name: str) -> dict[str, Any]:
 
         latest_run = None
         try:
-            runs = client.get_json(f"/repos/{OWNER}/{name}/actions/runs?per_page=1")
+            runs = client.get_json(f"/repos/{OWNER}/{name}/actions/runs?branch={branch}&per_page=1")
             items = runs.get("workflow_runs") or []
             latest_run = items[0] if items else None
         except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError):
