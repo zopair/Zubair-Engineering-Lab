@@ -54,7 +54,9 @@ def build_plan(
         destination = source.with_name(destination_name)
         key = destination.name.casefold()
 
-        if destination == source:
+        if prefix and source.name.startswith(prefix):
+            status, reason = "skipped", "already_has_prefix"
+        elif destination == source:
             status, reason = "skipped", "destination_is_source"
         elif key in reserved:
             status, reason = "skipped", "duplicate_planned_destination"
