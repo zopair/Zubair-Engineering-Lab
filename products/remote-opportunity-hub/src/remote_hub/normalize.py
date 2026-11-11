@@ -128,6 +128,7 @@ def normalize_himalayas(raw: dict, source: dict) -> dict:
         "seniority": raw.get("seniority") or [],
         "categories": raw.get("categories") or [],
         "location_restrictions": [item.get("name") or item.get("alpha2") for item in restrictions if isinstance(item, dict)],
+        "eligibility_label": "Worldwide" if not restrictions else "Restricted: " + ", ".join(str(item.get("name") or item.get("alpha2")) for item in restrictions if isinstance(item, dict)),
         "timezone_restrictions": raw.get("timezoneRestrictions") or [],
         "salary_min": raw.get("minSalary"),
         "salary_max": raw.get("maxSalary"),
