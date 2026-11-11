@@ -13,7 +13,7 @@ A curated library of small-to-medium fixed-price deliverables, built as reproduc
 
 [Open the selected-work gallery](./index.html) · [Showcase documentation](./SHOWCASE_README.md)
 
-The gallery presents only completed samples and links to their case studies, source files, and verified CI evidence. Static acceptance and internal-link checks pass in GitHub Actions (latest run 43044210684). The page is committed but not yet publicly hosted; browser visual QA remains outstanding.
+The gallery presents only completed samples and links to their case studies, source files, and verified CI evidence. Static acceptance and internal-link checks pass in GitHub Actions (latest run 43044660878). The page is committed but not yet publicly hosted; browser visual QA remains outstanding.
 
 ## Catalogue
 
