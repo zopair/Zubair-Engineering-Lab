@@ -4,7 +4,8 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from remote_hub.ingest import refresh, source_url
+from datetime import datetime, timezone
+from remote_hub.ingest import fetch_himalayas, refresh, source_url
 
 
 class RefreshSafetyTests(unittest.TestCase):
@@ -28,6 +29,27 @@ class RefreshSafetyTests(unittest.TestCase):
             with patch("remote_hub.ingest.fetch_source", return_value=[]):
                 result = refresh(str(config), str(output))
             self.assertEqual(result["jobs"][0]["status"], "inactive")
+
+
+    def test_himalayas_uses_browse_fallback_and_excludes_other_country_restrictions(self):
+        source = {"provider": "himalayas", "board": "egypt-worldwide", "company": "Himalayas listings", "queries": [{"country": "EG"}], "max_pages": 1, "fallback_browse_pages": 1}
+        worldwide = {"guid": "global-1", "title": "Remote Python Developer", "applicationLink": "https://himalayas.app/jobs/global-1", "locationRestrictions": []}
+        us_only = {"guid": "us-1", "title": "Remote US Developer", "applicationLink": "https://himalayas.app/jobs/us-1", "locationRestrictions": [{"name": "United States", "alpha2": "US"}]}
+        with patch("remote_hub.ingest.fetch_json", side_effect=[{"jobs": []}, {"jobs": [worldwide, us_only]}]):
+            jobs = fetch_himalayas(source)
+        self.assertEqual(len(jobs), 1)
+        self.assertEqual(jobs[0]["external_id"], "global-1")
+
+    def test_himalayas_daily_cache_prevents_repeated_api_calls(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            config = Path(tmp) / "sources.json"
+            output = Path(tmp) / "jobs.json"
+            config.write_text(json.dumps({"sources": [{"provider": "himalayas", "board": "egypt-worldwide", "enabled": True}]}))
+            verified = datetime.now(timezone.utc).isoformat()
+            output.write_text(json.dumps({"jobs": [], "sources": [{"source": "himalayas:egypt-worldwide", "status": "ok", "jobs": 4, "verified_at": verified}]}))
+            with patch("remote_hub.ingest.fetch_source", side_effect=AssertionError("daily cache should skip fetch")):
+                result = refresh(str(config), str(output))
+            self.assertEqual(result["sources"][0]["status"], "cached")
 
     def test_board_identifier_rejects_path_injection(self):
         with self.assertRaises(ValueError):
