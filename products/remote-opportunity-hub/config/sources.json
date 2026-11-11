@@ -9,22 +9,11 @@
       "enabled": true,
       "max_pages": 3,
       "queries": [
-        {
-          "country": "EG"
-        },
-        {
-          "worldwide": "true"
-        }
+        {"country": "EG"},
+        {"worldwide": "true"}
       ],
       "data_terms": "Free commercial use with visible Himalayas source credit; apply links must remain applicationLink; do not syndicate to third-party job boards."
-    },
-    {
-      "provider": "greenhouse",
-      "board": "",
-      "company": "",
-      "careers_url": "",
-      "enabled": false
     }
   ],
-  "_instructions": "Only activate company ATS boards after verifying the board identifier, country eligibility, public-feed status, and reuse terms. Himalayas is enabled under its published API attribution terms."
+  "_instructions": "Company ATS boards may be added only after verifying their board identifier, public-feed status, eligible geographies, and reuse terms. Himalayas is enabled under its published API attribution terms."
 }
