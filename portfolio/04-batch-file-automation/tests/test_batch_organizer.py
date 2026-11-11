@@ -22,13 +22,14 @@ class BatchOrganizerTests(unittest.TestCase):
         self.assertEqual(len(plan), 2)
         self.assertTrue(all(item["status"] == "planned" for item in plan))
         self.assertTrue((self.root / "report.txt").exists())
-        self.assertEqual({item["destination"] for item in plan},
+        self.assertEqual({Path(item["destination"]).name for item in plan},
                          {"client_report.txt", "client_image.png"})
 
     def test_existing_destination_is_skipped_without_overwrite(self):
         (self.root / "client_report.txt").write_text("keep", encoding="utf-8")
         plan = build_plan(self.root, prefix="client_", extensions={".txt"})
-        self.assertEqual(plan[0]["status"], "skipped")
+        report_item = next(item for item in plan if Path(item["source"]).name == "report.txt")
+        self.assertEqual(report_item["status"], "skipped")
         result = execute_plan(plan, apply=True)
         self.assertEqual(result["applied"], 0)
         self.assertEqual((self.root / "client_report.txt").read_text(encoding="utf-8"), "keep")
