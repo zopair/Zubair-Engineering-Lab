@@ -58,21 +58,21 @@ projects:
 
   - id: universal-compute-fabric
     name: Universal Compute Fabric
-    repository: null
+    repository: https://github.com/zopair/Universal-Compute-Fabric
     domain: cloud-devops
-    lifecycle: proposed
-    visibility: unknown
-    verification: pending-repository-identification
-    notes: Previously discussed project; exact repository URL must be confirmed.
+    lifecycle: active
+    visibility: public
+    verification: readme-reviewed
+    notes: README identifies M2 experimental execution foundation; execution is opt-in and security hardening remains incomplete.
 
   - id: amazon-kdp-pipeline
     name: Amazon KDP Children's Books Pipeline
-    repository: null
+    repository: https://github.com/zopair/Amazon-work-
     domain: automation
-    lifecycle: proposed
-    visibility: unknown
-    verification: pending-repository-identification
-    notes: Previously discussed GitHub Actions production pipeline; repository access/name not yet confirmed.
+    lifecycle: active
+    visibility: public
+    verification: readme-reviewed
+    notes: README documents a bilingual 24-page build and preflight pipeline; required original artwork is a hard prerequisite and KDP Arabic RTL acceptance is not guaranteed.
 
   - id: pink-red-market
     name: Pink & Red Market
