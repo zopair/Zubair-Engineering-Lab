@@ -96,7 +96,6 @@ No existing database volume was deleted, no external API key was added, and no p
 | UCF-004 | Add dependency lock strategy, SBOM generation and vulnerability scanning | CI publishes SBOM and fails on defined severity policy | Existing CI |
 | UCF-005 | Evaluate Firecracker/gVisor/Wasmtime as isolated execution adapters | Benchmark and security comparison; no adoption without workload compatibility tests | UCF-001 |
 | UCF-006 | Add load tests for scheduler and concurrent reservations | Reproducible throughput/latency report with hardware and dataset disclosed | UCF-003 |
-
 ### P1 — Product-specific critical paths
 
 | ID | Task | Acceptance evidence | Dependencies |
@@ -196,8 +195,7 @@ Code changes committed to `zopair/Sovereign-AI-Arsenal`:
 ### Follow-up refinement — API key/CORS boundary and CI gate (2026-11-11)
 
 - CORS now explicitly permits the `X-API-Key` header and is registered outside the authentication middleware so preflight handling and CORS response headers wrap authorization responses.
-- The auth middleware bypasses only CORS `OPTIONS` preflight; protected `/api/*` and `/metrics` requests still require the configured key.
-- README now documents the required token and a curl example.
+- The auth middleware bypasses only CORS `OPTIONS` preflight; protected `/api/*` and `/metrics` requests still require the configured key.- README now documents the required token and a curl example.
 - Added structural regression checks for the protected paths, CORS preflight, required Compose secret, and worker-owned sessions.
 - Added a backend CI workflow with Python compile checks, focused tests, and a Docker image build.
 
@@ -245,3 +243,27 @@ This section supersedes earlier status statements in this file where they confli
 ### Actual start-work threshold
 
 The lab is sufficiently established to stop general preparation. Choose one real deliverable and implement it in its owning repository. Shared controls are added only when that deliverable requires them. No further portfolio-wide readiness campaign is authorized by this backlog.
+
+## Upwork Demand Intelligence & Delivery Readiness Hub — 2026-11-11
+
+| ID | Priority | Work | State | Acceptance / next gate |
+|---|---|---|---|---|
+| DEMAND-001 | P1 | Preserve 20 targeted Upwork postings in a dated structured snapshot | Implemented | JSON snapshot, category counts, source URLs and methodology stored under research/upwork-demand/ |
+| DEMAND-002 | P1 | Document demand patterns, intake pipeline, scope and commercial guardrails | Implemented | docs/UPWORK_DEMAND_INTELLIGENCE.md |
+| DEMAND-003 | P1 | Map six service families to existing portfolio samples, tools, license risks and acceptance checks | Implemented | docs/DELIVERY_READINESS_MATRIX.md; gaps remain explicitly marked |
+| DEMAND-004 | P1 | Add deterministic dataset validator and regression tests | Implemented; CI run pending | Python standard-library validator and five unit tests; inspect GitHub Actions run before marking verified |
+| DEMAND-005 | P2 | Extend the highest-value capability gaps only when a real scoped request requires them | Deferred by design | First candidates: Google Sheets adapter, WordPress staging/form QA, fillable PDF forms, compliant scraper checkpoints and client BI connectors |
+
+### Delivery rules
+
+- The 20-posting dataset is a purposive capability-fit sample, not a random market sample or market-share estimate. Keep the snapshot immutable and add dated snapshots for future research.
+- Do not install or clone a tool until the use case, upstream maintenance, exact license, transitive dependencies and resource cost have been checked.
+- Prefer Python standard library and existing sample implementations for the first version; the new validator introduces no runtime package dependency.
+- Do not treat a portfolio sample as proof of compatibility with a client's production environment.
+- Keep client data, private proposals, credentials, cookies and personal data out of the public repository.
+- Red-flag requests involving payment handling, credential sharing, access-control bypass, unauthorized scraping, destructive production changes or regulated professional judgment must be rejected or re-scoped.
+- No Connects were spent and no proposals were submitted in this research implementation.
+
+### Immediate next gate
+
+Inspect the first GitHub Actions run for .github/workflows/demand-snapshot.yml. If it fails, fix the cause and rerun only the affected workflow. Do not mark DEMAND-004 complete until the actual run and logs are green.
