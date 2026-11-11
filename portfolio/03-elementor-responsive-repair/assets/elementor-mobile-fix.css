@@ -1,0 +1,79 @@
+/*
+ * Scoped Elementor section repair.
+ * Replace 7f3a9c2 with the target section's Elementor CSS ID.
+ * No global Elementor or theme styles are changed.
+ */
+.elementor-element.elementor-element-7f3a9c2 {
+  overflow: clip;
+}
+
+.elementor-element.elementor-element-7f3a9c2 > .elementor-container,
+.elementor-element.elementor-element-7f3a9c2 > .e-con-inner {
+  align-items: center;
+  gap: clamp(1.25rem, 3vw, 2.75rem);
+}
+
+.elementor-element.elementor-element-7f3a9c2 .elementor-widget-wrap,
+.elementor-element.elementor-element-7f3a9c2 .e-con {
+  min-width: 0;
+}
+
+.elementor-element.elementor-element-7f3a9c2 .elementor-heading-title {
+  max-width: 15ch;
+  font-size: clamp(2.2rem, 4.2vw, 3.75rem);
+  line-height: 1.12;
+  overflow-wrap: anywhere;
+}
+
+.elementor-element.elementor-element-7f3a9c2 .elementor-widget-text-editor {
+  max-width: 58ch;
+}
+
+.elementor-element.elementor-element-7f3a9c2 .elementor-widget-image img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 1rem;
+}
+
+.elementor-element.elementor-element-7f3a9c2 .elementor-button {
+  white-space: normal;
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .elementor-element.elementor-element-7f3a9c2 > .elementor-container,
+  .elementor-element.elementor-element-7f3a9c2 > .e-con-inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.25rem;
+  }
+
+  .elementor-element.elementor-element-7f3a9c2 .elementor-column,
+  .elementor-element.elementor-element-7f3a9c2 .e-con {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .elementor-element.elementor-element-7f3a9c2 .elementor-widget-wrap {
+    padding-inline: clamp(1rem, 5vw, 1.5rem);
+  }
+
+  .elementor-element.elementor-element-7f3a9c2 .elementor-heading-title {
+    max-width: 18ch;
+    font-size: clamp(1.85rem, 8vw, 2.5rem);
+    line-height: 1.2;
+  }
+
+  .elementor-element.elementor-element-7f3a9c2 .elementor-widget-button,
+  .elementor-element.elementor-element-7f3a9c2 .elementor-button {
+    width: 100%;
+  }
+
+  .elementor-element.elementor-element-7f3a9c2 .elementor-button {
+    display: flex;
+    justify-content: center;
+    padding-inline: 1rem;
+  }
+}
