@@ -38,7 +38,8 @@ def _date_value(value: object):
     if value is None or value == "":
         return None
     if isinstance(value, (int, float)):
-        return datetime.fromtimestamp(value / 1000, tz=timezone.utc).isoformat()
+        timestamp = value if abs(value) < 100_000_000_000 else value / 1000
+        return datetime.fromtimestamp(timestamp, tz=timezone.utc).isoformat()
     return str(value)
 
 
