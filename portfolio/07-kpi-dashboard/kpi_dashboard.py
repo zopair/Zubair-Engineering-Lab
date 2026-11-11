@@ -63,7 +63,7 @@ def _render_dashboard(result: dict[str, Any]) -> str:
     if not issue_rows:
         issue_rows = '<tr><td colspan="3">No data-quality issues detected.</td></tr>'
 
-    return """<!doctype html>
+    template = """<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -107,17 +107,21 @@ footer{margin-top:20px;color:var(--muted);font-size:11px}
 <div class="table-wrap"><table><thead><tr><th>CSV row</th><th>Issue</th><th>Details</th></tr></thead><tbody>{issues}</tbody></table></div>
 </section>
 <footer>Static report · Currency units follow the source file · No customer-level personal data is displayed</footer>
-</main></body></html>""".format(
-        revenue=html.escape(metrics["revenue"]),
-        orders=metrics["orders"],
-        aov=html.escape(metrics["average_order_value"]),
-        customers=metrics["customers"],
-        monthly=month_content,
-        source_rows=result["source_rows"],
-        excluded=result["excluded_orders"],
-        issue_count=len(issues),
-        issues=issue_rows,
-    )
+</main></body></html>"""
+    replacements = {
+        "{revenue}": html.escape(metrics["revenue"]),
+        "{orders}": str(metrics["orders"]),
+        "{aov}": html.escape(metrics["average_order_value"]),
+        "{customers}": str(metrics["customers"]),
+        "{monthly}": month_content,
+        "{source_rows}": str(result["source_rows"]),
+        "{excluded}": str(result["excluded_orders"]),
+        "{issue_count}": str(len(issues)),
+        "{issues}": issue_rows,
+    }
+    for token, value in replacements.items():
+        template = template.replace(token, value)
+    return template
 
 
 def build_dashboard(
