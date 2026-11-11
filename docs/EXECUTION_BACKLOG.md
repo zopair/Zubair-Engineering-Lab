@@ -204,3 +204,9 @@ Code changes committed to `zopair/Sovereign-AI-Arsenal`:
 **Current verification status:** the workflow and tests are committed, but the GitHub connector did not return a completed push-run result (its available commit-run view is PR-filtered). The local network runtime cannot reach GitHub raw content, and no Docker daemon is available here. Therefore no claim is made that the full source test job or image build has passed.
 
 **Operational caution:** a shared API key is an initial access gate, not production identity/RBAC. Public ingress remains disabled. Nginx TLS certificate provisioning and protected documentation policy still need runtime review.
+
+### Snapshot adapter contract correction (2026-11-11)
+
+A follow-up inspection of `backend/core/discovery.py` showed that `update_repository_metrics()` accesses `repository.full_name` as an attribute. The session-isolation refactor initially passed a plain dictionary, which would have broken that call. Corrected the worker to pass a detached `SimpleNamespace` snapshot instead, preserving the attribute contract without retaining an ORM object/session across network calls. Added a structural regression test for this adapter contract.
+
+The CI-focused test set now contains eight tests across the API regression and security/background-task files. These tests are committed but have **not yet been observed passing in GitHub Actions**. Docker build and full runtime integration remain unverified.
