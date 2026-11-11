@@ -82,7 +82,7 @@ def fetch_himalayas(source: dict):
             if not records:
                 break
             for raw in records:
-                if not isinstance(raw, dict):
+                if not isinstance(raw, dict) or not _himalayas_job_is_egypt_eligible(raw):
                     continue
                 job = normalize_himalayas(raw, source)
                 if job["title"] and job["application_url"]:
@@ -90,7 +90,7 @@ def fetch_himalayas(source: dict):
                     all_jobs[job["id"]] = job
 
     # Some search-index combinations can return an empty page. Fall back to the
-    # public browse feed, then retain only worldwide or Egypt-eligible postings.
+    # public browse feed, then preserve the returned geographic restrictions for display.
     if not all_jobs:
         browse_pages = max(1, min(int(source.get("fallback_browse_pages", 5)), 5))
         for page in range(browse_pages):
@@ -101,7 +101,7 @@ def fetch_himalayas(source: dict):
             if not records:
                 break
             for raw in records:
-                if not isinstance(raw, dict) or not _himalayas_job_is_egypt_eligible(raw):
+                if not isinstance(raw, dict):
                     continue
                 job = normalize_himalayas(raw, source)
                 if job["title"] and job["application_url"]:
