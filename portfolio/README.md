@@ -13,7 +13,7 @@ A curated library of small-to-medium fixed-price deliverables, built as reproduc
 
 [Open the selected-work gallery](./index.html) · [Showcase documentation](./SHOWCASE_README.md)
 
-The gallery presents completed work samples and links to their case studies, source files, and CI evidence. The Elementor sample is explicitly labelled as static CI verified with live CMS QA pending. Static acceptance and internal-link checks pass in GitHub Actions (latest eight-card run pending verification). The page is committed but not yet publicly hosted; browser visual QA remains outstanding.
+The gallery presents completed work samples and links to their case studies, source files, and CI evidence. The Elementor sample is explicitly labelled as static CI verified with live CMS QA pending. Static acceptance and internal-link checks pass in GitHub Actions (latest eight-card run 43045195611). The page is committed but not yet publicly hosted; browser visual QA remains outstanding.
 
 ## Catalogue
 
