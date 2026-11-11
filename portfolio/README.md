@@ -9,6 +9,12 @@ A curated library of small-to-medium fixed-price deliverables, built as reproduc
 - A sample is not represented as paid client work.
 - Browser screenshots, hosted demos, and live integrations are added only after they are actually verified.
 
+## Client-facing showcase
+
+[Open the selected-work gallery](./index.html) · [Showcase documentation](./SHOWCASE_README.md)
+
+The gallery presents only completed samples and links to their case studies, source files, and verified CI evidence. It is a static source artifact; no public hosting or browser visual QA is claimed yet.
+
 ## Catalogue
 
 | ID | Sample | Category | Tools | Status |
