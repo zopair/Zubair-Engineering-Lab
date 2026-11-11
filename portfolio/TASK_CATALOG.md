@@ -52,5 +52,5 @@ Representative live postings reviewed through the connected Upwork account. Thes
 ## Portfolio build status
 
 - Samples 01, 02, 04, 05, 06, 07, and 08 are implemented on the lab's main branch.
-- Samples 01 and 02 have successful dedicated GitHub Actions runs from 2026-11-11. Sample 04 has a dedicated GitHub Actions workflow and a successful run (43037071060). Sample 05 has a successful dedicated GitHub Actions run (43043222968). Sample 06 has a successful dedicated GitHub Actions run (43043587807). Sample 07 has a successful dedicated GitHub Actions run (43044133557). Sample 08 has a successful dedicated GitHub Actions run (43044572639).
+- Samples 01 and 02 have successful dedicated GitHub Actions runs from 2026-11-11. Sample 04 has a dedicated GitHub Actions workflow and a successful run (43037071060). Sample 05 has a successful dedicated GitHub Actions run (43043222968). Sample 06 has a successful dedicated GitHub Actions run (43043587807). Sample 07 has a successful dedicated GitHub Actions run (43044133557). Sample 08 has a successful dedicated GitHub Actions run (43044572639). The seven-card gallery and all internal links pass acceptance in run 43044660878.
 - This proves the committed tests passed in GitHub Actions where a successful run is recorded; it does not claim that a client production system was modified.
