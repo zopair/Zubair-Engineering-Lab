@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 import urllib.error
 import urllib.request
 from datetime import datetime, timezone
@@ -11,6 +12,7 @@ from .normalize import normalize_ashby, normalize_greenhouse, normalize_lever
 USER_AGENT = "RemoteOpportunityHub/0.1 (+https://github.com/zopair/Zubair-Engineering-Lab)"
 TIMEOUT_SECONDS = 20
 MAX_RESPONSE_BYTES = 8_000_000
+BOARD_PATTERN = re.compile(r"^[A-Za-z0-9_.-]{1,120}$")
 
 
 def utc_now():
@@ -29,7 +31,9 @@ def fetch_json(url: str):
 
 
 def source_url(source: dict) -> str:
-    provider, board = source.get("provider"), source.get("board", "")
+    provider, board = source.get("provider"), str(source.get("board", ""))
+    if not BOARD_PATTERN.fullmatch(board):
+        raise ValueError("Invalid ATS board identifier")
     if provider == "greenhouse":
         return f"https://boards-api.greenhouse.io/v1/boards/{board}/jobs?content=true"
     if provider == "lever":
@@ -43,14 +47,11 @@ def fetch_source(source: dict):
     payload = fetch_json(source_url(source))
     provider = source["provider"]
     if provider == "greenhouse":
-        records = payload.get("jobs", [])
-        normalizer = normalize_greenhouse
+        records, normalizer = payload.get("jobs", []), normalize_greenhouse
     elif provider == "lever":
-        records = payload if isinstance(payload, list) else payload.get("data", [])
-        normalizer = normalize_lever
+        records, normalizer = (payload if isinstance(payload, list) else payload.get("data", [])), normalize_lever
     else:
-        records = payload.get("jobs", [])
-        normalizer = normalize_ashby
+        records, normalizer = payload.get("jobs", []), normalize_ashby
 
     jobs = []
     for raw in records:
@@ -71,7 +72,7 @@ def refresh(config_path: str, output_path: str):
     output_file = Path(output_path)
     previous = json.loads(output_file.read_text(encoding="utf-8")) if output_file.exists() else {"jobs": []}
     old = {job["id"]: job for job in previous.get("jobs", []) if isinstance(job, dict) and job.get("id")}
-    active_ids_by_source, source_results, errors = {}, [], []
+    successful_sources, source_results, errors = {}, [], []
 
     for source in config.get("sources", []):
         if not source.get("enabled"):
@@ -79,20 +80,22 @@ def refresh(config_path: str, output_path: str):
         label = f'{source.get("provider")}:{source.get("board")}'
         try:
             fresh = fetch_source(source)
-            source_ids = set()
+            ids = set()
             for job in fresh:
                 old[job["id"]] = job
-                source_ids.add(job["id"])
-            active_ids_by_source[label] = source_ids
+                ids.add(job["id"])
+            successful_sources[label] = ids
             source_results.append({"source": label, "status": "ok", "jobs": len(fresh), "verified_at": utc_now()})
-        except (OSError, ValueError, RuntimeError, urllib.error.URLError, json.JSONDecodeError) as exc:
+        except (OSError, ValueError, RuntimeError, json.JSONDecodeError) as exc:
             errors.append({"source": label, "error": str(exc)[:300]})
             source_results.append({"source": label, "status": "error", "jobs": None, "verified_at": None})
 
-    for label, ids in active_ids_by_source.items():
+    # Only a successful complete response can deactivate records missing from that board.
+    for label, current_ids in successful_sources.items():
         for job in old.values():
-            if f'{job.get("platform","").lower()}:{job.get("board","")}' == label and job["id"] not in ids:
-                job["status"] = "inactive"
+            job_label = f'{job.get("platform", "").lower()}:{job.get("board", "")}'
+            if job_label == label:
+                job["status"] = "active" if job["id"] in current_ids else "inactive"
 
     jobs = sorted(old.values(), key=lambda item: (item.get("published_at") or "", item.get("last_verified_at") or ""), reverse=True)
     payload = {
@@ -100,8 +103,8 @@ def refresh(config_path: str, output_path: str):
         "jobs": jobs,
         "sources": source_results,
         "errors": errors,
-        "notice": "Listings are links to original employer/platform pages. Confirm eligibility and availability on the source before applying.",
+        "notice": "Listings link to original employer/platform pages. Confirm eligibility and availability on the source before applying.",
     }
     output_file.parent.mkdir(parents=True, exist_ok=True)
-    output_file.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+    output_file.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return payload
