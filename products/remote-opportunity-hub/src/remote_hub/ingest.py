@@ -61,7 +61,7 @@ def fetch_himalayas(source: dict):
     max_pages = max(1, min(int(source.get("max_pages", 3)), 5))
     for query in queries:
         for page in range(1, max_pages + 1):
-            params = {"page": page}
+            params = {"page": page, "sort": "recent"}
             params.update(query)
             url = "https://himalayas.app/jobs/api/search?" + urllib.parse.urlencode(params, doseq=True)
             payload = fetch_json(url)
@@ -122,7 +122,7 @@ def refresh(config_path: str, output_path: str, force: bool = False):
         label = f'{source.get("provider")}:{source.get("board", "")}'
         prior = previous_sources.get(label, {})
         prior_time = _parse_time(prior.get("verified_at"))
-        if source.get("provider") == "himalayas" and not force and prior.get("status") == "ok" and prior_time:
+        if source.get("provider") == "himalayas" and not force and prior.get("status") in {"ok", "cached"} and prior_time:
             age_hours = (datetime.now(timezone.utc) - prior_time).total_seconds() / 3600
             if age_hours < HIMALAYAS_REFRESH_HOURS:
                 source_results.append({**prior, "status": "cached"})
