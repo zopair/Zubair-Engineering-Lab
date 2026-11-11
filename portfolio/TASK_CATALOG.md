@@ -17,9 +17,9 @@ Scope derived from a review of current and representative Upwork fixed-price pos
 | 2 | Spreadsheet cleanup | Normalize headers, dates, whitespace, duplicates, missing values; validate CSV/XLSX | Python 3, pandas, openpyxl, unittest | Before/after synthetic dataset, JSON validation report, six deterministic tests, no silent data loss |
 | 3 | WordPress/Elementor section repair | Fix one section's mobile layout without changing desktop appearance | WordPress, Elementor free where possible, CSS, browser/device QA | Reproducible demo, desktop/mobile screenshots, rollback instructions; no production credentials (blocked pending isolated demo environment) |
 | 4 | Batch file automation | Rename, classify, convert or organize files safely | Python standard library, pathlib, argparse, unittest | CI green (run 43037071060); six tests pass; dry-run mode, collision protection, audit log, idempotency |
-| 5 | REST API integration | Connect two endpoints, map fields, handle errors and retries | Python, httpx/requests, pytest, JSON Schema | Mock/local API tests, timeout/retry policy, sanitized logs, README |
-| 6 | PDF to structured data | Extract tables/text and export to CSV/XLSX | Python, pypdf, pandas, openpyxl | Synthetic sample PDF, extracted output, row-count and schema checks |
-| 7 | KPI mini-dashboard | Turn a CSV into a compact business report/dashboard | Python, pandas, Plotly or HTML/CSS | Synthetic dataset, metric definitions, chart output, data-quality checks |
+| 5 | REST API integration | Connect endpoints, map payloads, handle failures and retries | Python, httpx, unittest | CI green (43043222968); 9 HTTP-boundary tests; bounded retry and no automatic POST retry |
+| 6 | PDF text extraction | Extract searchable text and export traceable CSV/XLSX rows | Python, pypdf, pandas, openpyxl, reportlab (tests) | CI green (43043587807); 7 synthetic PDF integration tests; OCR and table reconstruction explicitly out of scope |
+| 7 | Business KPI dashboard | Turn sales CSV exports into a compact decision-support report | Python standard library, CSV, HTML/CSS | CI green (43044133557); 8 tests; metric definitions, monthly trend, and data-quality review |
 | 8 | Bilingual RTL landing page | Build Arabic/English opt-in or service landing page | HTML, CSS logical properties, accessibility checks | RTL/LTR layout checks, responsive states, form validation demo without real PII |
 
 ## Execution order and dependencies
