@@ -1,5 +1,30 @@
 {
   "schema_version": 1,
-  "sources": [],
-  "_instructions": "Add only verified public job-board sources. Supported providers: greenhouse, lever, ashby. Each source requires company, board, provider, careers_url, enabled=true. Confirm the provider's display and reuse terms before activation."
+  "sources": [
+    {
+      "provider": "himalayas",
+      "board": "egypt-worldwide",
+      "company": "Himalayas listings",
+      "careers_url": "https://himalayas.app",
+      "enabled": true,
+      "max_pages": 3,
+      "queries": [
+        {
+          "country": "EG"
+        },
+        {
+          "worldwide": "true"
+        }
+      ],
+      "data_terms": "Free commercial use with visible Himalayas source credit; apply links must remain applicationLink; do not syndicate to third-party job boards."
+    },
+    {
+      "provider": "greenhouse",
+      "board": "",
+      "company": "",
+      "careers_url": "",
+      "enabled": false
+    }
+  ],
+  "_instructions": "Only activate company ATS boards after verifying the board identifier, country eligibility, public-feed status, and reuse terms. Himalayas is enabled under its published API attribution terms."
 }
