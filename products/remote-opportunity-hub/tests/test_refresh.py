@@ -31,7 +31,7 @@ class RefreshSafetyTests(unittest.TestCase):
             self.assertEqual(result["jobs"][0]["status"], "inactive")
 
 
-    def test_himalayas_uses_browse_fallback_and_excludes_other_country_restrictions(self):
+    def test_himalayas_browse_fallback_shows_geographic_restrictions(self):
         source = {"provider": "himalayas", "board": "egypt-worldwide", "company": "Himalayas listings", "queries": [{"country": "EG"}], "max_pages": 1, "fallback_browse_pages": 1}
         worldwide = {"guid": "global-1", "title": "Remote Python Developer", "applicationLink": "https://himalayas.app/jobs/global-1", "locationRestrictions": []}
         us_only = {"guid": "us-1", "title": "Remote US Developer", "applicationLink": "https://himalayas.app/jobs/us-1", "locationRestrictions": [{"name": "United States", "alpha2": "US"}]}
