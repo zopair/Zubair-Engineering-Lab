@@ -92,6 +92,36 @@ jobs:
         self.assertEqual(result["status"], "needs_review")
 
 
+
+    def test_latest_ci_is_scoped_to_the_default_branch(self):
+        class BranchAwareClient:
+            def __init__(self):
+                self.calls = []
+
+            def get_json(self, path):
+                self.calls.append(path)
+                if path == "/repos/zopair/SINC-OS":
+                    return {
+                        "name": "SINC-OS",
+                        "fork": False,
+                        "owner": {"login": "zopair"},
+                        "default_branch": "main",
+                        "size": 12,
+                    }
+                if path.endswith("/git/trees/main?recursive=1"):
+                    return {"tree": [{"type": "blob", "path": "app.py"}]}
+                if path.endswith("/actions/runs?branch=main&per_page=1"):
+                    return {"workflow_runs": [{"name": "main-ci", "status": "completed", "conclusion": "success"}]}
+                raise AssertionError(f"Unexpected API path: {path}")
+
+            def get_text(self, url):
+                return ""
+
+        client = BranchAwareClient()
+        result = audit.audit_one(client, "SINC-OS")
+        self.assertEqual(result["latest_ci"]["name"], "main-ci")
+        self.assertTrue(any("/actions/runs?branch=main&per_page=1" in path for path in client.calls))
+
     def test_empty_default_branch_tree_is_classified_as_uninitialized(self):
         class EmptyRepositoryClient:
             def get_json(self, path):
