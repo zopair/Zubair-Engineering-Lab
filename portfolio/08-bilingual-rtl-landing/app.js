@@ -22,6 +22,9 @@
   });
 
   document.querySelectorAll(".demo-form").forEach((form) => {
+    const fieldset = form.querySelector("fieldset");
+    if (fieldset) fieldset.disabled = false;
+
     form.addEventListener("submit", (event) => {
       event.preventDefault();
       if (!form.reportValidity()) return;
