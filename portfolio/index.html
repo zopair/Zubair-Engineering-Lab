@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Selected engineering work samples from Zubair Engineering Lab: responsive web repair, spreadsheet cleanup, and safe file automation.">
+  <meta name="description" content="Selected engineering work samples from Zubair Engineering Lab: responsive web repair, spreadsheet cleanup, safe file automation, and REST API integration.">
   <meta name="theme-color" content="#101d31">
   <title>Selected Work | Zubair Engineering Lab</title>
   <link rel="stylesheet" href="./assets/portfolio.css">
@@ -26,8 +26,8 @@
       <h1 id="page-title">Selected Work<span>.</span></h1>
       <p class="hero-copy">Practical solutions for defined business and technical tasks. Each case study documents the problem, delivery scope, implementation, and evidence available for review.</p>
       <div class="hero-stats" aria-label="Portfolio summary">
-        <div><strong>03</strong><span>Completed samples</span></div>
-        <div><strong>19</strong><span>Automated checks across samples</span></div>
+        <div><strong>04</strong><span>Completed samples</span></div>
+        <div><strong>28</strong><span>Automated checks across samples</span></div>
         <div><strong>100%</strong><span>Reproducible source included</span></div>
       </div>
     </section>
@@ -75,6 +75,19 @@
             <ul class="deliverables"><li>Prefix, suffix, and extension filters</li><li>Collision protection and idempotent runs</li><li>JSON audit log and six automated tests</li></ul>
             <div class="tags"><span>Python</span><span>pathlib</span><span>argparse</span></div>
             <div class="card-links"><a href="./04-batch-file-automation/README.md">Case study</a><a href="./04-batch-file-automation/batch_organizer.py">Source code</a><a class="evidence-link" href="https://github.com/zopair/Zubair-Engineering-Lab/actions/runs/43037071060" target="_blank" rel="noopener noreferrer">CI evidence ↗</a></div>
+          </div>
+        </article>
+
+        <article class="work-card">
+          <div class="card-topline"><span class="project-number">05 / API</span><span class="status"><i></i> CI verified</span></div>
+          <div class="visual visual-automation" aria-hidden="true"><div class="terminal-head"><span>REST API CLIENT</span><span>HTTP / JSON</span></div><div class="terminal-body"><p><b>GET</b> /v1/health</p><p class="terminal-muted">Authorization: Bearer ••••••••</p><p><span>✓</span> HTTP 200 · JSON decoded</p><p><span>↻</span> Retry policy: bounded</p><p class="terminal-result">Timeout protected · POST not retried</p></div></div>
+          <div class="card-content">
+            <p class="category">API integration · Reliability testing</p>
+            <h3>REST API Integration &amp; Smoke Tests</h3>
+            <p class="card-summary">A reusable JSON API client with bounded retries, rate-limit handling, configurable timeouts, and safe authentication boundaries.</p>
+            <ul class="deliverables"><li>Bearer authentication and JSON GET/POST</li><li>Retry-After and transient failure handling</li><li>Nine deterministic HTTP-boundary tests</li></ul>
+            <div class="tags"><span>Python</span><span>httpx</span><span>unittest</span></div>
+            <div class="card-links"><a href="./05-rest-api-integration/README.md">Case study</a><a href="./05-rest-api-integration/api_client.py">Source code</a><a class="evidence-link" href="https://github.com/zopair/Zubair-Engineering-Lab/actions/runs/43000000000" target="_blank" rel="noopener noreferrer">CI evidence ↗</a></div>
           </div>
         </article>
       </div>
