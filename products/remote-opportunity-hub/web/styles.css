@@ -3,3 +3,4 @@
 @media(max-width:900px){.jobs-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.guide-grid{grid-template-columns:repeat(2,1fr)}.hero{margin:18px 14px 0;padding:42px 26px}.section{margin:55px auto}}@media(max-width:640px){.topbar{align-items:flex-start;flex-direction:column}.topbar nav{gap:16px}.hero{flex-direction:column;align-items:stretch}.hero-stat{min-width:0}.jobs-grid,.profile-layout,.guide-grid{grid-template-columns:1fr}.profile-section{padding:22px 14px}.section h2{font-size:24px}.platform-list article{grid-template-columns:1fr}.platform-list small{grid-column:auto}footer{flex-direction:column}}
 
 .source-credit,.salary,.job-type{font-size:12px;margin:4px 0;color:var(--muted)}.source-credit a{color:var(--blue);font-weight:700;text-decoration:none}.salary{color:var(--green);font-weight:700}
+.eligibility{font-size:11px;color:#805b17;background:#fff8e8;border-radius:7px;padding:4px 8px;display:inline-block;margin:2px 0}
