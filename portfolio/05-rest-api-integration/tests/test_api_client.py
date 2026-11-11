@@ -77,6 +77,32 @@ class ApiClientTests(unittest.TestCase):
         self.assertEqual(caught.exception.status_code, 401)
         self.assertNotIn("test-token", str(caught.exception))
 
+    def test_get_stops_after_configured_retry_budget(self):
+        calls = []
+
+        def handler(request):
+            calls.append(request)
+            return httpx.Response(503, json={"error": "still unavailable"})
+
+        with patch("api_client.time.sleep"):
+            with self.client_for(handler, retries=2) as client:
+                with self.assertRaises(ApiError):
+                    client.get_json("/outage")
+        self.assertEqual(len(calls), 3)
+
+    def test_redirect_is_not_followed_implicitly(self):
+        calls = []
+
+        def handler(request):
+            calls.append(request)
+            return httpx.Response(302, headers={"Location": "https://other.example.test/"})
+
+        with self.client_for(handler) as client:
+            with self.assertRaises(ApiError) as caught:
+                client.get_json("/redirect")
+        self.assertEqual(caught.exception.status_code, 302)
+        self.assertEqual(len(calls), 1)
+
     def test_timeout_is_configurable_and_invalid_base_url_is_rejected(self):
         with self.assertRaises(ValueError):
             ApiClient("ftp://api.example.test")
