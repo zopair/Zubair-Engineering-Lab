@@ -71,3 +71,14 @@ No bulk clone, package install, container pull, SaaS signup or paid service was 
 - Record URL, category, captured budget or null, deliverables and selection notes.
 - Validate the JSON dataset in CI with Python standard library only.
 - Update readiness only when source code, test evidence, license or external dependency state changes.
+
+
+## Executable first-pass request classifier
+
+A local, deterministic classifier is available at scripts/classify_request.py. It maps English/Arabic request phrases to one of six service families, returns family-specific intake questions, tool candidates and acceptance checks, flags explicit red-flag phrases, and refuses to guess when no category or multiple equally scored categories match. It deliberately does not produce a fixed quote or claim live environment readiness. Run:
+
+```bash
+python scripts/classify_request.py "Clean this Excel workbook and remove duplicate rows"
+```
+
+Rules are editable in config/delivery_playbooks.json. The classifier uses Python standard library only, has no network access, and is a first-pass routing aid; a human must validate scope, context, source permissions and exact license requirements.
