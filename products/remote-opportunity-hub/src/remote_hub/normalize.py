@@ -3,6 +3,7 @@ from __future__ import annotations
 import hashlib
 import html
 import re
+from datetime import datetime, timezone
 from html.parser import HTMLParser
 from urllib.parse import urlparse
 
@@ -31,6 +32,14 @@ def _safe_url(value: object) -> str:
     candidate = str(value or "").strip()
     parsed = urlparse(candidate)
     return candidate if parsed.scheme == "https" and parsed.netloc else ""
+
+
+def _date_value(value: object):
+    if value is None or value == "":
+        return None
+    if isinstance(value, (int, float)):
+        return datetime.fromtimestamp(value / 1000, tz=timezone.utc).isoformat()
+    return str(value)
 
 
 def is_explicitly_remote(location: str, title: str = "", description: str = "") -> bool:
@@ -71,7 +80,7 @@ def _base(raw: dict, source: dict, platform: str, external_id: object,
         "remote_status": remote_status,
         "description": description_text[:12000],
         "application_url": _safe_url(url),
-        "published_at": str(published or "") or None,
+        "published_at": _date_value(published),
         "last_verified_at": None,
         "status": "active",
     }
@@ -97,3 +106,32 @@ def normalize_ashby(raw: dict, source: dict) -> dict:
                  raw.get("location"), raw.get("descriptionPlain") or raw.get("descriptionHtml"),
                  raw.get("applyUrl") or raw.get("jobUrl"), raw.get("publishedAt"),
                  raw.get("workplaceType"))
+
+
+def normalize_himalayas(raw: dict, source: dict) -> dict:
+    restrictions = raw.get("locationRestrictions") or []
+    if restrictions:
+        location = ", ".join(
+            str(item.get("name") or item.get("alpha2") or "").strip()
+            for item in restrictions if isinstance(item, dict)
+        )
+    else:
+        location = "Worldwide"
+    job = _base(raw, source, "Himalayas", raw.get("guid"), raw.get("title"),
+                location, raw.get("description") or raw.get("excerpt"),
+                raw.get("applicationLink"), raw.get("pubDate"), "remote")
+    job.update({
+        "source_credit": "Himalayas",
+        "source_credit_url": job["application_url"],
+        "expiry_date": _date_value(raw.get("expiryDate")),
+        "employment_type": raw.get("employmentType"),
+        "seniority": raw.get("seniority") or [],
+        "categories": raw.get("categories") or [],
+        "location_restrictions": [item.get("name") or item.get("alpha2") for item in restrictions if isinstance(item, dict)],
+        "timezone_restrictions": raw.get("timezoneRestrictions") or [],
+        "salary_min": raw.get("minSalary"),
+        "salary_max": raw.get("maxSalary"),
+        "salary_period": raw.get("salaryPeriod"),
+        "salary_currency": raw.get("currency"),
+    })
+    return job
