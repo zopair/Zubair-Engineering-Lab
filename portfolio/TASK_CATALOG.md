@@ -16,7 +16,7 @@ Scope derived from a review of current and representative Upwork fixed-price pos
 | 1 | Responsive landing page repair | Fix mobile font scaling, duplicated HTML, spacing and contrast | HTML5, CSS3, Python unittest; optional Playwright when available | Responsive breakpoints, one copy block, contrast tokens, no overflow, automated checks |
 | 2 | Spreadsheet cleanup | Normalize headers, dates, whitespace, duplicates, missing values; validate CSV/XLSX | Python 3, pandas, openpyxl, unittest | Before/after synthetic dataset, JSON validation report, six deterministic tests, no silent data loss |
 | 3 | WordPress/Elementor section repair | Fix one section's mobile layout without changing desktop appearance | WordPress, Elementor free where possible, CSS, browser/device QA | Reproducible demo, desktop/mobile screenshots, rollback instructions; no production credentials (blocked pending isolated demo environment) |
-| 4 | Batch file automation | Rename, classify, convert or organize files safely | Python standard library, pathlib, argparse, unittest | Implemented; dry-run mode, collision protection, audit log, idempotency; six local tests pass; CI pending |
+| 4 | Batch file automation | Rename, classify, convert or organize files safely | Python standard library, pathlib, argparse, unittest | CI green (run 43037071060); six tests pass; dry-run mode, collision protection, audit log, idempotency |
 | 5 | REST API integration | Connect two endpoints, map fields, handle errors and retries | Python, httpx/requests, pytest, JSON Schema | Mock/local API tests, timeout/retry policy, sanitized logs, README |
 | 6 | PDF to structured data | Extract tables/text and export to CSV/XLSX | Python, pypdf, pandas, openpyxl | Synthetic sample PDF, extracted output, row-count and schema checks |
 | 7 | KPI mini-dashboard | Turn a CSV into a compact business report/dashboard | Python, pandas, Plotly or HTML/CSS | Synthetic dataset, metric definitions, chart output, data-quality checks |
@@ -52,5 +52,5 @@ Representative live postings reviewed through the connected Upwork account. Thes
 ## Portfolio build status
 
 - Samples 01, 02, and 04 are implemented on the lab's main branch.
-- Samples 01 and 02 have successful dedicated GitHub Actions runs from 2026-11-11. Sample 04 has a dedicated workflow; its run is pending verification.
+- Samples 01 and 02 have successful dedicated GitHub Actions runs from 2026-11-11. Sample 04 has a dedicated GitHub Actions workflow and a successful run (43037071060).
 - This proves the committed tests passed in GitHub Actions where a successful run is recorded; it does not claim that a client production system was modified.
