@@ -73,7 +73,7 @@ def export_records(
 
     try:
         if suffix == ".csv":
-            frame.to_csv(output, index=False, encoding="utf-8-sig")
+            frame.to_csv(output, index=False, encoding="utf-8")
         else:
             frame.to_excel(output, index=False, engine="openpyxl")
     except Exception:
