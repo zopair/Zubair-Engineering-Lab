@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-21T07:08:58+00:00",
+  "generated_at": "2026-11-21T19:16:15+00:00",
   "jobs": [
     {
       "id": "cb2d3241f65287864ee4",
@@ -18339,7 +18339,7 @@
   "sources": [
     {
       "source": "himalayas:egypt-worldwide",
-      "status": "ok",
+      "status": "cached",
       "jobs": 61,
       "verified_at": "2026-11-21T07:08:58+00:00"
     }
