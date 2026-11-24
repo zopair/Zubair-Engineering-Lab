@@ -2,9 +2,9 @@ const state = { jobs: [], profileText: "" };
 const $ = (id) => document.getElementById(id);
 
 function dateLabel(value) {
-  if (!value) return "غير متاح";
+  if (!value) return "Not available";
   const date = new Date(value);
-  return Number.isNaN(date.getTime()) ? "غير متاح" : new Intl.DateTimeFormat("ar-EG", { dateStyle: "medium", timeStyle: "short" }).format(date);
+  return Number.isNaN(date.getTime()) ? "Not available" : new Intl.DateTimeFormat("en-US", { dateStyle: "medium", timeStyle: "short" }).format(date);
 }
 function escapeHtml(value) {
   return String(value ?? "").replace(/[&<>"']/g, (char) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
@@ -27,22 +27,22 @@ function renderJobs() {
     const bDate = new Date(sort === "verified" ? b.last_verified_at : b.published_at || b.last_verified_at).getTime() || 0;
     return bDate - aDate;
   });
-  $("job-count").textContent = jobs.length.toLocaleString("ar-EG");
+  $("job-count").textContent = jobs.length.toLocaleString("en-US");
   $("jobs-list").innerHTML = jobs.length ? jobs.map((job) =>
     '<article class="job-card"><div class="job-top"><span class="platform">' + escapeHtml(job.platform) +
-    '</span><span class="remote-label">عن بُعد</span></div><h3>' + escapeHtml(job.title) +
+    '</span><span class="remote-label">Remote</span></div><h3>' + escapeHtml(job.title) +
     '</h3><p class="company">' + escapeHtml(job.company) + '</p><p class="location">' +
-    escapeHtml(job.location || "الموقع غير محدد") + '</p>' + (job.eligibility_label ? '<p class="eligibility">أهلية الموقع: ' + escapeHtml(job.eligibility_label) + '</p>' : '') +
-    (job.source_credit ? '<p class="source-credit">مصدر البيانات: <a href="' + safeHref(job.source_credit_url) + '" target="_blank" rel="noopener noreferrer">Himalayas ↗</a></p>' : '') +
+    escapeHtml(job.location || "Location not stated") + '</p>' + (job.eligibility_label ? '<p class="eligibility">Location eligibility: ' + escapeHtml(job.eligibility_label) + '</p>' : '') +
+    (job.source_credit ? '<p class="source-credit">Source: <a href="' + safeHref(job.source_credit_url) + '" target="_blank" rel="noopener noreferrer">Himalayas ↗</a></p>' : '') +
     (job.salary_min != null || job.salary_max != null ? '<p class="salary">' + escapeHtml(job.salary_currency || "") + ' ' + escapeHtml(job.salary_min ?? "—") + ' – ' + escapeHtml(job.salary_max ?? "—") + ' / ' + escapeHtml(job.salary_period || "period not stated") + '</p>' : '') +
     (job.employment_type ? '<p class="job-type">' + escapeHtml(job.employment_type) + '</p>' : '') +
     '<p class="description">' +
     escapeHtml((job.description || "").slice(0, 220)) + ((job.description || "").length > 220 ? "…" : "") +
-    '</p><div class="job-meta"><span>النشر: ' + dateLabel(job.published_at) +
-    '</span><span>آخر تحقق: ' + dateLabel(job.last_verified_at) +
+    '</p><div class="job-meta"><span>Posted: ' + dateLabel(job.published_at) +
+    '</span><span>Last checked: ' + dateLabel(job.last_verified_at) +
     '</span></div><a class="button primary apply-link" href="' + safeHref(job.application_url) +
-    '" target="_blank" rel="noopener noreferrer">التقديم على المصدر الأصلي ↗</a></article>'
-  ).join("") : '<div class="empty">لا توجد فرص مطابقة حالياً. جرّب تغيير كلمات البحث أو عد لاحقاً بعد تحديث المصادر.</div>';
+    '" target="_blank" rel="noopener noreferrer">Apply at original source ↗</a></article>'
+  ).join("") : '<div class="empty">No matching jobs. Try another search or check back after the next source refresh.</div>';
 }
 async function loadJobs() {
   try {
@@ -56,14 +56,14 @@ async function loadJobs() {
     const stale = !sources.length || checked.some((date) => !date || Number.isNaN(date.getTime()) || Date.now() - date.getTime() > 24 * 60 * 60 * 1000) || sources.some((source) => source.status === "error");
     const failed = sources.some((source) => source.status === "error");
     const latest = checked.filter(Boolean).sort((a, b) => b - a)[0];
-    $("feed-status").textContent = !sources.length ? "لم تُفعّل مصادر وظائف بعد" : failed ? "تعذر تحديث مصدر واحد أو أكثر" : stale ? "بيانات بعض المصادر أقدم من 24 ساعة" : "آخر تحقق من المصادر: " + dateLabel(latest);
+    $("feed-status").textContent = !sources.length ? "No sources configured yet" : failed ? "One or more sources could not be refreshed" : stale ? "Some sources are over 24 hours old" : "Sources last checked: " + dateLabel(latest);
     $("freshness").hidden = !stale;
-    $("freshness").textContent = "تنبيه: بعض المصادر لم يتم التحقق منها خلال آخر 24 ساعة أو تعذر الوصول إليها. راجع تاريخ التحقق في كل إعلان والمصدر الأصلي قبل الاعتماد عليه.";
-    if (sources.length && !active.length && !failed) $("feed-status").textContent = "لا توجد فرص نشطة في المصادر الحالية.";
+    $("freshness").textContent = "Some sources are over 24 hours old or unavailable. Check each listing date and the original source before relying on it.";
+    if (sources.length && !active.length && !failed) $("feed-status").textContent = "No active opportunities in current sources.";
     renderJobs();
   } catch {
-    $("feed-status").textContent = "تعذر تحميل الوظائف";
-    $("jobs-list").innerHTML = '<div class="empty">تعذر تحميل البيانات. حاول لاحقاً.</div>';
+    $("feed-status").textContent = "Jobs could not be loaded";
+    $("jobs-list").innerHTML = '<div class="empty">Data could not be loaded. Try later.</div>';
   }
 }
 function generateProfile(form) {
@@ -83,23 +83,16 @@ function generateProfile(form) {
   if (languages.length) paragraphs.push("Languages: " + languages.join(", ") + ".");
   if (!paragraphs.length) paragraphs.push("Add your real role, skills, projects, education, or experience. No qualifications have been assumed.");
   const about = paragraphs.join(" ") + " Please verify every detail before publishing.";
-  const arabicParts = [];
-  if (role) arabicParts.push("أستهدف فرصاً مهنية في مجال " + role + ".");
-  if (experience) arabicParts.push(experience);
-  if (projects.length) arabicParts.push("من المشروعات المذكورة: " + projects.slice(0, 5).join("؛ ") + ".");
-  if (education) arabicParts.push("التعليم: " + education + ".");
-  if (languages.length) arabicParts.push("اللغات: " + languages.join("، ") + ".");
-  const arabicAbout = arabicParts.join(" ") || "أضف معلوماتك المهنية الحقيقية لإنشاء ملخص دقيق.";
   state.profileText = "PROFESSIONAL HEADLINE\n" + (headline || "Add a target role or real skills") +
-    "\n\nPROFILE OVERVIEW\n" + about + "\n\nARABIC SUMMARY\n" + arabicAbout +
+    "\n\nPROFILE OVERVIEW\n" + about +
     "\n\nSKILLS\n" + (skills.join(", ") || "Add your actual skills") +
     "\n\nPROJECTS\n" + (projects.join("\n") || "Add projects you personally completed") +
     "\n\nUPWORK / LINKEDIN / FIVERR\nUse the headline in the title/headline field and the overview in the profile/about field. Adapt to each platform's current field limits.\n\nNOTE\nGenerated only from the information you entered. Review every statement and the platform's field limits before publishing.";
-  $("profile-result").innerHTML = '<h4>العنوان المهني</h4><p>' + escapeHtml(headline || "أضف المجال أو المهارات الفعلية") +
-    '</p><h4>Professional Overview</h4><p>' + escapeHtml(about) + '</p><h4>ملخص عربي</h4><p>' + escapeHtml(arabicAbout) +
-    '</p><h4>المهارات</h4><p>' + escapeHtml(skills.join("، ") || "لم تتم إضافة مهارات") + '</p><h4>المشروعات</h4><p>' +
-    escapeHtml(projects.join("؛ ") || "لم تتم إضافة مشروعات") +
-    '</p><p class="muted">تم إنشاء النص محلياً في المتصفح. لا تتم إضافة خبرات أو مؤهلات غير مدخلة. راجع حدود الحقول الحالية بكل منصة.</p>';
+  $("profile-result").innerHTML = '<h4>Professional headline</h4><p>' + escapeHtml(headline || "Add your actual role or skills") +
+    '</p><h4>Professional Overview</h4><p>' + escapeHtml(about) +
+    '</p><h4>Skills</h4><p>' + escapeHtml(skills.join(", ") || "No skills added") + '</p><h4>Projects</h4><p>' +
+    escapeHtml(projects.join("; ") || "No projects added") +
+    '</p><p class="muted">Generated locally from your entries. Review all statements and each platform field limit.</p>';
   $("copy-profile").disabled = false;
 }
 $("profile-form").addEventListener("submit", (event) => {
@@ -109,8 +102,8 @@ $("profile-form").addEventListener("submit", (event) => {
 $("copy-profile").addEventListener("click", async () => {
   if (!state.profileText) return;
   const button = $("copy-profile");
-  try { await navigator.clipboard.writeText(state.profileText); button.textContent = "تم النسخ"; }
-  catch { button.textContent = "تعذر النسخ من المتصفح"; }
+  try { await navigator.clipboard.writeText(state.profileText); button.textContent = "Copied"; }
+  catch { button.textContent = "Copy unavailable in this browser"; }
 });
 ["search", "platform-filter", "sort-filter"].forEach((id) => $(id).addEventListener("input", renderJobs));
 loadJobs();
