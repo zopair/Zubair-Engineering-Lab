@@ -122,3 +122,62 @@ a { color: inherit; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
 }
+
+
+/* Default presentation: dark, English-first engineering portfolio. */
+:root {
+  color-scheme: dark;
+  --ink: #e8edf5;
+  --muted: #a0adbf;
+  --paper: #080b12;
+  --surface: #111722;
+  --line: #273244;
+  --navy: #090e18;
+  --blue: #8bbcf0;
+  --accent: #d9aa63;
+  --green: #71c7a5;
+}
+body { background: var(--paper); color: var(--ink); }
+.skip-link { background: #f4f7fb; color: #101827; }
+.hero h1, .hero-stats strong, .section-heading h2, .delivery h2,
+.card-content h3 { color: #edf2f9; }
+.hero-copy, .section-heading > p, .card-summary,
+.delivery-points p { color: var(--muted); }
+.hero-stats { border-top-color: var(--line); }
+.hero-stats div { border-inline-start-color: var(--line); }
+.work-card {
+  background: var(--surface);
+  border-color: var(--line);
+  box-shadow: 0 12px 34px rgb(0 0 0 / 22%);
+}
+.work-card:hover { box-shadow: 0 18px 42px rgb(0 0 0 / 34%); }
+.project-number { color: #9aa9bc; }
+.visual {
+  background: #171f2c;
+  border-color: #2b394c;
+}
+.visual-web { background: #151e2b; }
+.browser-bar { border-bottom-color: #2b394c; }
+.browser-bar b { background: #71839a; }
+.web-copy i { background: #60758f; }
+.web-copy i:first-child { background: #9cb6d3; }
+.web-panel { background: linear-gradient(135deg, #3c526d, #263c56); }
+.web-foot { background: #2b394c; }
+.visual-data { background: #151e2a; }
+.sheet-head, .sheet-foot { color: #a8b6c8; }
+.sheet-grid b { color: #9aaac0; }
+.sheet-grid span { color: #d0d9e5; }
+.sheet-foot { border-top-color: #2b394c; }
+.tags span {
+  color: #c1cede;
+  background: #1b2635;
+  border-color: #2d3b4f;
+}
+.deliverables li { color: #c0cada; }
+.card-links a { color: #9bc8fa; }
+.card-links .evidence-link { color: #80d3b2; }
+.delivery { border-top-color: var(--line); }
+.delivery-points p { border-bottom-color: var(--line); }
+.site-footer { background: #05080e; border-top: 1px solid #202b3a; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+::selection { color: #080b12; background: #d9aa63; }
