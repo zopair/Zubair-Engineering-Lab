@@ -63,6 +63,15 @@ class PortfolioSiteTests(unittest.TestCase):
         self.assertIn('href="./assets/portfolio.css"', self.html)
         self.assertTrue((ROOT / "assets" / "portfolio.css").is_file())
 
+    def test_eight_project_images_are_present(self):
+        self.assertEqual(self.html.count('<img '), 8)
+        for number in range(1, 9):
+            self.assertTrue((ROOT / 'assets' / 'project-previews' / f'{number}-{number:02}.png').is_file())
+
+    def test_english_is_default(self):
+        self.assertIn('<html lang="en">', self.html)
+        self.assertIn('Selected Work', self.html)
+
     def test_all_internal_links_resolve(self):
         for href in self.parser.links:
             parsed = urlsplit(href)
