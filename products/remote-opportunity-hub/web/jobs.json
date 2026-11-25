@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-25T08:35:13+00:00",
+  "generated_at": "2026-11-25T21:43:01+00:00",
   "jobs": [
     {
       "id": "fe3bcea2d6be5482b5d1",
@@ -22836,7 +22836,7 @@
       "application_url": "https://himalayas.app/companies/alien-intellect/jobs/senior-software-engineer-8699633569?utm_source=api",
       "published_at": "2026-10-26T11:17:10+00:00",
       "last_verified_at": "2026-11-25T08:35:13+00:00",
-      "status": "active",
+      "status": "inactive",
       "source_credit": "Himalayas",
       "source_credit_url": "https://himalayas.app/companies/alien-intellect/jobs/senior-software-engineer-8699633569?utm_source=api",
       "expiry_date": "2026-11-25T11:17:10+00:00",
@@ -23021,7 +23021,7 @@
   "sources": [
     {
       "source": "himalayas:egypt-worldwide",
-      "status": "ok",
+      "status": "cached",
       "jobs": 60,
       "verified_at": "2026-11-25T08:35:13+00:00"
     }
