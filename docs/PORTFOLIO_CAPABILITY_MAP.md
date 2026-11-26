@@ -93,3 +93,12 @@ The following replaces stale verification claims in the initial baseline:
 ### Portfolio-level conclusion
 
 The lab has enough verified engineering substrate to begin product work. Its role is now limited to keeping the evidence registry accurate, setting project-specific quality gates, and resolving genuine blockers when they affect a selected deliverable. Do not treat all open roadmap items as prerequisites for the first real delivery.
+
+## Portfolio sample verification update - 2026-11-26
+
+The eight portfolio samples (portfolio/README.md) were rerun locally from a fresh clone on 2026-11-26 and their recorded CI run IDs rechecked against GitHub Actions. Evidence level unchanged (demonstration work on synthetic data, not client systems):
+
+- Samples 01, 02, 04, 05, 06, 07, 08: all committed tests pass locally (01: 9 after a 2026-11-26 narrow-viewport fix; 02: 6; 04: 6; 05: 10; 06: 7; 07: 8; 08: 7, count corrected from 8). Recorded CI runs 43034499497, 43034845177, 43037071060, 43045576143, 43043587807, 43044133557, 43045595744 re-verified as successful on 2026-11-26.
+- Sample 03 (Elementor repair): 6 static tests pass locally; recorded CI run 43045096680 (static tests + PHP lint) re-verified. Live WordPress/Elementor browser QA remains the open gap; capability stays partially proven.
+- Sample 01: browser verification at 320px and 768px after the fix confirmed no header clipping and no horizontal overflow.
+- Market-review details (posting links, budgets, client history, account balances) were removed from the public catalog on the review branch and remain in the private work ledger.
