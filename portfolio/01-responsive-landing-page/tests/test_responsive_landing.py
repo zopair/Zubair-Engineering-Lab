@@ -31,6 +31,18 @@ class ResponsiveLandingPageTests(unittest.TestCase):
         self.assertIn('<header', HTML)
         self.assertIn('href="#main-content"', HTML)
 
+    def test_header_nav_wraps_on_narrow_screens(self):
+        narrow = re.search(r'@media\s*\(max-width:\s*420px\)\s*\{(?P<body>.*?)\n\}', CSS, re.S)
+        self.assertIsNotNone(narrow)
+        self.assertRegex(narrow.group('body'), r'\.site-header\s*\{[^}]*flex-wrap:\s*wrap')
+        self.assertRegex(narrow.group('body'), r'nav\s*\{[^}]*flex-wrap:\s*wrap')
+
+    def test_decorative_orbits_capped_below_desktop_column_width(self):
+        self.assertRegex(CSS, r'@media\s*\(min-width:\s*761px\)\s*and\s*\(max-width:\s*900px\)')
+        mid = re.search(r'@media\s*\(min-width:\s*761px\)[^}]*\{(?P<body>.*?)(?:\n\}|@media)', CSS, re.S)
+        self.assertIsNotNone(mid)
+        self.assertRegex(mid.group('body'), r'\.visual-orbit--two\s*\{[^}]*width:\s*(3[0-4]\d)px')
+
     def test_no_inline_styles(self):
         self.assertNotRegex(HTML, r'\sstyle=')
 
