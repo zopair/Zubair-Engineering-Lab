@@ -102,3 +102,13 @@ The eight portfolio samples (portfolio/README.md) were rerun locally from a fres
 - Sample 03 (Elementor repair): 6 static tests pass locally; recorded CI run 43045096680 (static tests + PHP lint) re-verified. Live WordPress/Elementor browser QA remains the open gap; capability stays partially proven.
 - Sample 01: browser verification at 320px and 768px after the fix confirmed no header clipping and no horizontal overflow.
 - Market-review details (posting links, budgets, client history, account balances) were removed from the public catalog on the review branch and remain in the private work ledger.
+
+## Public capability scopes - 2026-11-26
+
+Tested on invented data with free, local, open-source software; no client systems were touched; these are practice demonstrations, not client work. Deeper evidence from the internal 2026-11-26 assessment (held-out answer-key tests, hardened XLSX verifier, rendered-document reviews) is retained in private records and is not public proof, so the scopes below are stated as bounded service scopes, not certified claims:
+
+- CSV/Excel cleaning, validation and report: independent within a narrow scope (one table, written rules). Rule-based cleaner, no imputation, every excluded row listed with a reason; held-out tests matched an independent answer key to the cent; one declared currency per file, mixed currencies rejected. Limits: tested to hundreds of rows (about 2,000 in an earlier audit); no huge files or merged-cell workbooks.
+- Reports and decks from data (DOCX, PPTX, XLSX): works with limited supervision. Files built from the same data, rendered to PDF and inspected. Limits: plain design; brand assets and wording come from the client.
+- Small Python scripts with tests, mocked REST client: works with limited supervision. Unit tests with negative cases; REST samples tested against mocked HTTP. Limits: no live OAuth or provider testing.
+- Static responsive landing pages, including Arabic RTL: works with limited supervision. Real-browser checks at 320/390/768/1280px, form rejection tests, RTL switch. Limits: one portfolio sample had a 320px header clip, found and fixed 2026-11-26; Chrome only; no form backend.
+- Not claimed: WordPress on a live site, Figma, Power BI, LLM agents, live integrations, content/SEO writing, annotation, tech support, OCR.
