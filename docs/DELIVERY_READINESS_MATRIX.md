@@ -66,3 +66,11 @@ Review authorization/terms/robots; bound rate/time/pagination; test checkpoint/r
 
 ### Dashboards & BI
 Document metric formula/grain/filter/source; reconcile totals; test dates, missing data, duplicates and outliers; disclose refresh, access and licensing; do not claim live integration until verified.
+
+## Verification note - 2026-11-26
+
+Portfolio samples backing the families above were independently rerun on 2026-11-26. Excel/data (sample 02: 6/6, sample 07: 8/8), API/workflow (sample 05: 10/10, static fixtures only), PDF/documents (sample 06: 7/7, digital text only, OCR out of scope), scraping/automation (sample 04: 6/6) and landing pages (sample 01: 9/9 after a 320px/768px viewport fix, sample 08: 7/7, corrected count) all reproduce from a fresh clone. WordPress/web remains partially proven: sample 03 passes 6 static tests and CI PHP lint (run 43045096680) but has no live CMS validation. All samples are synthetic demonstrations; none is client work. Recorded CI run IDs were rechecked as successful on 2026-11-26.
+
+## Capability scope note - 2026-11-26
+
+Bounded service scopes validated in the internal 2026-11-26 assessment (deeper proof retained in private records, not public proof): CSV/Excel cleaning (narrow scope, written rules, held-out answer-key matched to the cent, mixed currencies rejected); reports and decks from data (limited supervision); small Python scripts with mocked REST tests (limited supervision); static responsive landing pages including Arabic RTL (limited supervision). Not claimed: live WordPress, Figma, Power BI, LLM agents, live integrations, content/SEO writing, annotation, tech support, OCR.
