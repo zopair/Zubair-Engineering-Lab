@@ -29,22 +29,22 @@ The gallery presents completed work samples and links to their case studies, sou
 | 08 | Bilingual RTL landing page | Web design/development | HTML, CSS logical properties, JavaScript | CI green (run 43045595744); 7 acceptance tests pass (count corrected 2026-11-26 after local rerun) |
 
 
-## Independent verification — 2026-11-26
+## Independent verification - 2026-11-26
 
-Each sample was rerun locally from a fresh clone of this repository and the recorded CI run IDs were rechecked against GitHub Actions. Classification per the approved publication plan: proven = tests rerun green now; partially proven = static checks green, live environment validation pending; demonstration = synthetic showcase, not client work.
+Each sample was rerun locally from a fresh clone of this repository on 2026-11-26 (per-sample command: `python3 -m unittest discover -s tests` inside the sample folder) and the recorded CI run IDs were rechecked against GitHub Actions. Classification: proven = tests rerun green now; partially proven = static checks green, live-environment validation pending; demonstration = synthetic showcase, not client work.
 
-| Sample | Provenance | Tests rerun 2026-11-26 | Recorded CI verified | Status | Remaining gap |
+| Sample | Provenance | Tests rerun 2026-11-26 | Recorded CI (verified links) | Status | Remaining gap |
 |---|---|---|---|---|---|
-| 01 Responsive landing page | Synthetic demo | 9/9 pass (2 new regression tests) | 43034499497 success | Proven (static + browser check at 320/768px) | None blocking; fixed 320px nav clipping and 768px orbit overflow |
-| 02 Spreadsheet cleanup | Synthetic demo | 6/6 pass | 43034845177 success | Proven | None for demonstration scope |
-| 03 Elementor repair | Synthetic demo (code-level) | 6/6 static tests pass | 43045096680 success (static + PHP lint) | Partially proven | Live WordPress/Elementor browser QA still pending |
-| 04 Batch file automation | Synthetic demo | 6/6 pass | 43037071060 success | Proven | None for demonstration scope |
-| 05 REST API integration | Synthetic demo (no live API) | 10/10 pass | 43045576143 success | Proven against HTTP-boundary fixtures | Real client API integration untested by design |
-| 06 PDF extraction | Synthetic demo | 7/7 pass | 43043587807 success | Proven for digital-text PDFs | OCR and table reconstruction explicitly out of scope |
-| 07 KPI dashboard | Synthetic demo | 8/8 pass | 43044133557 success | Proven | None for demonstration scope |
-| 08 Bilingual RTL landing | Synthetic demo | 7/7 pass (count corrected) | 43045595744 success | Proven | None blocking; browser QA at 320-1280px verified |
+| 01 Responsive landing page | Synthetic demo | 9/9 pass (2 new regression tests) | [43034499497](https://github.com/zopair/Zubair-Engineering-Lab/actions/runs/43034499497) (7 checks, pre-fix) and post-fix branch run [45743635917](https://github.com/zopair/Zubair-Engineering-Lab/actions/runs/45743635917), both success | Proven (static + browser check at 320/768px) | None blocking; 320px nav clipping and 768px orbit overflow fixed |
+| 02 Spreadsheet cleanup | Synthetic demo | 6/6 pass | [43034845177](https://github.com/zopair/Zubair-Engineering-Lab/actions/runs/43034845177) success | Proven | None for demonstration scope |
+| 03 Elementor repair | Synthetic demo (code-level) | 6/6 static tests pass | [43045096680](https://github.com/zopair/Zubair-Engineering-Lab/actions/runs/43045096680) success (static + PHP lint) | Partially proven | Live WordPress/Elementor browser QA still pending |
+| 04 Batch file automation | Synthetic demo | 6/6 pass | [43037071060](https://github.com/zopair/Zubair-Engineering-Lab/actions/runs/43037071060) success | Proven | None for demonstration scope |
+| 05 REST API integration | Synthetic demo (no live API) | 10/10 pass | [43045576143](https://github.com/zopair/Zubair-Engineering-Lab/actions/runs/43045576143) success; [43045557199](https://github.com/zopair/Zubair-Engineering-Lab/actions/runs/43045557199) success | Proven against HTTP-boundary fixtures | Real client API integration untested by design |
+| 06 PDF extraction | Synthetic demo | 7/7 pass | [43043587807](https://github.com/zopair/Zubair-Engineering-Lab/actions/runs/43043587807) success | Proven for digital-text PDFs | OCR and table reconstruction explicitly out of scope |
+| 07 KPI dashboard | Synthetic demo | 8/8 pass | [43044133557](https://github.com/zopair/Zubair-Engineering-Lab/actions/runs/43044133557) success | Proven | None for demonstration scope |
+| 08 Bilingual RTL landing | Synthetic demo | 7/7 pass (count corrected from 8) | [43045595744](https://github.com/zopair/Zubair-Engineering-Lab/actions/runs/43045595744) success | Proven | None blocking; browser QA at 320-1280px verified |
 
-None of the eight samples is represented as paid client work. All recorded CI run IDs above were rechecked on 2026-11-26 and show successful runs.
+Gallery and showcase checks: [43044660878](https://github.com/zopair/Zubair-Engineering-Lab/actions/runs/43044660878) (seven-card gallery) and [43045733840](https://github.com/zopair/Zubair-Engineering-Lab/actions/runs/43045733840) (eight-card refresh) both verified successful on 2026-11-26. None of the eight samples is represented as paid client work.
 
 ## Sample 01
 [Responsive landing page repair](./01-responsive-landing-page/README.md)
