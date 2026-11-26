@@ -1,6 +1,6 @@
 # Work-Sample Task Catalog
 
-Scope derived from a review of current and representative Upwork fixed-price postings for entry-level to intermediate work. This is a portfolio build plan, not a promise that every listed tool or paid service is available on every client engagement.
+Scope derived from a review of current and representative Upwork fixed-price postings for bounded, clearly scoped project work. This is a portfolio build plan, not a promise that every listed tool or paid service is available on every client engagement.
 
 ## Selection principles
 1. A clearly bounded deliverable that can be demonstrated independently.
@@ -40,5 +40,5 @@ Market review details (posting links, budgets, client history and account observ
 ## Portfolio build status
 
 - Samples 01–08 are represented on the lab's main branch; Sample 03 is a code-level plugin demonstration and still needs live CMS validation.
-- Samples 01 and 02 have successful dedicated GitHub Actions runs from 2026-11-11. Sample 04 has a dedicated GitHub Actions workflow and a successful run (43037071060). Sample 05 has a successful dedicated GitHub Actions run (43043222968). Sample 06 has a successful dedicated GitHub Actions run (43043587807). Sample 07 has a successful dedicated GitHub Actions run (43044133557). Sample 08 has a successful dedicated GitHub Actions run (43044572639). The seven-card gallery and all internal links passed in run 43044660878; an eight-card refresh is now being verified.
+- Samples 01 and 02 have successful dedicated GitHub Actions runs from 2026-11-11. Sample 04 has a dedicated GitHub Actions workflow and a successful run (43037071060). Sample 05 has a successful dedicated GitHub Actions run (43043222968). Sample 06 has a successful dedicated GitHub Actions run (43043587807). Sample 07 has a successful dedicated GitHub Actions run (43044133557). Sample 08 has a successful dedicated GitHub Actions run (43044572639). The seven-card gallery and all internal links passed in run 43044660878; the eight-card refresh passed in run 43045733840 (both re-verified successful on 2026-11-26).
 - This proves the committed tests passed in GitHub Actions where a successful run is recorded; it does not claim that a client production system was modified.
